@@ -1,7 +1,7 @@
 const express = require('express').Router;
 const cors = require("cors");
 const router = express();
-const User = require("../models/userModel");
+const User = require("../model/user");
 const dotenv = require("dotenv");
 dotenv.config();
 const jwt = require("jsonwebtoken");
@@ -67,7 +67,7 @@ router.post('/login',async(req,res) =>{
         }
     } catch (error) {
       console.log(error);
-        res.status(500).json(error);
+        res.status(500).json({message: error.message});
     }
 });
 

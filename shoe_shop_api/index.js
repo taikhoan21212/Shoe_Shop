@@ -10,6 +10,7 @@ const productRoute = require("./routes/product");
 const orderRoute = require("./routes/order");
 const userRoute = require("./routes/user");
 const cartRoute = require("./routes/cart");
+const authRoute = require("./routes/auth");
 app.use(bodyParser.json({limit:"50mb"}));
 app.use(helmet());
 app.use(cors());
@@ -33,6 +34,7 @@ mongoose
 //ROUTES
 app.use("/v1/products", productRoute);
 app.use("/v1/order", orderRoute);
-app.use("/v1/user", userRoute)
-app.use("/v1/cart", cartRoute)
+app.use("/v1/user", userRoute);
+app.use("/v1/cart", cartRoute);
+app.use('/v1/auth', authRoute);
 
