@@ -6,16 +6,16 @@ var bodyParser = require("body-parser");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
-const productRoute = require("./routes/product");
-const orderRoute = require("./routes/order");
-const userRoute = require("./routes/user");
-const cartRoute = require("./routes/cart");
-const authRoute = require("./routes/auth");
+const productRoute = require("./router/product");
+const orderRoute = require("./router/order");
+const userRoute = require("./router/user");
+const cartRoute = require("./router/cart");
+const authRoute = require("./router/auth");
 app.use(bodyParser.json({limit:"50mb"}));
 app.use(helmet());
 app.use(cors());
 
-const imageRoute = require('./routes/imageLoad');
+const imageRoute = require('./router/imageLoad');
 app.use(express.json({limit: '25mb'}));
 app.use(express.urlencoded({limit: '25mb', extended: true, parameterLimit: 50000}));
 
@@ -35,7 +35,7 @@ mongoose
 
 
 
-//ROUTES
+//router
 app.use("/v1/products", productRoute);
 app.use("/v1/order", orderRoute);
 app.use("/v1/user", userRoute);
