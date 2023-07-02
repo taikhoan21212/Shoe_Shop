@@ -1,5 +1,4 @@
 import './product.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react"
 import axios from 'axios';
