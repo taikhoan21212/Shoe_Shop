@@ -88,6 +88,9 @@
     cursor: pointer;
 }
 
+.header_down-logo a{
+    text-decoration: none;
+}
 .header_down-center {
     margin: -8px auto 0;
     align-items: center;
@@ -185,4 +188,10 @@ li:hover .subnav {
 .search-bar.active {
     display: block;
     margin: 10px 0 0 30px;
+}
+
+.logo-img{
+    width: 60px;
+    height: 40px;
+    align-items: center;
 }

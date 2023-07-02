@@ -6,28 +6,28 @@ import product1 from '../img/product1.webp'
 export const productDetails = () => {
     return (
         <div className='main'>
-            <div class="content">
-                <div class="content_main">
-                    <div class="content_container">
-                        <div class="content_container-img">
-                            <img src='./img/product1.webp' alt="" class="content-product-img" />
+            <div className="content">
+                <div className="content_main">
+                    <div className="content_container">
+                        <div className="content_container-img">
+                            <img src={product1} alt="" className="content-product-img" />
                         </div>
 
-                        <div class="content_container-information">
-                            <div class="content_container-body">
-                                <h3 class="place-time">Giày Thể Thao Nam Biti's Hunter Core Hmd000500REU (Rêu)6</h3>
-                                <h4 class="place-desc">700.000 đ</h4>
+                        <div className="content_container-information">
+                            <div className="content_container-body">
+                                <h3 className="place-time">Giày Thể Thao Nam Biti's Hunter Core Hmd000500REU (Rêu)6</h3>
+                                <h4 className="place-desc">700.000 đ</h4>
                                 <p>Thương hiệu: Biti's</p>
                                 <p>Tình trạng: New</p>
                                 <p>Giao hàng và thanh toán:
                                     Giao hàng toàn quốc và thanh toán khi nhận hàng. Bạn có thể kiểm tra sản phẩm.</p>
                                 <p>Tặng hộp giày thay thế.</p>
-                                <button class="btn-product s-col-full js-buy-ticket">MUA NGAY</button>
+                                <button className="btn-product s-col-full js-buy-ticket">MUA NGAY</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="content_container-details">
+                    <div className="content_container-details">
                         <h3>Mô tả sản phẩm</h3>
                         <p>Quá trình sản xuất mỗi đôi giày luôn dư ra lượng vật tư nhất định và không thể tiếp tục được sử
                             dụng. Với tâm thế “còn gì tận dụng nấy”, chúng mình nỗ lực góp nhặt những mảnh vật tư bị lãng

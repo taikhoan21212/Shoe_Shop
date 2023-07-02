@@ -1,93 +1,94 @@
 import './header.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faChevronDown, faSearch, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import Categori from '../pages/categori'
+
 
 function header_down() {
-    function toggleSearchBar() {
-        var searchBar = document.getElementById("search-bar");
-        searchBar.classList.toggle("active");
-    }
+    const Menu = () => {
+        const [isOpen, setIsOpen] = useState(false);
 
-    function toggleMenu() {
-        var menu = document.querySelector('.menu-ul-mobile');
-        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        const toggleMenu = () => {
+            setIsOpen(!isOpen);
+        };
     }
     return (
-        <div class="header_down">
-            <div class="header_down-scroll">
-                <div class="header_down-center-mobile">
-                    <div class="header_down-menu-mobile">
-                        <div class="icon-timelint">
+        <div className="header_down">
+            <div className="header_down-scroll">
+                <div className="header_down-center-mobile">
+                    <div className="header_down-menu-mobile">
+                        <div className="icon-timelint" >
                             <FontAwesomeIcon icon={faBars} />
+                            
+                                <ul className="menu-ul-mobile">
+                                    <li className="header_down-menu-home-mobile"><a href="./index.html">TRANG CHỦ</a></li>
+                                    <li className="header_down-menu-pages-mobile"><a href="./productMale.html">NAM</a>
 
-                            <ul class="menu-ul-mobile">
-                                <li class="header_down-menu-home-mobile"><a href="./index.html">TRANG CHỦ</a></li>
-                                <li class="header_down-menu-pages-mobile"><a href="./productMale.html">NAM</a>
-
-                                    <FontAwesomeIcon icon={faChevronDown} />
-                                    <ul class="subnav-mobile">
-                                        <li><a href="#">Hunter</a></li>
-                                        <li><a href="#">Sandan</a></li>
-                                        <li><a href="#">Media</a></li>
-                                    </ul>
-                                </li>
-                                <li class="header_down-menu-pages-mobile"><a href="./productFemale.html">NỮ</a>
-                                    <FontAwesomeIcon icon={faChevronDown} />
-                                    <ul class="subnav-mobile">
-                                        <li><a href="#">Hunter</a></li>
-                                        <li><a href="#">Sandan</a></li>
-                                        <li><a href="#">Guốc</a></li>
-                                    </ul>
-                                </li>
-                                <li class="header_down-menu-products-mobile"><a href="./productMale.html">SẢN PHẨM</a>
-                                </li>
-                                <li class="header_down-menu-blog-mobile"><a href="#">BLOG</a></li>
-                            </ul>
+                                        <FontAwesomeIcon icon={faChevronDown} />
+                                        <ul className="subnav-mobile">
+                                            <li><a href="#">Hunter</a></li>
+                                            <li><a href="#">Sandan</a></li>
+                                            <li><a href="#">Media</a></li>
+                                        </ul>
+                                    </li>
+                                    <li className="header_down-menu-pages-mobile"><a href="./productFemale.html">NỮ</a>
+                                        <FontAwesomeIcon icon={faChevronDown} />
+                                        <ul className="subnav-mobile">
+                                            <li><a href="#">Hunter</a></li>
+                                            <li><a href="#">Sandan</a></li>
+                                            <li><a href="#">Guốc</a></li>
+                                        </ul>
+                                    </li>
+                                    <li className="header_down-menu-products-mobile"><a href="./productMale.html">SẢN PHẨM</a>
+                                    </li>
+                                    <li className="header_down-menu-blog-mobile"><a href="#">BLOG</a></li>
+                                </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="header_down-left">
-                    <div class="header_down-logo">
-                    <a href="./index.html">
-                            <img src={require('../img/shoe.png')} alt="logo" class="logo-img"/>SHOES(TQN)</a>
+                <div className="header_down-left">
+                    <div className="header_down-logo">
+                        <a href="./index.html">
+                            <img src={require('../img/shoe.png')} alt="logo" className="logo-img" />SHOES(TQN)</a>
                     </div>
                 </div>
-                <div class="header_down-center">
-                    <div class="header_down-menu">
-                        <ul class="menu-ul">
-                            <li class="header_down-menu-home"><a href="#">TRANG CHỦ</a></li>
-                            <li class="header_down-menu-pages"><a href="./productMale.html">NAM</a>
-                            <FontAwesomeIcon icon={faChevronDown} />
-                                <ul class="subnav">
+                <div className="header_down-center">
+                    <div className="header_down-menu">
+                        <ul className="menu-ul">
+                            <li className="header_down-menu-home"><a href="#">TRANG CHỦ</a></li>
+                            <li className="header_down-menu-pages"><a href="./productMale.html">NAM</a>
+                                <FontAwesomeIcon icon={faChevronDown} />
+                                <ul className="subnav">
                                     <li><a href="#">Hunter</a></li>
                                     <li><a href="#">Sandan</a></li>
                                     <li><a href="#">Media</a></li>
                                 </ul>
                             </li>
-                            <li class="header_down-menu-pages"><a href="./productFemale.html">NỮ</a>
-                            <FontAwesomeIcon icon={faChevronDown} />
-                                <ul class="subnav">
+                            <li className="header_down-menu-pages"><a href="./productFemale.html">NỮ</a>
+                                <FontAwesomeIcon icon={faChevronDown} />
+                                <ul className="subnav">
                                     <li><a href="#">Hunter</a></li>
                                     <li><a href="#">Sandan</a></li>
                                     <li><a href="#">Guốc</a></li>
                                 </ul>
                             </li>
-                            <li class="header_down-menu-products"><a href="./productMale.html">SẢN PHẨM</a>
+                            <li className="header_down-menu-products"><a href="./productMale.html">SẢN PHẨM</a>
                             </li>
-                            <li class="header_down-menu-blog"><a href="#">BLOG</a></li>
+                            <li className="header_down-menu-blog"><a href="#">BLOG</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="header_down-right">
-                    <div class="header_down-right-search">
+                <div className="header_down-right">
+                    <div className="header_down-right-search">
                         <a id="search-button" onclick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
 
-                        <input type="text" class="search-bar" id="search-bar" placeholder="Nhập từ khóa tìm kiếm" />
+                        <input type="text" className="search-bar" id="search-bar" placeholder="Nhập từ khóa tìm kiếm" />
                     </div>
-                    <div class="header_down-right-cart">
-                        <a href="./productMale.html"><FontAwesomeIcon icon={faShoppingCart} /></a>
+                    <div className="header_down-right-cart">
+                        <a href={Categori}><FontAwesomeIcon icon={faShoppingCart} /></a>
                     </div>
                 </div>
             </div>
