@@ -1,8 +1,8 @@
 import './header.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEarthAmericas, faChevronDown, faMobile, faHeart} from '@fortawesome/free-solid-svg-icons';
-
+import { Link } from "react-router-dom";
 
 function header_top(){
     
@@ -29,7 +29,8 @@ function header_top(){
                         Yêu thích
                     </div>
                     <div className="header_top-register">Đăng ký</div>
-                    <div className="header_top-login">Đăng nhập</div>
+                    <div className="header_top-login"><Link to={"/Login"}>Đăng nhập</Link></div>
+                    
                 </div>
             </div>
             <div className="center">

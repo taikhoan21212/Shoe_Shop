@@ -51,6 +51,12 @@
     cursor: pointer;
 }
 
+.header_top-login a{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
 .header_top-register {
     /* padding: 0 5px 0 10px; */
     margin: 0 10px;

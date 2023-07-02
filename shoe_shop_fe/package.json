@@ -49,6 +49,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "babel-loader": "^9.1.2",
     "eslint": "^8.38.0",
     "sass": "^1.63.6"
   },

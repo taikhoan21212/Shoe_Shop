@@ -4,15 +4,26 @@ import { BrowserRouter , Routes, Route} from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Homepage from './components/homepage';
 import Login from './components/layout/pages/login';
+import HeaderDown from './components/layout/header/header-down';
+import HeaderTop from './components/layout/header/header-top';
 
 function App() {
     return (
         <BrowserRouter>
         <div className='App'>
-            <Routes>
-                <Route exact path="/" element={<Homepage/>} />
-                <Route path="/Login" element={<Login />} />
-            </Routes>
+            <div className="header">
+                <HeaderTop />
+                <HeaderDown />
+            </div>
+            <div className='main'>
+                <Routes>
+                    <Route exact path="/" element={<Homepage/>} />
+                    <Route path="/Login" element={<Login />} />
+                </Routes>
+            </div>
+            <div className='footer'>
+                <Footer />
+            </div>
         </div>
         </BrowserRouter>
     );
