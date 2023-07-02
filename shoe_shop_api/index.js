@@ -15,6 +15,10 @@ app.use(bodyParser.json({limit:"50mb"}));
 app.use(helmet());
 app.use(cors());
 
+const imageRoute = require('./routes/imageLoad');
+app.use(express.json({limit: '25mb'}));
+app.use(express.urlencoded({limit: '25mb', extended: true, parameterLimit: 50000}));
+
 dotenv.config();
 //CONNECT DATABASE
 const MONGODB_URL = process.env.DB_URL;
@@ -37,4 +41,5 @@ app.use("/v1/order", orderRoute);
 app.use("/v1/user", userRoute);
 app.use("/v1/cart", cartRoute);
 app.use('/v1/auth', authRoute);
+app.use('/v1/image', imageRoute);
 
