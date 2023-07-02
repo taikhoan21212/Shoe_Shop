@@ -6,6 +6,7 @@ import Homepage from './components/homepage';
 import Login from './components/layout/pages/login';
 import HeaderDown from './components/layout/header/header-down';
 import HeaderTop from './components/layout/header/header-top';
+import Footer from './components/layout/footer/footer';
 
 function App() {
     return (
