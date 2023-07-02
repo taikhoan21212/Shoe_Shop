@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import "./login.module.scss"
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from '../../../redux/apiRequest';
+import { loginUser } from '../../../../redux/apiRequest';
 import { useDispatch } from 'react-redux';
 
 const Login = () => {
 
-  const [username, setUsername] = useState("myAdmin");
-  const [password, setPassword] = useState("myadmin");
+  const [username, setUsername] = useState("kimngoc");
+  const [password, setPassword] = useState("123456");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
