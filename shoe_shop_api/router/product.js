@@ -1,6 +1,6 @@
 
 const router = require("express").Router();
-const { Product } = require("../model/product");
+const Product = require("../model/product");
 
 //ADD A USER
 router.post("/add", async (req, res) => {
