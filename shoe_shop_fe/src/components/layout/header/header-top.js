@@ -2,10 +2,22 @@ import './header.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEarthAmericas, faChevronDown, faMobile, faHeart} from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../../redux/apiRequest";
+import { useNavigate } from "react-router-dom";
 
 function Header_top(){
     const user = useSelector((state)=> state.auth.login.currentUser);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+  const handleLogout = (e) =>{
+    e.preventDefault();
+    try {
+      logOut(dispatch,navigate);
+    } catch (error) {
+      console.log(error);
+    }
+  }
     
     return(
         <div>
@@ -32,8 +44,8 @@ function Header_top(){
                     {user? (
                         <>
                         <p className="header_top-hello">Hi, <span> {user.username}  </span> </p>
-                        { user.isAdmin? (<> <Link to="/PageAdmin" className="header_top-admin"> <span> Admin page </span> </Link> </>):(<></>)}
-                                    <Link to="/logout" className="navbar-logout" > Log out</Link>
+                        { user.isAdmin? (<> <Link to="/" className="header_top-admin"> <span> Admin page </span> </Link> </>):(<></>)}
+                                    <Link to="/logout" className="navbar-logout" onClick={handleLogout} > Log out</Link>
         
         </>
       ) : (<>
