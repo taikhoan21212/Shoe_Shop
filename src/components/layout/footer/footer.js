@@ -41,19 +41,7 @@ function footer(){
                             </li>
                         </ul>
                     </div>
-                    <div className='footer__flex' col-sm>
-                        <div className='footer__foo-tt'>
-                            <h3>Tài nguyên</h3>
-                        </div>
-                        <ul>
-                            <li className='footer-li'>
-                                <p>Trình biên tập ảnh</p>
-                            </li>
-                            <li className='footer-li'>
-                                <p>Hỗ trợ</p>
-                            </li>
-                        </ul>
-                    </div>
+                    
                     <div className='footer__flex' col-sm>
                         <div className='footer__foo-tt'>
                             <h3>Sản phẩm</h3>

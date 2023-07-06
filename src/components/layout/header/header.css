@@ -1,3 +1,7 @@
+.mt-10{
+    margin-top: 20px;
+}
+
 /* Header */
 .center {
     width: 100%;
@@ -179,10 +183,16 @@ li:hover .subnav {
 
 .header_down-right-search{
     max-width: 20px;
+    display: contents;
 }
 
 .search-bar {
-    display: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-weight: 200;
+    width: 180px;
+    height: 30px;
+    border: navajowhite;
 }
 
 .search-bar.active {
@@ -194,4 +204,9 @@ li:hover .subnav {
     width: 60px;
     height: 40px;
     align-items: center;
+}
+
+#search-button{
+    font-size: 18px;
+    margin: 0 18px 0 -24px;
 }

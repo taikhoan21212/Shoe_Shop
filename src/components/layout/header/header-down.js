@@ -21,30 +21,30 @@ function header_down() {
                     <div className="header_down-menu-mobile">
                         <div className="icon-timelint" >
                             <FontAwesomeIcon icon={faBars} />
-                            
-                                <ul className="menu-ul-mobile">
-                                    <li className="header_down-menu-home-mobile"><a href="./index.html">TRANG CHỦ</a></li>
-                                    <li className="header_down-menu-pages-mobile"><a href="./productMale.html">NAM</a>
 
-                                        <FontAwesomeIcon icon={faChevronDown} />
-                                        <ul className="subnav-mobile">
-                                            <li><a href="#">Hunter</a></li>
-                                            <li><a href="#">Sandan</a></li>
-                                            <li><a href="#">Media</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="header_down-menu-pages-mobile"><a href="./productFemale.html">NỮ</a>
-                                        <FontAwesomeIcon icon={faChevronDown} />
-                                        <ul className="subnav-mobile">
-                                            <li><a href="#">Hunter</a></li>
-                                            <li><a href="#">Sandan</a></li>
-                                            <li><a href="#">Guốc</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="header_down-menu-products-mobile"><a href="./productMale.html">SẢN PHẨM</a>
-                                    </li>
-                                    <li className="header_down-menu-blog-mobile"><a href="#">BLOG</a></li>
-                                </ul>
+                            <ul className="menu-ul-mobile">
+                                <li className="header_down-menu-home-mobile"><a href="./index.html">TRANG CHỦ</a></li>
+                                <li className="header_down-menu-pages-mobile"><a href="./productMale.html">NAM</a>
+
+                                    <FontAwesomeIcon icon={faChevronDown} />
+                                    <ul className="subnav-mobile">
+                                        <li><a href="#">Hunter</a></li>
+                                        <li><a href="#">Sandan</a></li>
+                                        <li><a href="#">Media</a></li>
+                                    </ul>
+                                </li>
+                                <li className="header_down-menu-pages-mobile"><a href="./productFemale.html">NỮ</a>
+                                    <FontAwesomeIcon icon={faChevronDown} />
+                                    <ul className="subnav-mobile">
+                                        <li><a href="#">Hunter</a></li>
+                                        <li><a href="#">Sandan</a></li>
+                                        <li><a href="#">Guốc</a></li>
+                                    </ul>
+                                </li>
+                                <li className="header_down-menu-products-mobile"><a href="./productMale.html">SẢN PHẨM</a>
+                                </li>
+                                <li className="header_down-menu-blog-mobile"><a href="#">BLOG</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -83,9 +83,14 @@ function header_down() {
                 </div>
                 <div className="header_down-right">
                     <div className="header_down-right-search">
-                        <a id="search-button" onclick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
-
-                        <input type="text" className="search-bar" id="search-bar" placeholder="Nhập từ khóa tìm kiếm" />
+                        {/* <a id="search-button" onclick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
+                        <input type="text" className="search-bar" id="search-bar" placeholder="Nhập từ khóa tìm kiếm" /> */}
+                        <div class="item no-border drop-left-padding">
+                            <div class="ui icon input icon">
+                                <input placeholder="tìm kiếm" type="text" className="search-bar" />
+                                <a id="search-button" onclick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
+                            </div>
+                        </div>
                     </div>
                     <div className="header_down-right-cart">
                         <a href={Categori}><FontAwesomeIcon icon={faShoppingCart} /></a>
