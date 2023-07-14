@@ -44,7 +44,7 @@ function Header_top(){
                     {user? (
                         <>
                         <p className="header_top-hello">Hi, <span> {user.username}  </span> </p>
-                        { user.isAdmin? (<> <Link to="/" className="header_top-admin"> <span> Admin page </span> </Link> </>):(<></>)}
+                        { user.isAdmin? (<> <Link to="/PageAdmin/AddProduct" className="header_top-admin"> <span> Admin page </span> </Link> </>):(<></>)}
                                     <Link to="/logout" className="navbar-logout" onClick={handleLogout} > Log out</Link>
         
         </>

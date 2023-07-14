@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Categori from '../pages/categori'
-
+import { Link } from 'react-router-dom';
 
 function header_down() {
     const Menu = () => {
@@ -58,7 +58,7 @@ function header_down() {
                 <div className="header_down-center">
                     <div className="header_down-menu">
                         <ul className="menu-ul">
-                            <li className="header_down-menu-home"><a href="#">TRANG CHỦ</a></li>
+                            <li className="header_down-menu-home"><Link to="/">TRANG CHỦ</Link></li>
                             <li className="header_down-menu-pages"><a href="./productMale.html">NAM</a>
                                 <FontAwesomeIcon icon={faChevronDown} />
                                 <ul className="subnav">
