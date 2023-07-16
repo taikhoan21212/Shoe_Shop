@@ -139,20 +139,34 @@ button.img-delete {
 .table-wrapper th {
   text-align: left;
   border-bottom: 3px solid #ddd;
+  height: 40px;
 }
 
 th.color-column{
-  width: 25%;
+  width: 30%;
 }
 
 th.size-remaining-column{
   width: 40%;
 }
 
+th.add-column{
+  text-align: center;
+}
+
+.add-column button{
+  width: 30%;
+  margin-left: 8px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  position: relative;
+  margin-left: 8px;
+}
+
 .table-wrapper td {
   text-align: center;
   border: 1px solid #ddd;
-  height: 155px;
+  min-height: 70px;
   max-height: 155px;
 }
 
@@ -165,21 +179,22 @@ th.size-remaining-column{
 }
 
 .table-wrapper td.size-remaining-cell {
-  display: inline-flex;
+  display: inline-block;
   width: 100%;
   overflow-y: scroll;
   flex-wrap: wrap;
   align-items: center;
+  text-align: left;
 }
 
 .input-s-r{
-  display:contents;
+  display:flex;
 }
 
 .table-wrapper td.size-remaining-cell input {
 width: 30%;
 margin-left: 8px;
-margin-bottom: 5px;
+margin-bottom: 4px;
 text-align: center;
 }
 
@@ -189,6 +204,8 @@ height: 30px;
 border: 1px solid black;
 position: relative;
 margin-left: 8px;
+align-items: center;
+margin-top: 4px;
 }
 
 
