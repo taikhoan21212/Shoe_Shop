@@ -45,11 +45,11 @@ function Header_top(){
                         <>
                         <p className="header_top-hello">Hi, <span> {user.username}  </span> </p>
                         { user.isAdmin? (<> <Link to="/PageAdmin/AddProduct" className="header_top-admin"> <span> Admin page </span> </Link> </>):(<></>)}
-                                    <Link to="/logout" className="header_top-admin" onClick={handleLogout} > Log out</Link>
+                                    <Link to="/" className="header_top-admin" onClick={handleLogout} > Log out</Link>
         
         </>
       ) : (<>
-                    <div className="header_top-register">Đăng ký</div>
+                    <div className="header_top-register"><Link to={"/Register"}>Đăng ký</Link></div>
                     <div className="header_top-login"><Link to={"/Login"}>Đăng nhập</Link></div></>)}
                 </div>
             </div>
