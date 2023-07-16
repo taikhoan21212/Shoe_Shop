@@ -177,10 +177,6 @@ li:hover .subnav {
   max-width: 20px;
 }
 
-.search-bar {
-  display: none;
-}
-
 .search-bar.active {
   display: block;
   margin: 10px 0 0 30px;
