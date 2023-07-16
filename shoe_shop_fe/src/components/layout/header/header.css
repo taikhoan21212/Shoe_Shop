@@ -55,10 +55,20 @@
     cursor: pointer;
 }
 
-.header_top-register {
+.header_top-register,
+.header_top-hello,
+.header_top-admin {
     /* padding: 0 5px 0 10px; */
     margin: 0 10px;
     cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+}
+
+.header_top-register:hover,
+.header_top-hello:hover,
+.header_top-admin:hover {
+    color: #c5c5c5;
 }
 
 .header_down {
