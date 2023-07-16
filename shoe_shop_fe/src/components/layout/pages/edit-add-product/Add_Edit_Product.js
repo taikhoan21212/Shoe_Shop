@@ -336,7 +336,7 @@ const Add_Edit_Product = () => {
           <tr>
             <th className="color-column">Color:</th> 
             <th className="size-remaining-column">Size-Remaining:</th>
-            <th>---</th>
+            <th className="add-column"><button className="td-set-add set-add" onClick={addColorRow}>Add</button></th>
           </tr>
           </thead>
           <tbody>
@@ -355,9 +355,10 @@ const Add_Edit_Product = () => {
               </button>
             )}
               </div>
-              <button className="set-add" onClick={()=>addDiv({colorIndex})}>Add</button></div>))}
+              {index === rowf.size_remaining.length-1 && (
+              <button className="td-set-add set-add" onClick={()=>addDiv({colorIndex})}>Add</button>)}</div>))}
             </td>
-            <td className="td-set"><button className="td-set-add set-add" onClick={addColorRow}>Add</button>   <button className="td-set-del set-del"  onClick={() => removecolorRows(colorIndex)}>Del</button></td>
+            <td className="td-set"><button className="td-set-del set-del"  onClick={() => removecolorRows(colorIndex)}>Del</button></td>
           </tr>
            ))} 
           </tbody>
