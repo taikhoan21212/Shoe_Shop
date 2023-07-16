@@ -14,7 +14,7 @@ section{
     left: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
-    background: #2d2c2c;
+    background: #ebebeb;
     padding: 40px;
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
@@ -24,14 +24,14 @@ section{
 .login-box h2 {
     margin: 0 0 30px;
     padding: 0;
-    color: #fff;
+    color: black;
     text-align: center;
 }
 
 .login-box .mess-Log p {
     margin: 0 0 30px;
     padding: 0;
-    color: #dcfdc6;
+    color: black;
     text-align: center;
 }
 
@@ -43,12 +43,18 @@ section{
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
-    color: #fff;
+    color: black;
     margin-bottom: 30px;
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid black;
     outline: none;
     background: transparent;
+}
+
+input:focus{
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px #007bff;
 }
 
 .login-box .user-box label {
@@ -57,7 +63,7 @@ section{
     left: 0;
     padding: 10px 0;
     font-size: 16px;
-    color: #fff;
+    color: black;
     pointer-events: none;
     transition: 0.5s;
 }
@@ -66,7 +72,7 @@ section{
 .login-box .user-box input:valid~label {
     top: -20px;
     left: 0;
-    color: #4bb1e0;
+    color: #0072a7;
     font-size: 12px;
 }
 
@@ -89,16 +95,16 @@ section{
 }
 
 .login-box input[type="submit"]:hover {
-    background: #02afa1;
+    background: #007bff;;
 }
 
 .login-box  p{
-    color: #fff;
+    color: black;
     margin-top: 0px;
 }
 
 .login-box  a{
-    color: #03a9f4;
+    color:  #004792;
 }
 
 
