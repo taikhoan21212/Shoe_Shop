@@ -275,7 +275,6 @@ const Add_Edit_Product = () => {
       category: category,
       description: description
     };
-    console.log(newProduct);
     if(!id){
       axios
       .post(`${process.env.REACT_APP_API_URL}products/add`, newProduct )

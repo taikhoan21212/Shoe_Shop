@@ -1,4 +1,3 @@
-
 import './product.css'
 import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react";
@@ -11,20 +10,21 @@ function Product_Details() {
     const [productDetail, setProductDetail] = useState(null);
 
     useEffect(() => {
-        if (id) {
           axios
             .get(`${process.env.REACT_APP_API_URL}products/${id}`)
             .then((res) => {
               setProductDetail(res.data);
             })
             .catch(console.log);
-        }
+        
       }, [id]);
 
 
     return (
+        <>
+        {productDetail && (
         <div className='main'>
-            <div className="content">
+            <div className="content">                    
                 <div className="content_main">
                     <div className="content_container">
                         <div className="content_container-img">
@@ -51,6 +51,8 @@ function Product_Details() {
                 </div>
             </div>
         </div>
+        )}
+        </>
     )
 }
 

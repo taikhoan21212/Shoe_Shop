@@ -2,7 +2,7 @@ import './product.css'
 import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react"
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 
 function Product_hot() {
     window.onscroll = function () {
@@ -35,6 +35,7 @@ function Product_hot() {
                     <div className="content-product-hot-list row">
                     {productList.map(product=>(
                         <div key={product._id} className="col-12 col-md-4 col-sm-6 col-lg-3 mt-10">
+                            <Link to={`/products/${product._id}`} className="product-link">
                             <img src={product.img[0]} alt="" className="product-img" />
                             <div className="place-body">
                                 <h3 className="place-heading">Giày {product.brand} {product.category}</h3>
@@ -42,6 +43,7 @@ function Product_hot() {
                                 <p className="place-desc">{product.price.toLocaleString()} đ</p>
                                 <button className="btn-product s-col-full js-buy-ticket">MUA NGAY</button>
                             </div>
+                            </Link>
                         </div>))}
                         <div className="col-12 col-md-4 col-sm-6 col-lg-3 mt-10">
                             <img src={product1} alt="" className="product-img" />
