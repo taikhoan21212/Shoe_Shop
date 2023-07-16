@@ -17,7 +17,7 @@ size_color_remaining: [
     ]
   }
 ],
-category: { type: [String], required: true },
+category: { type: String, required: true },
 description: { type: String }
 }, { timestamps: true });
 

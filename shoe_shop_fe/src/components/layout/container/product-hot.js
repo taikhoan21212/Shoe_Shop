@@ -24,7 +24,6 @@ function Product_hot() {
               });
     },[])
 
-
     return (
         <div className="content">
             <div className="content_product">

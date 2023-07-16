@@ -275,10 +275,10 @@ const Add_Edit_Product = () => {
       category: category,
       description: description
     };
-
+    console.log(newProduct);
     if(!id){
       axios
-      .post(`${process.env.REACT_APP_API_URL}product/add`, newProduct )
+      .post(`${process.env.REACT_APP_API_URL}products/add`, newProduct )
       .then((res) => {
         alert("Success");
         navigate("/ProductList");
@@ -286,7 +286,7 @@ const Add_Edit_Product = () => {
       .catch(console.log);
     }else{
       axios
-      .put(`${process.env.REACT_APP_API_URL}product/${id}`, newProduct )
+      .put(`${process.env.REACT_APP_API_URL}products/${id}`, newProduct )
       .then((res) => {
         alert("Success");
         navigate(`/PageAdmin/EditProduct/${id}`);
