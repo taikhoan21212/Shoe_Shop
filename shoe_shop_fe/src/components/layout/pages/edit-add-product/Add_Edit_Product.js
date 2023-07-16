@@ -238,7 +238,7 @@ const Add_Edit_Product = () => {
       useEffect(() => {
         if (id) {
           axios
-            .get(`${process.env.REACT_APP_API_URL}product/${id}`)
+            .get(`${process.env.REACT_APP_API_URL}products/${id}`)
             .then((res) => {
               setProductDetail(res.data);
             })

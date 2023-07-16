@@ -8,6 +8,7 @@ import HeaderDown from './components/layout/header/header-down';
 import HeaderTop from './components/layout/header/header-top';
 import Footer from './components/layout/footer/footer';
 import Add_Edit_Product from './components/layout/pages/edit-add-product/Add_Edit_Product';
+import Product_detail from  './components/layout/container/product-details'
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/Login" element={<Login />} />
                     <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
                     <Route path="/PageAdmin/EditProduct/:id" element={<Add_Edit_Product />} />
+                    <Route path="/Products/:id" element={<Product_detail />} />
                 </Routes>
             </div>
             <div className='footer'>

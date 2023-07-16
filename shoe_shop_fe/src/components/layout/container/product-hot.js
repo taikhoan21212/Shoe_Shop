@@ -3,6 +3,7 @@ import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react"
 import axios from 'axios';
 
+
 function Product_hot() {
     window.onscroll = function () {
         var navbar = document.querySelector('.header_down');
