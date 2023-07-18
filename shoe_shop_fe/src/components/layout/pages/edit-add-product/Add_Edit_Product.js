@@ -16,7 +16,7 @@ const Add_Edit_Product = () => {
   const [colorRows, setColorRows] = useState(color_size_remaining());
   const [price, setPrice] = useState("");
   const [brand, setBrand] = useState("");
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [imageList, setImageList] = useState([]);
@@ -251,7 +251,7 @@ const Add_Edit_Product = () => {
           setHasProductDetail(true);
           setColorRows(productDetail.size_color_remaining || []);
           setPrice(productDetail.price);
-          setCategory([productDetail.category]);
+          setCategory(productDetail.category);
           setDescription(productDetail.description);
           setTitle(productDetail.title);
           setImageList(productDetail.img);
@@ -275,6 +275,7 @@ const Add_Edit_Product = () => {
       category: category,
       description: description
     };
+    console.log(newProduct);
     if(!id){
       axios
       .post(`${process.env.REACT_APP_API_URL}products/add`, newProduct )
@@ -288,7 +289,7 @@ const Add_Edit_Product = () => {
       .put(`${process.env.REACT_APP_API_URL}products/${id}`, newProduct )
       .then((res) => {
         alert("Success");
-        navigate(`/PageAdmin/EditProduct/${id}`);
+        navigate(`/Products/${id}`);
       })
       .catch(console.log);
     }}
