@@ -2,8 +2,6 @@ import './product.css'
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {useParams } from "react-router-dom";
-// import { Fade, Slide } from 'react-slideshow-image';
-// import 'react-slideshow-image/dist/styles.css'
 import SimpleImageSlider from "react-simple-image-slider";
 
 function Product_Details() {
