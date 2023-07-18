@@ -54,17 +54,17 @@ function Product_Details() {
                                     <div className="select-swatch-color-item">
                                         {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) => {
                                             return (<>
-                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={index} checked={index === indexColor} onChange={(e) => setIndexColor(index)}/>
+                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={(e) => setIndexColor(index)}/>
                                                     <label htmlFor={"color"+index}>{item.color}</label></>
                                             );
                                         })}
 
                                         </div>  
                                         <div className="select-swatch-color-size-item">
-                                            <div  className="select-swatch-color-size-item" >
+                                            <div className="select-swatch-color-size-item" >
                                                     {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
                                                         return (<>
-                                                              <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => setRem(item.remaining)}/>
+                                                              <input key={index} type="radio" id={"size" + item.size} name="size" value={item._id} onChange={(e) => setRem(item.remaining)}/>
                                                               <label htmlFor={"size" + item.size}>{item.size}</label></>
                                                         );
                                                     })}
