@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Categori from '../pages/categori'
-
+import { Link } from 'react-router-dom';
 
 function header_down() {
     const Menu = () => {
@@ -23,7 +23,7 @@ function header_down() {
                             <FontAwesomeIcon icon={faBars} />
 
                             <ul className="menu-ul-mobile">
-                                <li className="header_down-menu-home-mobile"><a href="./index.html">TRANG CHỦ</a></li>
+                                <li className="header_down-menu-home-mobile"><Link to="/" >TRANG CHỦ</Link></li>
                                 <li className="header_down-menu-pages-mobile"><a href="./productMale.html">NAM</a>
 
                                     <FontAwesomeIcon icon={faChevronDown} />
@@ -51,14 +51,14 @@ function header_down() {
 
                 <div className="header_down-left">
                     <div className="header_down-logo">
-                        <a href="./index.html">
-                            <img src={require('../img/shoe.png')} alt="logo" className="logo-img" />SHOES(TQN)</a>
+                        <Link to="/">
+                            <img src={require('../img/shoe.png')} alt="logo" className="logo-img" />SHOES(TQN)</Link>
                     </div>
                 </div>
                 <div className="header_down-center">
                     <div className="header_down-menu">
                         <ul className="menu-ul">
-                            <li className="header_down-menu-home"><a href="#">TRANG CHỦ</a></li>
+                            <li className="header_down-menu-home"><Link to="/">TRANG CHỦ</Link></li>
                             <li className="header_down-menu-pages"><a href="./productMale.html">NAM</a>
                                 <FontAwesomeIcon icon={faChevronDown} />
                                 <ul className="subnav">

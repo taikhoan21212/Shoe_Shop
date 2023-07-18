@@ -1,24 +1,30 @@
 import './product.css'
-import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {useParams } from "react-router-dom";
-
+// import { Fade, Slide } from 'react-slideshow-image';
+// import 'react-slideshow-image/dist/styles.css'
+import SimpleImageSlider from "react-simple-image-slider";
 
 function Product_Details() {
     const { id } = useParams();
     const [productDetail, setProductDetail] = useState(null);
+    const [sliderImages, setSliderImages] = useState(null);
 
     useEffect(() => {
           axios
             .get(`${process.env.REACT_APP_API_URL}products/${id}`)
             .then((res) => {
               setProductDetail(res.data);
+              setSliderImages(res.data.img);
             })
             .catch(console.log);
         
       }, [id]);
 
+    //   console.log(productDetail);
+      
+    //   console.log(sliderImages);
 
     return (
         <>
@@ -27,9 +33,10 @@ function Product_Details() {
             <div className="content">                    
                 <div className="content_main">
                     <div className="content_container">
-                        <div className="content_container-img">
-                            <img src={productDetail.img[0]} alt="" className="content-product-img" />
-                        </div>
+                    <div className="content_container-img">
+                    {sliderImages && sliderImages.length > 0 && (
+                    <SimpleImageSlider width={500} height={500} images={sliderImages} showNavs={true}/>)}
+                    </div>
                         <div className="content_container-information">
                             <div className="content_container-body">
                                 <h3 className="place-time">{productDetail.title}</h3>
