@@ -164,7 +164,7 @@
 /* .select-swatch-color label:hover {
     background-color: #b8b8b8;
   } */
-
+  
   .disabled-input {
     opacity: 0.5; /* Reduce the opacity to make the input appear faded */
     pointer-events: none; /* Disable pointer events to prevent interaction */
@@ -179,4 +179,3 @@
     filter: invert(1);
     position: absolute;
   }
-
