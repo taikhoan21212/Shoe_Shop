@@ -28,6 +28,15 @@ function Product_Details() {
       
     //   console.log(sliderImages);
     //   console.log(selectSwatch);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const selectedColor = selectSwatch[indexColor].color;
+        const selectedSize = selectSwatch[indexColor].size_remaining.find(item => item.remaining === rem).size;
+        console.log(selectedColor);
+        console.log(selectedSize);
+    }
+
+
     return (
         <>
         {productDetail && (
@@ -64,16 +73,24 @@ function Product_Details() {
                                             <div className="select-swatch-color-size-item" >
                                                     {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
                                                         return (<>
-                                                              <input key={index} type="radio" id={"size" + item.size} name="size" value={item._id} onChange={(e) => setRem(item.remaining)}/>
-                                                              <label htmlFor={"size" + item.size}>{item.size}</label></>
+                                                              {item.remaining > 0 ? (
+                                                                <>
+                                                                  <input key={index} type="radio" id={"size" + item.size} name="size" value={item._id} onChange={(e) => setRem(item.remaining)}/>
+                                                                  <label htmlFor={"size" + item.size}>{item.size}</label>
+                                                                </>
+                                                            ) : (
+                                                                <label className="disabled-label" htmlFor={"size" + item.size}>
+                                                                  {item.size}
+                                                                </label>
+                                                            )}</>
                                                         );
                                                     })}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <button className="btn-product s-col-full js-buy-ticket" onClick={handleSubmit}>MUA NGAY</button>
                                 
-                                <button className="btn-product s-col-full js-buy-ticket">MUA NGAY</button>
                             </div>
                         </div>
                     </div>
