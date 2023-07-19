@@ -9,8 +9,9 @@ function Product_Details() {
     const [productDetail, setProductDetail] = useState(null);
     const [sliderImages, setSliderImages] = useState(null);
     const [selectSwatch, setSelectwatch] = useState(null);
-    const [rem, setRem] = useState("0");
+    const [rem, setRem] = useState("");
     const [indexColor, setIndexColor] = useState(0);
+
 
     useEffect(() => {
           axios
@@ -45,11 +46,11 @@ function Product_Details() {
                                 <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4>
                                 <p>Thương hiệu: {productDetail.brand}</p>
                                 <p>Tình trạng: New</p>
-                                <p>Giao hàng và thanh toán:
+                                <p>Giao hàng và thanh toán: <br />  
                                     Giao hàng toàn quốc và thanh toán khi nhận hàng. Bạn có thể kiểm tra sản phẩm.</p>
                                 <p>Tặng hộp giày thay thế.</p>
                                 <div className="select-swatch">
-                                    <p>Tình trạng : {rem}</p>
+                                    <p>Tình trạng : Còn hàng <span style={{ color:  'red' }}>{rem}</span></p>
                                     <div className="select-swatch-color">
                                     <div className="select-swatch-color-item">
                                         {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) => {
@@ -64,8 +65,9 @@ function Product_Details() {
                                             <div className="select-swatch-color-size-item" >
                                                     {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
                                                         return (<>
-                                                              <input key={index} type="radio" id={"size" + item.size} name="size" value={item._id} onChange={(e) => setRem(item.remaining)}/>
-                                                              <label htmlFor={"size" + item.size}>{item.size}</label></>
+                                                              <input key={index} type="radio" id={"size" + item.size} name="size" value={item._id} onChange={(e) => setRem(item.remaining)} disabled={item.remaining === 0}
+                                                                className={item.remaining === 0 ? "disabled-input" : ""}/>
+                                                              <label htmlFor={"size" + item.size} className={item.remaining === 0 ? "disabled-label" : ""}>{item.size}</label></>
                                                         );
                                                     })}
                                             </div>
