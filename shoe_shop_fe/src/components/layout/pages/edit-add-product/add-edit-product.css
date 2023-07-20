@@ -30,6 +30,7 @@ textarea:focus {
 label {
   margin-bottom: 8px;
   margin-right: 10px;
+  font-weight: bold;
 }
 
 .form-row {
