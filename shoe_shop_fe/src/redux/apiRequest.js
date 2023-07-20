@@ -31,7 +31,7 @@ export const logOut = async(dispatch,navigate) =>{
 export const registerUser = async(user, dispatch) =>{
         dispatch(registerStart());
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}user/register`, user);
+            await axios.post(`${process.env.REACT_APP_API_URL}user/add`, user);
             dispatch(registerSuccess());
             return true;
         } catch (error) {

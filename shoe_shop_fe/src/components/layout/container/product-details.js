@@ -10,7 +10,7 @@ function Product_Details() {
     const [sliderImages, setSliderImages] = useState(null);
     const [selectSwatch, setSelectwatch] = useState(null);
     const [rem, setRem] = useState("0");
-    const [indexColor, setIndexColor] = useState(0);
+    const [indexColor, setIndexColor] = useState("0");
 
     useEffect(() => {
           axios
@@ -90,7 +90,7 @@ function Product_Details() {
                                     </div>
                                 </div>
                                 <button className="btn-product s-col-full js-buy-ticket" onClick={handleSubmit}>MUA NGAY</button>
-                                
+                                <button className="btn-product s-col-full js-buy-ticket" >MUA GIỎ HÀNG</button>
                             </div>
                         </div>
                     </div>

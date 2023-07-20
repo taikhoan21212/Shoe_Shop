@@ -1,6 +1,9 @@
 import './slider.css'
+//import SimpleImageSlider from "react-simple-image-slider";
+//import React, {useState} from "react";
+function Slider() {
 
-function slider() {
+    //const [sliderImages, setSliderImages] = useState(["../img/img1.webp","../img/img2.webp","../img/img3.webp"]);
 
     return (
         <div className='main'>
@@ -11,6 +14,8 @@ function slider() {
                     <img src={require('../img/img3.webp')} alt="Slide 4" className="slide" />
                     <div id="btn-back"><i className="fa-solid fa-chevron-left"></i></div>
                     <div id="btn-next"><i className="fa-solid fa-chevron-right"></i></div>
+                    {/* {sliderImages && sliderImages.length > 0 && (
+                    <SimpleImageSlider images={sliderImages} showNavs={true}/>)} */}
                 </div>
             </div>
 
@@ -30,4 +35,4 @@ function slider() {
             );
 }
 
-export default slider;
+export default Slider;

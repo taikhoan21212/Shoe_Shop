@@ -75,7 +75,7 @@ function header_down() {
                                     <li><a href="#">Guốc</a></li>
                                 </ul>
                             </li>
-                            <li className="header_down-menu-products"><a href="./productMale.html">SẢN PHẨM</a>
+                            <li className="header_down-menu-products"><Link to="/ProductList">SẢN PHẨM</Link>
                             </li>
                             <li className="header_down-menu-blog"><a href="#">BLOG</a></li>
                         </ul>

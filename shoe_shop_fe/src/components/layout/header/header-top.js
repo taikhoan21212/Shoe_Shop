@@ -45,7 +45,7 @@ function Header_top(){
                         <>
                         <p className="header_top-hello">Hi, <span> {user.username}  </span> </p>
                         { user.isAdmin? (<> <Link to="/PageAdmin/AddProduct" className="header_top-admin"> <span> Admin page </span> </Link> </>):(<></>)}
-                                    <Link to="/" className="header_top-admin" onClick={handleLogout} > Log out</Link>
+                                    <Link to="/" className="header_top-admin" onClick={handleLogout} >Đăng xuất</Link>
         
         </>
       ) : (<>

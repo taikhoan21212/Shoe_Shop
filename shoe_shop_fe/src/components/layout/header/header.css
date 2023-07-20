@@ -106,6 +106,7 @@
 
 .header_down-logo a{
     text-decoration: none;
+    display: flex;
 }
 .header_down-center {
     margin: -8px auto 0;
