@@ -16,6 +16,7 @@ function App() {
 
     return (
         <BrowserRouter>
+        <CartContext.Provider>
         <div className='App'>
             <div className="header">
                 <HeaderTop />
@@ -33,10 +34,8 @@ function App() {
                     <Route path="/ProductList" element={<ProductList />} />
                     <Route path="/Products/:id" element={<Product_detail />} />
                 </Routes>
-            </div>
-            <div className='footer'>
+            
                 <Footer />
-            </div>
         </div>
         </CartContext.Provider>
         </BrowserRouter>
