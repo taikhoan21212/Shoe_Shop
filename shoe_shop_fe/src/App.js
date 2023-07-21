@@ -38,9 +38,7 @@ function App() {
                     <Route path="/Products/:id" element={<Product_detail />} />
                 </Routes>
             </div>
-            <div className='footer'>
                 <Footer />
-            </div>
         </div>
         </CartContext.Provider>
         </BrowserRouter>
