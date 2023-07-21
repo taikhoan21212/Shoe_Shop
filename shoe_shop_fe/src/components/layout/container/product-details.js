@@ -11,8 +11,12 @@ function Product_Details() {
     const [productDetail, setProductDetail] = useState(null);
     const [sliderImages, setSliderImages] = useState(null);
     const [selectSwatch, setSelectwatch] = useState(null);
-    const [rem, setRem] = useState("0");
-    const [indexColor, setIndexColor] = useState(0);
+    const [rem, setRem] = useState(null);
+    const [indexColor, setIndexColor] = useState("0");
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedColor, setSelectedColor] = useState(null);
+    
+
 
     useEffect(() => {
           axios
@@ -142,7 +146,7 @@ function Product_Details() {
                                 </div>
                                 <QuantityBtn productInfo={productDetail}/>
                                 <button className="btn-product s-col-full js-buy-ticket" onClick={handleSubmit}>MUA NGAY</button>
-                                <button className="btn-product s-col-full js-buy-ticket" >MUA GIỎ HÀNG</button>
+                                
                             </div>
                         </div>
                     </div>
