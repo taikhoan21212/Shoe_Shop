@@ -1,5 +1,7 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
+import storage from 'redux-persist/lib/storage';
+import cartSlice from "./cartSlice";
 import {
     persistStore,
     persistReducer,
@@ -10,15 +12,14 @@ import {
     PURGE,
     REGISTER,
   } from 'redux-persist';
-  import storage from 'redux-persist/lib/storage';
-import { useReducer } from "react";
+
 
   const persistConfig = {
     key: 'root',
     version: 1,
     storage,
   };
-  const rootReducer = combineReducers({auth: authReducer});
+  const rootReducer = combineReducers({auth: authReducer,cart: cartSlice});
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 
@@ -27,6 +28,8 @@ import { useReducer } from "react";
 //         auth: authReducer
 //     }
 // })
+
+
 
 export const store = configureStore({
     reducer: persistedReducer,

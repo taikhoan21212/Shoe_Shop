@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import Categori from '../pages/categori'
 import { Link } from 'react-router-dom';
 
 function header_down() {
@@ -93,7 +92,7 @@ function header_down() {
                         </div>
                     </div>
                     <div className="header_down-right-cart">
-                        <a href={Categori}><FontAwesomeIcon icon={faShoppingCart} /></a>
+                        <Link to="/Cart"><FontAwesomeIcon icon={faShoppingCart} /></Link>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import './App.css';
-import react from 'react'
+import React,{ useState,useEffect } from 'react'
 import { BrowserRouter , Routes, Route} from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Homepage from './components/homepage';
@@ -10,12 +10,13 @@ import Footer from './components/layout/footer/footer';
 import Add_Edit_Product from './components/layout/pages/edit-add-product/Add_Edit_Product';
 import Product_detail from  './components/layout/container/product-details'
 import Register from './components/layout/pages/register/Register';
-import ProductList from './components/layout/container/product-nine';
 
 function App() {
+    const [cartItems, setCartItems] = useState([]);
+
     return (
         <BrowserRouter>
-        <div className='main'>
+        <div className='App'>
             <div className="header">
                 <HeaderTop />
                 <HeaderDown />
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/Logout" element={<Homepage/>} />
                     <Route path="/Login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
+                    <Route path="/Cart" element={<Cart />} />
                     <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
                     <Route path="/PageAdmin/EditProduct/:id" element={<Add_Edit_Product />} />
                     <Route path="/ProductList" element={<ProductList />} />
@@ -36,6 +38,7 @@ function App() {
                 <Footer />
             
         </div>
+        </CartContext.Provider>
         </BrowserRouter>
     );
 }
