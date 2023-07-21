@@ -1,16 +1,22 @@
 import './product.css'
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect ,useContext} from "react";
 import axios from 'axios';
 import {useParams } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
+import { CartContext } from "../pages/cart/CartContext";
+
 
 function Product_Details() {
     const { id } = useParams();
     const [productDetail, setProductDetail] = useState(null);
     const [sliderImages, setSliderImages] = useState(null);
     const [selectSwatch, setSelectwatch] = useState(null);
-    const [rem, setRem] = useState("0");
-    const [indexColor, setIndexColor] = useState(0);
+    const [rem, setRem] = useState(null);
+    const [indexColor, setIndexColor] = useState("0");
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedColor, setSelectedColor] = useState(null);
+    
+
 
     useEffect(() => {
           axios
@@ -24,18 +30,67 @@ function Product_Details() {
         
       }, [id]);
 
+
     //   console.log(productDetail);
       
     //   console.log(sliderImages);
     //   console.log(selectSwatch);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const selectedColor = selectSwatch[indexColor].color;
-        const selectedSize = selectSwatch[indexColor].size_remaining.find(item => item.remaining === rem).size;
-        console.log(selectedColor);
-        console.log(selectedSize);
     }
 
+    function QuantityBtn({productInfo}) {
+
+        const {cartItems, setCartItems} = useContext(CartContext)
+    
+        let productIndexInCart = cartItems.findIndex((element)=>{
+            return element.id === productInfo.id
+        })
+
+        let [numInCart,setNumInCart] = useState(
+            (productIndexInCart===-1) ? 0 : cartItems[productIndexInCart].quantity
+        )
+    
+        
+        const handleAdd = () => {
+            const newItem = {
+              id: productDetail._id,
+              title: productDetail.title,
+              price: productDetail.price,
+              img: productDetail.img[0],
+              color: selectedColor,
+              size: selectedSize,
+              quantity: 1,
+            };
+          
+            const existingItemIndex = cartItems.findIndex(
+              (item) =>
+                item.id === productDetail._id &&
+                item.color === selectedColor &&
+                item.size === selectedSize
+            );
+          
+            if (existingItemIndex !== -1) {
+              const updatedCartItems = cartItems.map((item, index) => {
+                if (index === existingItemIndex) {
+                  return {
+                    ...item,
+                    quantity: item.quantity + 1,
+                  };
+                }
+                return item;
+              });
+              setCartItems(updatedCartItems);
+            } else {
+              setCartItems([newItem, ...cartItems]);
+            }
+          };
+    
+
+        return (
+                    <button className="btn-product s-col-full js-buy-ticket" onClick={handleAdd}>Thêm vào giỏ</button>
+        )
+    }
 
     return (
         <>
@@ -63,9 +118,9 @@ function Product_Details() {
                                     <div className="select-swatch-color-item">
                                         {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) => {
                                             return (<>
-                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={(e) => setIndexColor(index)}/>
-                                                    <label htmlFor={"color"+index}>{item.color}</label></>
-                                            );
+                                                    <input type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={(e) => {setIndexColor(index);setSelectedColor(item.color)}}/>
+                                                    <label htmlFor={"color"+index}>{item.color}</label>
+                                            </>);
                                         })}
 
                                         </div>  
@@ -75,7 +130,7 @@ function Product_Details() {
                                                         return (<>
                                                               {item.remaining > 0 ? (
                                                                 <>
-                                                                  <input key={index} type="radio" id={"size" + item.size} name="size" value={item._id} onChange={(e) => setRem(item.remaining)}/>
+                                                                  <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
                                                                   <label htmlFor={"size" + item.size}>{item.size}</label>
                                                                 </>
                                                             ) : (
@@ -87,8 +142,9 @@ function Product_Details() {
                                                     })}
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
+                                <QuantityBtn productInfo={productDetail}/>
                                 <button className="btn-product s-col-full js-buy-ticket" onClick={handleSubmit}>MUA NGAY</button>
                                 
                             </div>
