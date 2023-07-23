@@ -1,5 +1,4 @@
 import './header.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React, { useState,useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +13,7 @@ function Header_down() {
     const cartN = cartItems.reduce((total, item) => total + item.quantity, 0);
     const [isOpen, setIsOpen] = useState(false);
 
+
     useEffect(() => {
         if (cartN > 0) {
             setIsOpen(true);
@@ -22,6 +22,8 @@ function Header_down() {
 
     const user = useSelector((state)=> state.auth.login.currentUser);
     const userId = user._id;
+
+    
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
@@ -33,6 +35,8 @@ function Header_down() {
             console.log(error);
           });
       }, []);
+
+
     const Menu = () => {
         const [isOpen, setIsOpen] = useState(false);
 
@@ -109,12 +113,12 @@ function Header_down() {
                 </div>
                 <div className="header_down-right">
                     <div className="header_down-right-search">
-                        {/* <a id="search-button" onclick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
+                        {/* <a id="search-button" onClick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
                         <input type="text" className="search-bar" id="search-bar" placeholder="Nhập từ khóa tìm kiếm" /> */}
-                        <div class="item no-border drop-left-padding">
-                            <div class="ui icon input icon">
+                        <div className="item no-border drop-left-padding">
+                            <div className="ui icon input icon">
                                 <input placeholder="tìm kiếm" type="text" className="search-bar" />
-                                <a id="search-button" onclick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
+                                <a id="search-button" onClick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
                             </div>
                         </div>
                     </div>
