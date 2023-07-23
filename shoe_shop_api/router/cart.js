@@ -1,4 +1,5 @@
-const {Cart} = require("../model/cart");
+const Cart = require("../model/cart");
+const express = require('express').Router;
 
 const router = require("express").Router();
 
@@ -39,17 +40,17 @@ router.post("/add", async (req, res) => {
 
   router.get("/find/:userId", async (req, res) => {
     try {
-      const orders = await Order.find({ userId: req.params.userId });
-      res.status(200).json(orders);
+      const carts = await Cart.find({ userId: req.params.userId });
+      res.status(200).json(carts);
     } catch (err) {
       res.status(500).json(err);
     }
   });
 //all
-  router.get("/",   async (req, res) => {
+  router.get("/",  async (req, res) => {
     try {
-      const orders = await Order.find();
-      res.status(200).json(orders);
+      const carts = await Cart.find({});
+      res.status(200).json(carts);
     } catch (err) {
       res.status(500).json(err);
     }

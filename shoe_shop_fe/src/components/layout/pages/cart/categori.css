@@ -28,13 +28,24 @@ body{
     border-spacing: 0px;
   }
   .checkoutTable tr{
-    background-color: antiquewhite;
+    /* background-color: #ededed; */
     margin: 10px 10px;
   }
+
+  table#checkoutTable tr:nth-child(even) {
+    background-color: #fff;
+    }
+    table#checkoutTable tr:nth-child(odd) {
+    background-color:#ededed;
+    }
+
+
   .checkoutTable td{
     padding:0px;
     font-size: 16px;
   }
+
+
   .checkoutTable img{
     width: 150px;
     margin: 25px;
@@ -54,7 +65,7 @@ body{
   }
   .checkoutSection button{
     font-size: 22px;
-    background-color: #0d3164;
+    background-color: #000000;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
@@ -95,7 +106,7 @@ body{
   -o-user-select: none;
 }
   .subtractBtn{
-    background-color: #1c3455;
+    background-color: #000000;
     font-weight: bold;
     color: #FFF;
     border-radius: 6px;
@@ -105,7 +116,7 @@ body{
     cursor: pointer;
   }
   .addBtn{
-    background-color: #1c3455;
+    background-color: #000102;
     font-weight: bold;
     color: #FFF;
     border-radius: 6px;
@@ -114,3 +125,9 @@ body{
     margin-right: 7px;
     cursor: pointer;
   }
+
+  button:hover,
+  span:hover {
+    background-color: #ccc;
+    color: #000;
+}

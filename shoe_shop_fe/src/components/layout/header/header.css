@@ -1,3 +1,4 @@
+@import "rsuite/dist/rsuite.css";
 .mt-10{
     margin-top: 20px;
 }
@@ -192,6 +193,11 @@ li:hover .subnav {
     margin: 10px;
     font-size: 20px;
     cursor: pointer;
+}
+
+.header_down-right-cart a{
+    color: black;
+    text-decoration: none;
 }
 
 .header_down-right-search{

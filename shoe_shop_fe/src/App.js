@@ -11,14 +11,26 @@ import Add_Edit_Product from './components/layout/pages/edit-add-product/Add_Edi
 import Product_detail from  './components/layout/container/product-details'
 import Register from './components/layout/pages/register/Register';
 import Cart from './components/layout/pages/cart/categori';
-import {CartContext} from './components/layout/pages/cart/CartContext'
+import {CartContext} from './components/layout/pages/cart/CartContext';
+import UserContext from './UserContext';
+import { useSelector } from "react-redux";
 
-
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]");
 function App() {
-    const [cartItems, setCartItems] = useState([]);
+
+    const [cartItems, setCartItems] = useState(cartFromLocalStorage);
+    useEffect(() =>{
+        localStorage.setItem("cartItems",JSON.stringify(cartItems))
+    },[cartItems]);
+    const user = useSelector((state)=> state.auth.login.currentUser);
+
+
+
+
 
     return (
         <BrowserRouter>
+        <UserContext.Provider value={this.state.user}>
         <CartContext.Provider value={{cartItems,setCartItems}}>
 
         <div className='App'>
@@ -41,6 +53,7 @@ function App() {
                 <Footer />
         </div>
         </CartContext.Provider>
+        </UserContext.Provider>
         </BrowserRouter>
     );
 }

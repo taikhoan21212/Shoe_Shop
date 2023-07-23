@@ -1,11 +1,23 @@
 import './header.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState,useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { Badge } from 'rsuite';
+import { CartContext } from "../pages/cart/CartContext"
 
-function header_down() {
+function Header_down() {
+    const { cartItems} = useContext(CartContext);
+    const cartN = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        if (cartN > 0) {
+            setIsOpen(true);
+        }
+    }, [cartN]);
+
     const Menu = () => {
         const [isOpen, setIsOpen] = useState(false);
 
@@ -92,7 +104,8 @@ function header_down() {
                         </div>
                     </div>
                     <div className="header_down-right-cart">
-                        <Link to="/Cart"><FontAwesomeIcon icon={faShoppingCart} /></Link>
+                        <Link to="/Cart">
+                            {isOpen ? (<Badge content={cartN}><FontAwesomeIcon icon={faShoppingCart} /></Badge>):(<FontAwesomeIcon icon={faShoppingCart} />)}</Link>
                     </div>
                 </div>
             </div>
@@ -100,4 +113,4 @@ function header_down() {
     );
 }
 
-export default header_down;
+export default Header_down;

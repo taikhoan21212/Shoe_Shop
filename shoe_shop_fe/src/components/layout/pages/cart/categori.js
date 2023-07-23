@@ -2,11 +2,30 @@ import './categori.css';
 import {Link} from 'react-router-dom'
 import { CartContext } from "./CartContext"
 import React,{ useContext,useState,useEffect } from "react"
+import { useSelector } from "react-redux";
+import axios from 'axios';
 function Categori() {
+
     const { cartItems, setCartItems } = useContext(CartContext);
+
+//     const user = useSelector((state)=> state.auth.login.currentUser);
+//     const userId = user._id;
+//     console.log(userId)
+//     useEffect(() =>{
+//     axios.get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
+//     .then((res) => {
+//         setCartItems(res.data)
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//     },[cartItems]);
+
+// console.log(cartItems)
+
+
+
     const cartEmpty = cartItems.length<=0 ? true : false
-
-
     const grandTotal = cartItems.reduce((total, product)=>{
         return total += product.price*product.quantity
     },0)
@@ -45,7 +64,7 @@ function Categori() {
                 cartEmpty && 
                 <div>
                     <div className="nothingInCart">Giỏ hàng không có sản phẩm<br/><br/>
-                    <Link to="/ProductList">Xem sản phẩm</Link></div> :
+                    <Link to="/">Xem sản phẩm</Link></div> :
                 </div>
             }
 
@@ -53,7 +72,7 @@ function Categori() {
                 !cartEmpty &&
                 <div className="container">
                     <div className="cartSection">
-                        <table className="checkoutTable">
+                        <table className="checkoutTable" id="checkoutTable">
                             <tbody>
                                 {
                                     cartItems.map((product,index)=>(
