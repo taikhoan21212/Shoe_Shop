@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { Badge } from 'rsuite';
-import { CartContext } from "../pages/cart/CartContext"
+import CartContext from "../pages/cart/CartContext"
 
 function Header_down() {
     const { cartItems} = useContext(CartContext);

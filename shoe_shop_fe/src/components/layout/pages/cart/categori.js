@@ -1,6 +1,6 @@
 import './categori.css';
 import {Link} from 'react-router-dom'
-import { CartContext } from "./CartContext"
+import CartContext  from "./CartContext"
 import React,{ useContext,useState,useEffect } from "react"
 import { useSelector } from "react-redux";
 import axios from 'axios';
