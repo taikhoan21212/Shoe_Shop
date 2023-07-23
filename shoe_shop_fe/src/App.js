@@ -11,20 +11,13 @@ import Add_Edit_Product from './components/layout/pages/edit-add-product/Add_Edi
 import Product_detail from  './components/layout/container/product-details'
 import Register from './components/layout/pages/register/Register';
 import Cart from './components/layout/pages/cart/categori';
-import CartContext from './components/layout/pages/cart/CartContext';
+import { CartContext } from './components/layout/pages/cart/CartContext';
 
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]");
 function App() {
 
     const [cartItems, setCartItems] = useState(cartFromLocalStorage);
-    //const user = useSelector((state)=> state.auth.login.currentUser);
-
-    // useEffect(() =>{
-    //     localStorage.setItem("cartItems",JSON.stringify(cartItems))
-    // },[cartItems]);
-
-
 
     return (
         <BrowserRouter>

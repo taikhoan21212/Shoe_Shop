@@ -5,10 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { Badge } from 'rsuite';
-import CartContext from "../pages/cart/CartContext"
+import {CartContext} from "../pages/cart/CartContext"
+import { useSelector } from "react-redux";
+import axios from 'axios';
 
 function Header_down() {
-    const { cartItems} = useContext(CartContext);
+    const { cartItems, setCartItems } = useContext(CartContext);
     const cartN = cartItems.reduce((total, item) => total + item.quantity, 0);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -18,6 +20,19 @@ function Header_down() {
         }
     }, [cartN]);
 
+    const user = useSelector((state)=> state.auth.login.currentUser);
+    const userId = user._id;
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
+          .then((res) => {
+            const products = res.data[0].products;
+            setCartItems(products);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, []);
     const Menu = () => {
         const [isOpen, setIsOpen] = useState(false);
 

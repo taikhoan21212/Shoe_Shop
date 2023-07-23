@@ -3,7 +3,7 @@ import React, {useState, useEffect ,useContext} from "react";
 import axios from 'axios';
 import {useParams } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
-import CartContext from "../pages/cart/CartContext";
+import {CartContext} from "../pages/cart/CartContext";
 
 
 function Product_Details() {

@@ -1,29 +1,11 @@
 import './categori.css';
 import {Link} from 'react-router-dom'
-import CartContext  from "./CartContext"
+import {CartContext}  from "./CartContext"
 import React,{ useContext,useState,useEffect } from "react"
-import { useSelector } from "react-redux";
-import axios from 'axios';
+
 function Categori() {
 
     const { cartItems, setCartItems } = useContext(CartContext);
-
-//     const user = useSelector((state)=> state.auth.login.currentUser);
-//     const userId = user._id;
-//     console.log(userId)
-//     useEffect(() =>{
-//     axios.get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
-//     .then((res) => {
-//         setCartItems(res.data)
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//     },[cartItems]);
-
-// console.log(cartItems)
-
-
 
     const cartEmpty = cartItems.length<=0 ? true : false
     const grandTotal = cartItems.reduce((total, product)=>{
@@ -79,7 +61,7 @@ function Categori() {
                                         <tr key={product.id}>
                                             <td>
                                                 <Link to={"/products/" + product.id}>
-                                                  <img src={product.img} alt={product.title} />
+                                                  <img src={product.img} alt={product.title} value="64bd5eea974e3dcebe728c0a"/>
                                                 </Link>
                                             </td>
                                             <td>
