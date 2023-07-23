@@ -21,20 +21,18 @@ function Header_down() {
     }, [cartN]);
 
     const user = useSelector((state)=> state.auth.login.currentUser);
-    const userId = user._id;
+    if(user){
+            const userId = user._id;
+                axios.get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
+                  .then((res) => {
+                    const products = res.data[0].products;
+                    setCartItems(products);
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+            }
 
-    
-
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
-          .then((res) => {
-            const products = res.data[0].products;
-            setCartItems(products);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }, []);
 
 
     const Menu = () => {

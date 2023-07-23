@@ -1,5 +1,5 @@
 import './App.css';
-import React,{ useState,useEffect } from 'react'
+import React,{ useState } from 'react'
 import { BrowserRouter , Routes, Route} from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Homepage from './components/homepage';
@@ -18,6 +18,7 @@ const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]
 function App() {
 
     const [cartItems, setCartItems] = useState(cartFromLocalStorage);
+
 
     return (
         <BrowserRouter>
