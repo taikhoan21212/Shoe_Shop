@@ -1,14 +1,18 @@
 import './categori.css';
 import {Link} from 'react-router-dom'
 import {CartContext}  from "./CartContext"
-import React,{ useContext} from "react"
+import React,{ useContext, useState} from "react"
+import axios from 'axios';
 // import { useSelector } from "react-redux";
 // import axios from 'axios';
 function Categori() {
 
     const { cartItems, setCartItems } = useContext(CartContext);
+
     // const user = useSelector((state)=> state.auth.login.currentUser);
     // const userId = user._id;
+
+
 
 
     const cartEmpty = cartItems.length<=0 ? true : false
@@ -79,7 +83,7 @@ function Categori() {
                                                 <p>Màu : {product.color}</p>
                                                 <p>Kích cỡ : {product.size}</p>
                                             </td>
-                                            <td width="200">
+                                            <td>
                                             <div className='addToCart'>
                                                 <span className="subtractBtn" onClick={()=>handleSubtract(index)}>-</span>
                                                 {product.quantity} Kiện
@@ -104,7 +108,7 @@ function Categori() {
                         {
                             grandTotal >= freeShippingPrice ? 
                             <div className="freeShipping">✔️Giao hàng miễn phí</div> :
-                            <div className="noShipping">đơn hàng từ {freeShippingPrice.toLocaleString()}đ sẽ được giao hàng miễn phí</div>
+                            <div className="noShipping">ơn hàng từ {freeShippingPrice.toLocaleString()}đ sẽ được giao hàng miễn phí</div>
                         }
                         
                         <button>Thanh Toán</button>

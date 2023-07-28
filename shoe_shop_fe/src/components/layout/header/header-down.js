@@ -12,6 +12,7 @@ function Header_down() {
     const { cartItems, setCartItems } = useContext(CartContext);
     const cartN = cartItems.reduce((total, item) => total + item.quantity, 0);
     const [isOpen, setIsOpen] = useState(false);
+    const [cartUser, setCartUser] = useState([]);
 
 
     useEffect(() => {
@@ -21,17 +22,31 @@ function Header_down() {
     }, [cartN]);
 
     const user = useSelector((state)=> state.auth.login.currentUser);
-    if(user){
-            const userId = user._id;
-                axios.get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
-                  .then((res) => {
-                    const products = res.data[0].products;
-                    setCartItems(products);
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-            }
+    useEffect(() => {
+        if (user) {
+          const userId = user._id;
+          axios
+            .get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
+            .then((res) => {
+                setCartUser(res.data[0].products);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+      
+        }
+      }, []);
+
+      console.log(cartItems);
+
+      if (cartItems.length === 0) {
+        setCartItems(cartUser);
+      }else{
+        console.log(cartUser);
+        console.log(cartItems);
+      }
+      
+      console.log(cartUser);
 
 
 

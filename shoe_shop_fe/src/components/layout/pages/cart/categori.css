@@ -45,12 +45,21 @@ body{
     font-size: 16px;
   }
 
+  .row{
+    border: 1px solid #ccc;
+  }
+
+  .td-product{
+    margin-top: 26px;
+    margin-left: 40px;
+  }
 
   .checkoutTable img{
     width: 150px;
     margin: 25px;
   }
   .productSubTotal{
+    display: block;
     font-size: 30px;
     font-weight: bold;
     margin-right: 30px;
@@ -95,8 +104,8 @@ body{
 
 .addToCart{
   display: block;
-  width: 80%;
-  margin: 25px auto;
+  width: 85%;
+  margin: 25px;
   font-size: 20px;
   font-weight: bold;
   -webkit-user-select: none;
