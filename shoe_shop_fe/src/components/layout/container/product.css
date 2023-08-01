@@ -80,6 +80,7 @@
     /* width: 50%; */
     margin-left: 10%;
     padding-right: 10%;
+
   }
   
   @media (max-width: 50%) {
@@ -170,17 +171,13 @@
     background-color: #b8b8b8;
   } */
   
-  .disabled-input {
-    opacity: 0.5; /* Reduce the opacity to make the input appear faded */
-    pointer-events: none; /* Disable pointer events to prevent interaction */
-    cursor: not-allowed;
-  }
   
   .disabled-label {
-    opacity: 0.5; /* Reduce the opacity to make the label appear faded */
+    opacity: 0.5;
     cursor: not-allowed;
     background: url(//theme.hstatic.net/1000197303/1000796534/14/sold_out.png?v=6087) no-repeat;
-    background-size:contain;
-    filter: invert(1);
-    position: absolute;
-  }
+    background-size: contain;
+    position:relative;
+    background-position: 8px 0px;
+
+}

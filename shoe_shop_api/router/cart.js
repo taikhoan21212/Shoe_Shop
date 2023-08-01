@@ -29,10 +29,10 @@ router.post("/add", async (req, res) => {
     }
   });
 
-  router.delete("/:id",   async (req, res) => {
+  router.delete("/delete/:id", async (req, res) => {
     try {
-      const carts = await Cart.find();
-      res.status(200).json(carts);
+      const deletedCart = await Cart.findByIdAndDelete(req.params.id);
+      res.status(200).json(deletedCart);
     } catch (err) {
       res.status(500).json(err);
     }

@@ -44,7 +44,7 @@ function Product_Details() {
         const {cartItems, setCartItems} = useContext(CartContext)
     
         let productIndexInCart = cartItems.findIndex((element)=>{
-            return element.id === productInfo.id
+            return element.id === productInfo.productId
         })
 
         let [numInCart,setNumInCart] = useState(
@@ -54,7 +54,7 @@ function Product_Details() {
         
         const handleAdd = () => {
             const newItem = {
-              id: productDetail._id,
+              productId: productDetail._id,
               title: productDetail.title,
               price: productDetail.price,
               img: productDetail.img[0],
@@ -65,7 +65,7 @@ function Product_Details() {
           
             const existingItemIndex = cartItems.findIndex(
               (item) =>
-                item.id === productDetail._id &&
+                item.productId === productDetail._id &&
                 item.color === selectedColor &&
                 item.size === selectedSize
             );
@@ -125,24 +125,24 @@ function Product_Details() {
 
                                         </div>  
                                         <div className="select-swatch-color-size-item">
-                                            <div className="select-swatch-color-size-item" >
                                                     {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
+
                                                         return (<>
-                                                              {item.remaining > 0 ? (
-                                                                <>
-                                                                  <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
-                                                                  <label htmlFor={"size" + item.size}>{item.size}</label>
-                                                                </>
-                                                            ) : (
-                                                                <label className="disabled-label" htmlFor={"size" + item.size}>
-                                                                  {item.size}
-                                                                </label>
-                                                            )}</>
-                                                        );
+                                                          {item.remaining > 0 ? (
+                                                            <>
+                                                            <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
+                                                            <label htmlFor={"size" + item.size}>{item.size}</label>
+                                                            </>
+                                                        ) : (
+                                                          <>
+                                                          <input key={index}  type="radio" id={"size" + item.size} name="size" disabled value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
+                                                          <label className="disabled-label" htmlFor={"size" + item.size}>{item.size}</label>
+                                                          </>
+                                                        )}</>
+                                                    );
                                                     })}
                                             </div>
                                         </div>
-                                    </div> 
                                 </div>
                                 <QuantityBtn productInfo={productDetail}/>
                                 <button className="btn-product s-col-full js-buy-ticket" onClick={handleSubmit}>MUA NGAY</button>

@@ -1,12 +1,12 @@
 import './categori.css';
 import {Link} from 'react-router-dom'
 import {CartContext}  from "./CartContext"
-import React,{ useContext, useState} from "react"
+import React,{ useContext} from "react"
 
 function Categori() {
 
     const { cartItems, setCartItems } = useContext(CartContext);
-    const cartEmpty = cartItems.length<=0 ? true : false
+    const cartEmpty = cartItems.length<=0 ? true : false;
     const grandTotal = cartItems.reduce((total, product)=>{
         return total += product.price*product.quantity
     },0)
@@ -36,6 +36,8 @@ function Categori() {
         }
 
 
+    
+
 
     return (
             <>
@@ -57,15 +59,15 @@ function Categori() {
                             <tbody>
                                 {
                                     cartItems.map((product,index)=>(
-                                        <tr key={product.id}>
+                                        <tr key={product.productId}>
                                             <td>
-                                                <Link to={"/products/" + product.id}>
+                                                <Link to={"/products/" + product.productId}>
                                                   <img src={product.img} alt={product.title} value="64bd5eea974e3dcebe728c0a"/>
                                                 </Link>
                                             </td>
                                             <td>
                                                 <p>Sản Phẩm : {product.title}</p>
-                                                <p>Giá : {product.price} đ</p>
+                                                <p>Giá : {product.price.toLocaleString()} đ</p>
                                                 <p>Màu : {product.color}</p>
                                                 <p>Kích cỡ : {product.size}</p>
                                             </td>

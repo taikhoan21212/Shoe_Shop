@@ -298,6 +298,7 @@ const Add_Edit_Product = () => {
     }}
 
 
+
   return (
     <>
     {user && user.isAdmin? (
@@ -334,7 +335,7 @@ const Add_Edit_Product = () => {
               {imageList.map((url, index) => (
               <li className="ulset" key={index}>
                 <img src={url}   alt={`Image ${index}`}/>
-                <button className="img-delete" onClick={() => handleDeleteImage(url,index)}>
+                <button className="img-delete" type="button" onClick={() => handleDeleteImage(url,index)}>
                   X</button>
               </li>))}</ul></div>):(<div></div>)}</div></div>
 
@@ -344,7 +345,7 @@ const Add_Edit_Product = () => {
           <tr>
             <th className="color-column">Color:</th> 
             <th className="size-remaining-column">Size-Remaining:</th>
-            <th className="add-column"><button className="td-set-add set-add" onClick={addColorRow}>Add</button></th>
+            <th className="add-column"><button className="td-set-add set-add" type="button" onClick={addColorRow}>Add</button></th>
           </tr>
           </thead>
           <tbody>
@@ -356,17 +357,17 @@ const Add_Edit_Product = () => {
               <div key={index}>
               <div className="input-s-r">
               <input type="text" id="size" name="size" placeholder="size..." pattern="^(?:[1-9]|[1-3][0-9]|4[0-5])$" value={row.size|| ""}  onChange={(e) => handleChangecolorRows(colorIndex, index, "size", e.target.value)}/>
-              <input type="text" id="remaining" name="remaining" placeholder="remaining..." pattern="^(?:[0-9][0-9]*)$" value={row.remaining|| ""} onChange={(e) => handleChangecolorRows(colorIndex, index, "remaining", e.target.value)}/>
+              <input type="text" id="remaining" name="remaining" placeholder="remaining..." pattern="^[0-9]*$" value={row.remaining|| ""} onChange={(e) => handleChangecolorRows(colorIndex, index, "remaining", e.target.value)}/>
               {rowf.size_remaining.length > 1 && (
-              <button className="remove-row set-del" onClick={() => removeRow(colorIndex,index)}>
+              <button className="remove-row set-del" type="button" onClick={() => removeRow(colorIndex,index)}>
                 x
               </button>
             )}
               </div>
               {index === rowf.size_remaining.length-1 && (
-              <button className="td-set-add set-add" onClick={()=>addDiv({colorIndex})}>Add</button>)}</div>))}
+              <button className="td-set-add set-add" type="button" onClick={()=>addDiv({colorIndex})}>Add</button>)}</div>))}
             </td>
-            <td className="td-set"><button className="td-set-del set-del"  onClick={() => removecolorRows(colorIndex)}>Del</button></td>
+            <td className="td-set"><button className="td-set-del set-del" type="button" onClick={() => removecolorRows(colorIndex)}>Del</button></td>
           </tr>
            ))} 
           </tbody>
