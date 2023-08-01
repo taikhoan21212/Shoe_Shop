@@ -16,6 +16,7 @@ const Add_Edit_Product = () => {
   const [colorRows, setColorRows] = useState(color_size_remaining());
   const [price, setPrice] = useState("");
   const [brand, setBrand] = useState("");
+  const [gender, setGender] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
@@ -194,7 +195,7 @@ const Add_Edit_Product = () => {
               htmlFor="dropzone-file"
               className="flex flex-col items-center justify-center w-full "
             >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6" >
+              <div className="flex flex-col items-center justify-center pt-5 pb-6" style={{ marginLeft: '100%' }}>
                 <svg
                   aria-hidden="true"
                   width="34px"
@@ -204,7 +205,6 @@ const Add_Edit_Product = () => {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
-                  
                 >
                   <path
                     strokeLinecap="round"
@@ -220,6 +220,7 @@ const Add_Edit_Product = () => {
                 type="file"
                 className="hidden"
                 multiple
+                style={{ display: 'none' }}
               />
             </label>
           </div>
@@ -251,6 +252,7 @@ const Add_Edit_Product = () => {
           setHasProductDetail(true);
           setColorRows(productDetail.size_color_remaining || []);
           setPrice(productDetail.price);
+          setGender(productDetail.gender);
           setCategory(productDetail.category);
           setDescription(productDetail.description);
           setTitle(productDetail.title);
@@ -270,6 +272,7 @@ const Add_Edit_Product = () => {
       title : title,
       price : price,
       brand: brand,
+      gender: gender,
       img: imageList,
       size_color_remaining : colorRows,
       category: category,
@@ -311,6 +314,10 @@ const Add_Edit_Product = () => {
         <div className="form-row-group">
           <label for="brand">Brand:</label>
           <input type="text" id="brand" name="brand" required value={brand||""} onChange={(e)=>setBrand(e.target.value)} />
+        </div>
+        <div className="form-row-group">
+          <label for="gender">Gender:</label>
+          <input type="text" id="gender" name="gender" required value={gender||""} onChange={(e)=>setGender(e.target.value)} />
         </div>
       </div>
 

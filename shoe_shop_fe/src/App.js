@@ -12,16 +12,39 @@ import Product_detail from  './components/layout/container/product-details'
 import Register from './components/layout/pages/register/Register';
 import Cart from './components/layout/pages/cart/categori';
 import { CartContext } from './components/layout/pages/cart/CartContext';
-
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]");
 function App() {
 
-    const [cartItems, setCartItems] = useState(cartFromLocalStorage);
-
+    const [cartItems, setCartItems] = useState(cartFromLocalStorage);    
     useEffect(() => {
         localStorage.setItem("cartItems",JSON.stringify(cartItems));
     },[cartItems]);
+
+
+
+    const user = useSelector((state)=> state.auth.login.currentUser);
+    const [cart, setCart] = useState([]);
+    useEffect(() => {
+        if(user){
+            const userID = user._id;
+
+            const newCart ={
+                userId:userID,
+                products:cartItems
+            }
+            axios
+            .post(`${process.env.REACT_APP_API_URL}cart/find/${userID}`,newCart)
+            .then((res) => {
+
+              })
+              .catch(console.log);
+        }
+    },[cartItems]);
+
+
 
     return (
         <BrowserRouter>

@@ -13,6 +13,7 @@ function Header_top(){
   const handleLogout = (e) =>{
     e.preventDefault();
     try {
+      localStorage.clear();
       logOut(dispatch,navigate);
     } catch (error) {
       console.log(error);

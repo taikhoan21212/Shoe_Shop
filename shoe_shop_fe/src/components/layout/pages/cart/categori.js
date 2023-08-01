@@ -2,19 +2,10 @@ import './categori.css';
 import {Link} from 'react-router-dom'
 import {CartContext}  from "./CartContext"
 import React,{ useContext, useState} from "react"
-import axios from 'axios';
-// import { useSelector } from "react-redux";
-// import axios from 'axios';
+
 function Categori() {
 
     const { cartItems, setCartItems } = useContext(CartContext);
-
-    // const user = useSelector((state)=> state.auth.login.currentUser);
-    // const userId = user._id;
-
-
-
-
     const cartEmpty = cartItems.length<=0 ? true : false
     const grandTotal = cartItems.reduce((total, product)=>{
         return total += product.price*product.quantity
@@ -43,11 +34,6 @@ function Categori() {
             item.quantity--;
             setCartItems(updatedCartItems);}
         }
-
-        // console.log(cartItems)
-
-
-
 
 
 

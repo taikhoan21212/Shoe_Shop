@@ -5,58 +5,33 @@ import { faBars, faChevronDown, faSearch, faShoppingCart } from '@fortawesome/fr
 import { Link } from 'react-router-dom';
 import { Badge } from 'rsuite';
 import {CartContext} from "../pages/cart/CartContext"
-import { useSelector } from "react-redux";
-import axios from 'axios';
+
+
 
 function Header_down() {
     const { cartItems, setCartItems } = useContext(CartContext);
     const cartN = cartItems.reduce((total, item) => total + item.quantity, 0);
     const [isOpen, setIsOpen] = useState(false);
-    const [cartUser, setCartUser] = useState([]);
-
 
     useEffect(() => {
         if (cartN > 0) {
             setIsOpen(true);
+        }else {
+            setIsOpen(false);
         }
     }, [cartN]);
 
-    const user = useSelector((state)=> state.auth.login.currentUser);
-    useEffect(() => {
-        if (user) {
-          const userId = user._id;
-          axios
-            .get(`${process.env.REACT_APP_API_URL}cart/find/${userId}`)
-            .then((res) => {
-                setCartUser(res.data[0].products);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-      
-        }
-      }, []);
-
-      console.log(cartItems);
-
-      if (cartItems.length === 0) {
-        setCartItems(cartUser);
-      }else{
-        console.log(cartUser);
-        console.log(cartItems);
-      }
-      
-      console.log(cartUser);
 
 
 
-    const Menu = () => {
-        const [isOpen, setIsOpen] = useState(false);
 
-        const toggleMenu = () => {
-            setIsOpen(!isOpen);
-        };
-    }
+    // const Menu = () => {
+    //     const [isOpen, setIsOpen] = useState(false);
+
+    //     const toggleMenu = () => {
+    //         setIsOpen(!isOpen);
+    //     };
+    // }
     return (
         <div className="header_down">
             <div className="header_down-scroll">
