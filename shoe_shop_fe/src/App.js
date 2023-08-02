@@ -24,60 +24,7 @@ function App() {
     },[cartItems]);
 
 
-
     const user = useSelector((state)=> state.auth.login.currentUser);
-    useEffect(() => {
-        if(user){
-            const userID = user._id;
-
-            // const newCart ={
-            //     userId:userID,
-            //     products:cartItems
-            // }
-            
-            axios
-            .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`)
-            .then((res)=>{
-                if(res.data[0] && cartItems.length>0){
-                    const data = res.data[0].products;
-                    // cartItems.push(...data);
-                    const newCartItems = [];
-
-                    for (let i = 0; i < cartItems.length; i++) {
-                      let found = false;
-                    
-                      for (let j = 0; j < data.length; j++) {
-                        if (
-                          cartItems[i].productId === data[j].productId &&
-                          cartItems[i].color === data[j].color &&
-                          cartItems[i].size === data[j].size
-                        ) {
-                          cartItems[i].quantity += data[j].quantity;
-                          found = true;
-                          data.splice(j, 1);
-                          j--;
-                        }
-                      }
-                    
-                      if (!found) {
-                        newCartItems.push(cartItems[i]);
-                      }
-                    }
-                    
-                    for (let j = 0; j < data.length; j++) {
-                      newCartItems.push(data[j]);
-                    }
-                    
-                    setCartItems(newCartItems);
-
-                }else if(res.data[0] && cartItems.length === 0 ){
-                    const data = res.data[0].products;
-                    setCartItems(data);
-                }
-            })
-
-            }
-    },[user]);
 
     useEffect(()=>{
         if(user){
@@ -92,7 +39,15 @@ function App() {
             })
             .catch((error) => {
                 console.log(error);
-              });}
+                axios
+                .post(`${process.env.REACT_APP_API_URL}cart/add`,newCart)
+                .then((res)=>{
+                })
+                .catch((error) => {
+                    console.log(error);
+                  });
+              });
+            }
     },[cartItems])
 
 
