@@ -17,12 +17,12 @@ export const loginUser = async(user, dispatch) =>{
     }
 };
 
-export const logOut = async(dispatch,navigate) =>{
+export const logOut = async(dispatch,Navigate) =>{
     dispatch(logOutStart());
     try {
         await axios.delete(`${process.env.REACT_APP_API_URL}auth/logout`);
         dispatch(logOutSuccess());
-        navigate("/")
+        Navigate("/")
     } catch (error) {
         dispatch(logOutFailed());
     }

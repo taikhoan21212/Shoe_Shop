@@ -12,8 +12,9 @@ import Product_detail from  './components/layout/container/product-details'
 import Register from './components/layout/pages/register/Register';
 import Cart from './components/layout/pages/cart/categori';
 import { CartContext } from './components/layout/pages/cart/CartContext';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import Payment from './components/layout/pages/payment';
+// import axios from 'axios';
+// import { useSelector } from 'react-redux';
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]");
 function App() {
@@ -24,31 +25,31 @@ function App() {
     },[cartItems]);
 
 
-    const user = useSelector((state)=> state.auth.login.currentUser);
+    // const user = useSelector((state)=> state.auth.login.currentUser);
 
-    useEffect(()=>{
-        if(user){
-            const userID = user._id;
-            const newCart ={
-                userId:userID,
-                products:cartItems
-            }
-            axios
-            .post(`${process.env.REACT_APP_API_URL}cart/find/${userID}`,newCart)
-            .then((res)=>{
-            })
-            .catch((error) => {
-                console.log(error);
-                axios
-                .post(`${process.env.REACT_APP_API_URL}cart/add`,newCart)
-                .then((res)=>{
-                })
-                .catch((error) => {
-                    console.log(error);
-                  });
-              });
-            }
-    },[cartItems])
+    // useEffect(()=>{
+    //     if(user){
+    //         const userID = user._id;
+    //         const newCart ={
+    //             userId:userID,
+    //             products:cartItems
+    //         }
+    //         axios
+    //         .post(`${process.env.REACT_APP_API_URL}cart/find/${userID}`,newCart)
+    //         .then((res)=>{
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //             axios
+    //             .post(`${process.env.REACT_APP_API_URL}cart/add`,newCart)
+    //             .then((res)=>{
+    //             })
+    //             .catch((error) => {
+    //                 console.log(error);
+    //               });
+    //           });
+    //         }
+    // },[cartItems])
 
 
 
@@ -70,6 +71,7 @@ function App() {
                     <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
                     <Route path="/PageAdmin/EditProduct/:id" element={<Add_Edit_Product />} />
                     <Route path="/Products/:id" element={<Product_detail />} />
+                    <Route path="/Payment" element={<Payment />} />
                 </Routes>
             </div>
                 <Footer />

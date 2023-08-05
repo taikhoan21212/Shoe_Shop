@@ -62,7 +62,7 @@ function Categori() {
                                         <tr key={product.productId}>
                                             <td>
                                                 <Link to={"/products/" + product.productId}>
-                                                  <img src={product.img} alt={product.title} value="64bd5eea974e3dcebe728c0a"/>
+                                                  <img src={product.img} alt={product.title} value={product.productId}/>
                                                 </Link>
                                             </td>
                                             <td>
@@ -96,10 +96,10 @@ function Categori() {
                         {
                             grandTotal >= freeShippingPrice ? 
                             <div className="freeShipping">✔️Giao hàng miễn phí</div> :
-                            <div className="noShipping">ơn hàng từ {freeShippingPrice.toLocaleString()}đ sẽ được giao hàng miễn phí</div>
+                            <div className="noShipping">Đơn hàng từ {freeShippingPrice.toLocaleString()}đ sẽ được giao hàng miễn phí</div>
                         }
-                        
-                        <button>Thanh Toán</button>
+                        <Link to="/payment">
+                        <button>Thanh Toán</button></Link>
                     </div>
                 </div> 
             }

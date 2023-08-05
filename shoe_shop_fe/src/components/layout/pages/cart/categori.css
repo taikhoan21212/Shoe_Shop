@@ -53,6 +53,7 @@ body{
   .checkoutTable img{
     width: 150px;
     margin: 25px;
+    height: 150px;
   }
   .productSubTotal{
     display: block;
