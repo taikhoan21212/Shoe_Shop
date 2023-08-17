@@ -1,6 +1,6 @@
 import './App.css';
 import React,{ useEffect, useState } from 'react'
-import { BrowserRouter , Routes, Route} from "react-router-dom";
+import { BrowserRouter , Routes, Route, useParams} from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Homepage from './components/homepage';
 import Login from './components/layout/pages/login/login';
@@ -11,47 +11,30 @@ import Add_Edit_Product from './components/layout/pages/edit-add-product/Add_Edi
 import Product_detail from  './components/layout/container/product-details'
 import Register from './components/layout/pages/register/Register';
 import Cart from './components/layout/pages/cart/categori';
+import ProductMale from './components/layout/container/productMale';
+import ProductFemale from './components/layout/container/productFemale';
+import ProductList from './components/layout/container/product-nine';
+import CustomerOrder from './components/layout/pages/order/customerorder';
 import { CartContext } from './components/layout/pages/cart/CartContext';
-import Payment from './components/layout/pages/payment';
-// import axios from 'axios';
-// import { useSelector } from 'react-redux';
+import Payment from './components/layout/pages/payment/payment';
+import { useSelector } from 'react-redux';
+
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
 function App() {
+  const [cartItems, setCartItems] = useState(Array.isArray(cartFromLocalStorage) ? cartFromLocalStorage : []);
+  const user = useSelector((state) => state.auth.login.currentUser);
 
-    const [cartItems, setCartItems] = useState(cartFromLocalStorage);    
-    useEffect(() => {
-        localStorage.setItem("cartItems",JSON.stringify(cartItems));
-    },[cartItems]);
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems, user]);
 
-
-    // const user = useSelector((state)=> state.auth.login.currentUser);
-
-    // useEffect(()=>{
-    //     if(user){
-    //         const userID = user._id;
-    //         const newCart ={
-    //             userId:userID,
-    //             products:cartItems
-    //         }
-    //         axios
-    //         .post(`${process.env.REACT_APP_API_URL}cart/find/${userID}`,newCart)
-    //         .then((res)=>{
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //             axios
-    //             .post(`${process.env.REACT_APP_API_URL}cart/add`,newCart)
-    //             .then((res)=>{
-    //             })
-    //             .catch((error) => {
-    //                 console.log(error);
-    //               });
-    //           });
-    //         }
-    // },[cartItems])
-
-
+  if (!Array.isArray(cartItems)) {
+    setCartItems([]);
+  }
 
     return (
         <BrowserRouter>
@@ -70,7 +53,11 @@ function App() {
                     <Route path="/Cart" element={<Cart />} />
                     <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
                     <Route path="/PageAdmin/EditProduct/:id" element={<Add_Edit_Product />} />
-                    <Route path="/Products/:id" element={<Product_detail />} />
+                    <Route path="/Product/:id" element={<Product_detail />} />
+                    <Route path="/ProductsMale" element={<ProductMale />} />
+                    <Route path="/ProductsFemale" element={<ProductFemale />} />
+                    <Route path="/ProductList" element={<ProductList />} />
+                    <Route path="/MyOrder" element={<CustomerOrder />} />
                     <Route path="/Payment" element={<Payment />} />
                 </Routes>
             </div>

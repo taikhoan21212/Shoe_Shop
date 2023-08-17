@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-title: { type: String, required: true, unique: true },
+title: { type: String, required: true},
 price: { type: Number, required: true },
 brand: { type: String, required: true },
 gender: { type: String, required: true },
@@ -12,8 +12,16 @@ size_color_remaining: [
     size_remaining: [
       {
         size: { type: String },
-        remaining: { type: Number },
-
+        remaining: {
+          type: Number,
+          min: 0,
+          validate: {
+            validator: function (value) {
+              return value >= 0;
+            },
+            message: "The value of 'remaining' must not be less than 0.",
+          },
+        },
       }
     ]
   }

@@ -11,6 +11,7 @@ router.post("/add", async (req, res) => {
       res.status(200).json(savedCart);
     } catch (err) {
       res.status(500).json(err);
+      console.log(err);
     }
   });
 
@@ -29,10 +30,23 @@ router.post("/add", async (req, res) => {
     }
   });
 
-  router.delete("/delete/:id", async (req, res) => {
+  // router.delete("/delete/:id", async (req, res) => {
+  //   try {
+  //     const deletedCart = await Cart.findByIdAndDelete(req.params.id);
+  //     res.status(200).json(deletedCart);
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
+  // });
+
+  router.delete("/delete/:userId", async (req, res) => {
     try {
-      const deletedCart = await Cart.findByIdAndDelete(req.params.id);
-      res.status(200).json(deletedCart);
+      console.log(req.body)
+      const deletedCart = await Cart.findOneAndDelete({ userId: req.params.userId });
+      if (!deletedCart) {
+        return res.status(404).json({ message: "Cart không tồn tại" });
+      }
+      res.status(200).json({ message: "Cart đã bị xóa thành công" });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -47,7 +61,7 @@ router.post("/add", async (req, res) => {
     }
   });
 
-  router.post("/find/:userId", async (req, res) => {
+  router.put("/find/:userId", async (req, res) => {
     try {
       const { userId } = req.params;
       const { products } = req.body;

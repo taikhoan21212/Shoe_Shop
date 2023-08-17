@@ -35,7 +35,7 @@ function Product_hot() {
                     <div className="content-product-hot-list row">
                     {productList.map(product=>(
                         <div key={product._id} className="col-12 col-md-4 col-sm-6 col-lg-3">
-                            <Link to={`/products/${product._id}`} className="product-link">
+                            <Link to={`/Product/${product._id}`} className="product-link">
                             <img src={product.img[0]} alt="" className="product-img" />
                             <div className="place-body">
                                 <h3 className="place-heading">Giày {product.brand} {product.category}</h3>

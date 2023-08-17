@@ -187,7 +187,8 @@ li:hover .subnav {
 }
 
 .header_down-right-search,
-.header_down-right-cart {
+.header_down-right-cart,
+.header_down-right-order {
     /* display: flex; */
     align-items: center;
     margin: 10px;
@@ -195,7 +196,8 @@ li:hover .subnav {
     cursor: pointer;
 }
 
-.header_down-right-cart a{
+.header_down-right-cart a,
+.header_down-right-order a{
     color: black;
     text-decoration: none;
 }

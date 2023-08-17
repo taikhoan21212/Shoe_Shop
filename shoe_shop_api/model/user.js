@@ -9,6 +9,16 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   isAdmin: {type: Boolean,default: false},
   uid: {type: mongoose.Schema.Types.ObjectId,},
+  shipmentdetails: [
+    {
+      surname: { type: String, required: true },
+      name: { type: String, required: true },
+      address: { type: String, required: true },
+      // mail: { type: String, required: true },
+      phone: { type: String, required: true },
+      // information: { type: String}
+    }
+  ],
 
 },{ timestamps: true });
 

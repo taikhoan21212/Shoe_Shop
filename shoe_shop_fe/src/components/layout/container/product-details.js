@@ -4,10 +4,13 @@ import axios from 'axios';
 import {useParams } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 import {CartContext} from "../pages/cart/CartContext";
+import { useSelector } from 'react-redux';
+import {useNavigate} from "react-router-dom";
 
 
 function Product_Details() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [productDetail, setProductDetail] = useState(null);
     const [sliderImages, setSliderImages] = useState(null);
     const [selectSwatch, setSelectwatch] = useState(null);
@@ -16,7 +19,7 @@ function Product_Details() {
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
     
-
+    const user = useSelector((state)=> state.auth.login.currentUser);
 
     useEffect(() => {
           axios
@@ -31,13 +34,14 @@ function Product_Details() {
       }, [id]);
 
 
-    //   console.log(productDetail);
+      console.log(productDetail);
+      console.log(id)
       
     //   console.log(sliderImages);
     //   console.log(selectSwatch);
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    }
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    // }
 
     function QuantityBtn({productInfo}) {
 
@@ -53,6 +57,7 @@ function Product_Details() {
     
         
         const handleAdd = () => {
+          if (user) {
             const newItem = {
               productId: productDetail._id,
               title: productDetail.title,
@@ -60,6 +65,7 @@ function Product_Details() {
               img: productDetail.img[0],
               color: selectedColor,
               size: selectedSize,
+              gender: productDetail.gender,
               quantity: 1,
             };
           
@@ -84,11 +90,15 @@ function Product_Details() {
             } else {
               setCartItems([newItem, ...cartItems]);
             }
+          }else{
+            alert("Vui lòng đăng nhập")
+            navigate("/login")
+          }
           };
     
 
         return (
-                    <button className="btn-product s-col-full js-buy-ticket" onClick={handleAdd}>Thêm vào giỏ</button>
+                    <button className="btn-product s-col-full js-buy-ticket" onClick={handleAdd}>MUA NGAY</button>
         )
     }
 
@@ -106,7 +116,7 @@ function Product_Details() {
                         <div className="content_container-information">
                             <div className="content_container-body">
                                 <h3 className="place-time">{productDetail.title}</h3>
-                                <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4>
+                                {/* <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4> */}
                                 <p>Thương hiệu: {productDetail.brand}</p>
                                 <p>Tình trạng: New</p>
                                 <p>Giao hàng và thanh toán:
@@ -145,7 +155,7 @@ function Product_Details() {
                                         </div>
                                 </div>
                                 <QuantityBtn productInfo={productDetail}/>
-                                <button className="btn-product s-col-full js-buy-ticket" onClick={handleSubmit}>MUA NGAY</button>
+                                {/* <button className="btn-product s-col-full js-buy-ticket" onClick={handleSubmit}>MUA NGAY</button> */}
                                 
                             </div>
                         </div>
