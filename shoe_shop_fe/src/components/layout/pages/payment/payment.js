@@ -61,12 +61,21 @@ export default function PayMent() {
           console.log("quá trình lưu thông tin giao hàng bị lỗi")
         })
       }
+
+      const newShipmentdetailsOrder = {
+        surname: surname,
+        name: name,
+        address: address,
+        email: email,
+        phone: phone,
+        information: information
+      };
       const newOrder = {
         userId: user._id,
         products: cartItems,
         amount: grandTotal,
-        information:information
-    }
+        shipmentdetails: newShipmentdetailsOrder
+      };
     console.log(newOrder);
 
     axios

@@ -25,21 +25,24 @@ import {
     const [total, setTotal] = useState(0);
     const [vAT, setVAT] = useState(0);
     const [totalQuantity, setTotalQuantity] = useState(0);
+    const [shipmentdetails,setShipmentdetails] = useState([]);
     
-    const [productLsit, setproductLsit] = useState([]);
+    const [productList, setproductList] = useState([]);
 
     // useEffect(() => {
  
         if(user){
             const userID = user._id;
-debugger
+
         axios
         .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
         .then((res) => {
            const order = res.data[0];
-           setproductLsit(order ? order.products : []);
-    setTotalQuantity(productLsit && productLsit.length > 0
-  ? productLsit.reduce((accumulator, product) => accumulator + product.quantity, 0)
+           setproductList(order ? order.products : []);
+           setShipmentdetails(order ? order.shipmentdetails: []);
+           console.log(shipmentdetails);
+    setTotalQuantity(productList && productList.length > 0
+  ? productList.reduce((accumulator, product) => accumulator + product.quantity, 0)
   : 0);
     setVAT(order.amount * 0.08);
     setTotal(order.amount * 0.92);
@@ -55,9 +58,9 @@ debugger
  
     const getOrderStatusWidth = (status) => {
       if (status === "pending") {
-        return 20;
+        return 25;
       } else if (status === "pending2") {
-        return 70;
+        return 55;
       } else if (status === "pending3") {
         return 100;
       }
@@ -102,12 +105,14 @@ const progressBarStyle = {
                         Receipt
                       </p>
                       <p className="small text-muted mb-0">
-                      Địa chỉ nhận hàng : ...
+                      Người nhận: {shipmentdetails.surname} {shipmentdetails.name} <br />
+                      Điện thoại: {shipmentdetails.phone} <br />
+                      Địa chỉ nhận hàng : {shipmentdetails.address} <br />
                     </p>
                     </div>                  
                     
                     <MDBCard className="shadow-0 border mb-4">
-                      {productLsit.map((item, index) => {
+                      {productList.map((item, index) => {
                         return (
                           <>
                       <MDBCardBody key={index}>
@@ -217,7 +222,7 @@ const progressBarStyle = {
   
                     <div className="d-flex justify-content-between">
                       <p className="text-muted mb-0">
-                      Ngày đặt hàng: {new Date(order.createdAt).toLocaleDateString()}
+                      Ngày đặt hàng: {new Date(order.createdAt).toLocaleDateString()} {new Date(order.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                       </p>
                       <p className="text-muted mb-0">
                         <span className="fw-bold me-3">Thuế 8%: </span> {vAT.toLocaleString()} đ
@@ -242,7 +247,7 @@ const progressBarStyle = {
                     }}
                   >
                     <MDBTypography
-                      tag="h5"
+                      tag="h4"
                       className="d-flex align-items-center justify-content-end text-white text-uppercase mb-0"
                     >
                         Thành tiền: <span className="h2 mb-0 ms-2">{(order.amount || 0).toLocaleString()} đ</span>
