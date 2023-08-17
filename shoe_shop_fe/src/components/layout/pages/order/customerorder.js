@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
 import "./customerorder.css"
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -165,7 +165,10 @@ const progressBarStyle = {
                         />
                         
                       </MDBCardBody>
-                      <MDBRow className="align-items-center">
+          
+                        </>
+                    )})}
+                    <MDBRow className="align-items-center">
                           <MDBCol md="2">
                             <p className="text-muted mb-0 small">Tình trạng:</p>
                           </MDBCol>
@@ -194,8 +197,6 @@ const progressBarStyle = {
                             </div>
                           </MDBCol>
                         </MDBRow>
-                        </>
-                    )})}
                     </MDBCard>
                     <div className="d-flex justify-content-between pt-2">
                       <p className="fw-bold mb-0">Thông tin đơn hàng</p>
