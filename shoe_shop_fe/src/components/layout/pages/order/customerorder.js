@@ -80,13 +80,14 @@ const progressBarStyle = {
           className="h-100 gradient-custom"
           style={{ backgroundColor: "#eee" }}
         >
+
+          <MDBContainer className="py-5 h-100">
           <MDBCardHeader className="px-4 py-5">
             <MDBTypography tag="h5" className="text-muted mb-0">
               Cảm ơn đơn hàng của bạn,{" "}
               <span style={{ color: "#a8729a" }}>{user.username}</span>!
             </MDBTypography>
           </MDBCardHeader>
-          <MDBContainer className="py-5 h-100">
             <MDBRow className="justify-content-center align-items-center h-100">
               <MDBCol lg="10" xl="8">
                 <MDBCard style={{ borderRadius: "10px" }}>
@@ -100,6 +101,9 @@ const progressBarStyle = {
                       >
                         Receipt
                       </p>
+                      <p className="small text-muted mb-0">
+                      Địa chỉ nhận hàng : ...
+                    </p>
                     </div>                  
                     
                     <MDBCard className="shadow-0 border mb-4">
