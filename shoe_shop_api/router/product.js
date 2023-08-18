@@ -30,7 +30,7 @@ router.post("/add", async (req, res) => {
           },
         });
       } else {
-        products = await Product.find();
+        products = await Product.find().sort({ createdAt: -1 });
       }
   
       res.status(200).json(products);
@@ -66,7 +66,7 @@ router.get("/gender/:gender", async (req, res) => {
         gender: { $in: genderValues }, // Sử dụng $in để tìm kiếm các giá trị trong danh sách
       });
     } else {
-      products = await Product.find({ gender: { $in: genderValues } }); // Tìm kiếm dựa trên giới tính
+      products = await Product.find({ gender: { $in: genderValues } }).sort({ createdAt: -1 }); // Tìm kiếm dựa trên giới tính
     }
 
     res.status(200).json(products);

@@ -18,23 +18,23 @@ function Header_down() {
     const [hasOrder, setHasOrder] = useState(false)
 
 
-    useEffect(() => {
-        if(user){
-            const userID = user._id;
-        axios
-        .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
-        .then((res) => {
-                if(res.data.length > 0){
-                    setHasOrder(true);
-                }else{
-                    setHasOrder(false);
-                }
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }
-    }, [hasOrder]);
+    // useEffect(() => {
+    //     if(user){
+    //     const userID = user._id;
+    //     axios
+    //     .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
+    //     .then((res) => {
+    //             if(res.data.length > 0){
+    //                 setHasOrder(true);
+    //             }else{
+    //                 setHasOrder(false);
+    //             }
+    //             })
+    //             .catch((error) => {
+    //               console.log(error);
+    //             });
+    //         }
+    // }, [hasOrder]);
 
 
     useEffect(() => {
@@ -86,6 +86,19 @@ function Header_down() {
           .catch((error) => {
             console.log(error);
           });
+
+          axios
+        .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
+        .then((res) => {
+                if(res.data.length > 0){
+                    setHasOrder(true);
+                }else{
+                    setHasOrder(false);
+                }
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
       }
     }, [user])
     useEffect(() => {

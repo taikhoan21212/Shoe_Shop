@@ -87,7 +87,8 @@ export default function PayMent() {
     })
     .catch((error) => {
       if (error.response && error.response.data && error.response.data.message) {
-        console.log(error.response.data.message);
+        alert(error.response.data.message);
+        window.location.href = "/Cart"; 
       } else {
         console.log("Đặt hàng không thành công");
       }

@@ -16,7 +16,11 @@ function Product_hot() {
     }
     const [productList, setProductList] = useState([])
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_URL}products/`)
+        axios.get(`${process.env.REACT_APP_API_URL}products/`, {
+            params: {
+              sort: '-createdAt'
+            }
+          })
             .then((res) => {
                 setProductList(res.data)
               })
@@ -24,6 +28,7 @@ function Product_hot() {
                 console.log(error);
               });
     },[])
+
 
     return (
         <div className="content">

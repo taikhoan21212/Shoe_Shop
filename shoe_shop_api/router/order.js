@@ -41,7 +41,7 @@ router.post("/add", async (req, res) => {
         if (size === productItem.size) {
           if (sizeRemainingItem.remaining < productItem.quantity) {
             return res.status(400).json({
-              message: "Số lượng không đủ",
+              message: productItem.title +" Số lượng không đủ",
               remainingQuantity: sizeRemainingItem.quantity,
             });
           }
@@ -103,7 +103,7 @@ router.post("/add", async (req, res) => {
 
   router.get("/find/:userId", async (req, res) => {
     try {
-      const orders = await Order.find({ userId: req.params.userId });
+      const orders = await Order.find({ userId: req.params.userId }).sort({ createdAt: -1 });
       res.status(200).json(orders);
     } catch (err) {
       res.status(500).json(err);
