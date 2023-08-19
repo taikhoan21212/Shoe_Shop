@@ -34,8 +34,8 @@ function Product_Details() {
       }, [id]);
 
 
-      console.log(productDetail);
-      console.log(id)
+      // console.log(productDetail);
+      // console.log(id)
       
     //   console.log(sliderImages);
     //   console.log(selectSwatch);
@@ -98,8 +98,11 @@ function Product_Details() {
     
 
         return (
-                    <button className="btn-product s-col-full js-buy-ticket" onClick={handleAdd}>MUA NGAY</button>
-        )
+          selectedSize && selectedColor ? (
+            <button className="btn-product s-col-full js-buy-ticket" onClick={handleAdd} >MUA NGAY</button>
+          ):(
+          <button className="btn-product s-col-full js-buy-ticket" disabled>MUA NGAY</button>      
+        ))
     }
 
     return (
@@ -155,8 +158,7 @@ function Product_Details() {
                                         </div>
                                 </div>
                                 <QuantityBtn productInfo={productDetail}/>
-                                {/* <button className="btn-product s-col-full js-buy-ticket" onClick={handleSubmit}>MUA NGAY</button> */}
-                                
+   
                             </div>
                         </div>
                     </div>

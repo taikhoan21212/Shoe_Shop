@@ -1,24 +1,52 @@
-import './slider.css'
-//import SimpleImageSlider from "react-simple-image-slider";
-//import React, {useState} from "react";
-function Slider() {
+import './slider.css';
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-    //const [sliderImages, setSliderImages] = useState(["../img/img1.webp","../img/img2.webp","../img/img3.webp"]);
 
+function MySlider() {
+
+
+    const settings = {
+      dots: true,
+      arrows: false,
+      infinite: true,
+      speed: 2000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 5000
+    };
+  
     return (
         <div className='main'>
-            <div className="slider">
+            {/* <div className="slider">
                 <div id="slideshow">
-                    <img src={require('../img/img1.webp')} alt="Slide 3" className="slide" />
+                    <img src={require('../img/img1.webp')} alt="Slide 1" className="slide" />
                     <img src={require('../img/img2.webp')} alt="Slide 2" className="slide" />
-                    <img src={require('../img/img3.webp')} alt="Slide 4" className="slide" />
+                    <img src={require('../img/img3.webp')} alt="Slide 3" className="slide" />
                     <div id="btn-back"><i className="fa-solid fa-chevron-left"></i></div>
                     <div id="btn-next"><i className="fa-solid fa-chevron-right"></i></div>
-                    {/* {sliderImages && sliderImages.length > 0 && (
-                    <SimpleImageSlider images={sliderImages} showNavs={true}/>)} */}
+                    </div>
+            </div> */}
+            <div className="slider">
+                  <Slider  {...settings}>
+                    <div id="slideshow">
+                      <img src={require('../img/img1.webp')} alt="Slide 1" className="slide" />
+                    </div >
+                    <div id="slideshow">
+                      <img src={require('../img/img2.webp')} alt="Slide 2" className="slide" />
+                    </div>
+                    <div id="slideshow">
+                      <img src={require('../img/img3.webp')} alt="Slide 3" className="slide" />
+                    </div>
+                    <div id="slideshow">
+                      <img src={require('../img/img4.webp')} alt="Slide 4" className="slide" />
+                    </div>
+                  </Slider>
                 </div>
-            </div>
-
+            
                 <div className="Top_wrapper__op9fj">
                     <div className="Top_container__nX+Y8">
                         <div className="Top_left__ZoHsd">
@@ -35,4 +63,4 @@ function Slider() {
             );
 }
 
-export default Slider;
+export default MySlider;

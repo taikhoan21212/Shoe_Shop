@@ -25,11 +25,11 @@ const Register = () => {
     };
     const reg = await registerUser(newUser, dispatch);
     if(reg){
-        setMes(newUser.username +" Successful");
+        setMes(newUser.username +" Đang ký thành công!");
         setError(true);
         setTimeout(() =>navigate("/login"),500);
     }else{
-        setMes("Username hoặc email đã tồn tại");
+        setMes("Tên đăng nhập hoặc email đã tồn tại");
         setError(true);
         setTimeout(() =>setError(false),2000)
     };
@@ -41,12 +41,12 @@ const Register = () => {
        <>
        <section>
         <div className='register-box'>
-            <h2>Registration Form</h2>
+            <h2>Đăng ký</h2>
             {error? (<><div className='mess-Log'><p>{mes}</p></div></>):(<>
             <form onSubmit={handleSubmit} autoComplete="on">
                 <div className="user-box">
                     <input type="text" id="username"  name="username"  onChange={(e) => setUsername(e.target.value)} value={username} required/>
-                    <label>Username</label>
+                    <label>Tên đăng nhập</label>
                 </div>
                 <div className="user-box">
                     <input type="email" id="email" name="email" size="65" pattern='.+@gmail.com' onChange={(e) => setEmail(e.target.value)} value={email} autoComplete="off" required/>
@@ -54,14 +54,14 @@ const Register = () => {
                 </div>
                 <div className="user-box">
                     <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} required/>
-                    <label>Password</label>
+                    <label>Mật khẩu</label>
                 </div>
                 <div className="user-box">
                     <input type="password" id="cfpassword" pattern={password} name="cfpassword" onChange={(e) => setCfpassword(e.target.value)} value={cfpassword} title="Confirm password must be the same password" required/>
-                    <label>Confirm Password</label>
+                    <label>Nhập lại mật khẩu</label>
                 </div>
-                <p>Already have an account? <Link to="/login">Sign in</Link></p>
-                <input type="submit" value="REGISTER" />
+                <p>Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link></p>
+                <input type="submit" value="Đăng ký tài khoản" />
             </form>
             </>)}
         </div>

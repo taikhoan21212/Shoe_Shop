@@ -15,6 +15,9 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {  faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Customerorder() {
   const user = useSelector((state) => state.auth.login.currentUser);
@@ -38,9 +41,9 @@ export default function Customerorder() {
   const getOrderStatusWidth = (status) => {
     if (status === "pending") {
       return 25;
-    } else if (status === "pending2") {
+    } else if (status === "delivery") {
       return 55;
-    } else if (status === "pending3") {
+    } else if (status === "completed") {
       return 100;
     }
   };
@@ -76,16 +79,21 @@ export default function Customerorder() {
               <MDBCard style={{ borderRadius: "10px", marginBottom: "20px"  }}  key={index1}>
                   <MDBCardBody className="p-4">
                     <div className="d-flex justify-content-between align-items-center mb-4">
-                      <p className="lead fw-normal mb-0" style={{ color: "#a8729a" }}>
-                        Receipt
-                      </p>
+                      {order1.status === "completed" ? (
+                        <div className="alert alert-success mb-0" role="alert" style={{ display: "flex", alignItems: "center" }}>
+                        <FontAwesomeIcon icon={faCheckCircle} style={{ fontSize: "2rem", marginRight: "1rem" }} />
+                        <div>
+                          <p style={{ marginBottom: "0" }}>ĐÃ HOÀN THÀNH: {new Date(order1.updatedAt).toLocaleDateString()} {new Date(order1.updatedAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}.</p>
+                        </div>
+                      </div>
+                        ):(<p className="lead fw-normal mb-0" style={{ color: "#a8729a" }}>Đơn hàng chưa hoàn thành</p>)}
+                      {/* <div><FontAwesomeIcon icon={faExclamationCircle} /></div> */}
                       <p className="small text-muted mb-0">
                         Người nhận: {order1.shipmentdetails.surname} {order1.shipmentdetails.name} <br />
                         Điện thoại: {order1.shipmentdetails.phone} <br />
                         Địa chỉ nhận hàng : {order1.shipmentdetails.address} <br />
                       </p>
                     </div>
-
                     <MDBCard className="shadow-0 border mb-4">
                       {order1.products.map((item, index) => (
                         <MDBCardBody key={index}>
@@ -160,7 +168,7 @@ export default function Customerorder() {
                       </p>
                     </div>
                     <div className="d-flex justify-content-between pt-2">
-                      <p className="text-muted mb-0">Số hóa đơn : {order1._id}</p>
+                      <p className="text-muted mb-0">Số hóa đơn : {order1._id} </p>
                       <p className="text-muted mb-0">
                       <span className="fw-bold me-5">Số kiện hàng: </span>{totalQuantity}  Kiện
                     </p>
@@ -175,7 +183,7 @@ export default function Customerorder() {
                       </p>
                     </div>
   
-                    <div className="d-flex justify-content-between mb-5">
+                    <div className="d-flex justify-content-between">
                       <p className="text-muted mb-0">
                         Phương thức thanh toán : Thanh toán khi nhận hàng
                       </p>
@@ -184,6 +192,12 @@ export default function Customerorder() {
                         Miễn phí
                       </p>
                     </div>
+                    <div className="d-flex justify-content-between mb-0 mt-1 exclamation">
+                    <p className="text-muted" style={{ fontSize: "1.1rem"}}>
+                    <FontAwesomeIcon icon={faExclamationCircle} className="exclamation-icon"/> Nếu có vấn đề về đơn hàng vui lòng liên hệ ngay với chúng tôi:{" "}
+  <a href="mailto:support@tqn.com">support@tqn.com</a>
+                    </p>
+                  </div>
                   <MDBCardFooter
                     className="border-0 px-4 py-5"
                     style={{

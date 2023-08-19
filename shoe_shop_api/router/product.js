@@ -48,9 +48,9 @@ router.get("/gender/:gender", async (req, res) => {
 
   let genderValues = []; // Danh sách các giá trị liên quan đến giới tính
   if (gender === "Man") {
-    genderValues = ["M", "Male", "Unsex", "Man", "Men"];
+    genderValues = ["M", "Male", "Unsex", "Man", "Men", "Nam"];
   } else if (gender === "Woman"){
-    genderValues = ["F", "Female", "Unsex", "Women", "Woman"];
+    genderValues = ["F", "Female", "Unsex", "Women", "Woman", "Nữ"];
   }
 
   try {

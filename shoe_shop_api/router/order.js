@@ -92,6 +92,9 @@ router.post("/add", async (req, res) => {
     }
   });
 
+
+
+
   router.delete("/:id",   async (req, res) => {
     try {
       await Order.findByIdAndDelete(req.params.id);
@@ -103,16 +106,18 @@ router.post("/add", async (req, res) => {
 
   router.get("/find/:userId", async (req, res) => {
     try {
-      const orders = await Order.find({ userId: req.params.userId }).sort({ createdAt: -1 });
+      const orders = await Order.find({ userId: req.params.userId })
+      .sort({ status: -1, updatedAt: -1, createdAt: -1 });
       res.status(200).json(orders);
     } catch (err) {
       res.status(500).json(err);
+      console.log(err);
     }
   });
 
   router.get("/",   async (req, res) => {
     try {
-      const orders = await Order.find();
+      const orders = await Order.find().sort({ status: -1 , createdAt: 1 });;
       res.status(200).json(orders);
     } catch (err) {
       res.status(500).json(err);

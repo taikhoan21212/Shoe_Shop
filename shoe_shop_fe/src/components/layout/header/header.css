@@ -46,12 +46,13 @@
     font-size: 13px;
     align-items: center;
 }
-
+/* .header_top-wishlise, */
 .header_top-language,
 .header_top-unit,
 .header_top-hostline,
-.header_top-wishlise,
-.header_top-login {
+.header_top-hello,
+.header_top-login,
+.header_top-register {
     margin: 0 5px;
     cursor: pointer;
 }

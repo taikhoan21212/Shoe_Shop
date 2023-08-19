@@ -19,7 +19,7 @@ size_color_remaining: [
             validator: function (value) {
               return value >= 0;
             },
-            message: "The value of 'remaining' must not be less than 0.",
+            message: " Số lượng không đủ",
           },
         },
       }

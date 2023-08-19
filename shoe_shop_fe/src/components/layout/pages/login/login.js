@@ -23,12 +23,12 @@ const Login = () => {
       };
       const Logg = await loginUser(newUser, dispatch);
       if(Logg){
-        setMes(newUser.username +" Login successful");
+        setMes(newUser.username +" Đăng nhập thành công!");
         setError(true);
         setIsLoggedIn(true);
         setTimeout(() =>navigate("/"),500);
       }else{
-        setMes("Login failed!!!");
+        setMes("Tên đăng nhập hoặc mật khẩu không đúng");
         setError(true);
         setTimeout(() =>setError(false),2000)
       };
@@ -39,20 +39,20 @@ const Login = () => {
         <>
         <section>
         <div className="login-box">
-        <h2>Login</h2>
+        <h2>Đăng nhập</h2>
         {error? (<><div className='mess-Log'><p>{mes}</p></div></>):(<>
         <form onSubmit={handleSubmit}>
           <div className="user-box">
             <input type="text" id="username"  name="username"  autoComplete='off'
              onChange={(e) => setUsername(e.target.value)} value={username} required/>
-            <label>Username</label>
+            <label>Tên đăng nhập</label>
           </div>
           <div className="user-box">
             <input type="password" id="password" name="password" 
              onChange={(e) => setPassword(e.target.value)} value={password}  required autoComplete='on'/>
-            <label>Password</label>
+            <label>Mật khẩu</label>
           </div>
-          <p>Do not have an account? <Link to="/register">Register</Link></p>
+          <p>Không có tài khoản? <Link to="/register">Đăng ký</Link></p>
           <input type="submit" value="SUBMIT" />
         </form>
         </>)}

@@ -2,6 +2,7 @@ import './header.css';
 import React, { useState,useContext, useEffect } from 'react';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart,faBell} from '@fortawesome/free-solid-svg-icons';
+// import { faFile } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import { Badge } from 'rsuite';
 import {CartContext} from "../pages/cart/CartContext"
@@ -16,25 +17,9 @@ function Header_down() {
     const cartN = cartItems.reduce((total, item) => total + item.quantity, 0);
     const [isOpen, setIsOpen] = useState(false);
     const [hasOrder, setHasOrder] = useState(false)
+    const [hasIncompleteOrder, setHasIncompleteOrder] = useState(false)
 
 
-    // useEffect(() => {
-    //     if(user){
-    //     const userID = user._id;
-    //     axios
-    //     .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
-    //     .then((res) => {
-    //             if(res.data.length > 0){
-    //                 setHasOrder(true);
-    //             }else{
-    //                 setHasOrder(false);
-    //             }
-    //             })
-    //             .catch((error) => {
-    //               console.log(error);
-    //             });
-    //         }
-    // }, [hasOrder]);
 
 
     useEffect(() => {
@@ -61,10 +46,6 @@ function Header_down() {
             .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`)
             .then((res) => {
               const data = res.data;
-            //   console.log(data);
-            //   console.log(data.length);
-            //   console.log(userID);
-            //   console.log(data[0].products.length);
               if (data.length === 0) {
                   axios
                     .post(`${process.env.REACT_APP_API_URL}cart/add`, newCart)
@@ -87,20 +68,34 @@ function Header_down() {
             console.log(error);
           });
 
-          axios
-        .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
-        .then((res) => {
-                if(res.data.length > 0){
-                    setHasOrder(true);
-                }else{
-                    setHasOrder(false);
+        axios
+  .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
+  .then((res) => {
+        if(res.data.length > 0){
+            setHasOrder(true);
+            let hasIncompleteOrder = false;
+
+            res.data.forEach((order) => {
+              if (order.status !== "completed") {
+                hasIncompleteOrder = true;
+                // Nếu tìm thấy đơn hàng chưa hoàn thành, thoát khỏi vòng lặp
+                return;
+              }
+            });
+            
+            setHasIncompleteOrder(hasIncompleteOrder);
                 }
-                })
-                .catch((error) => {
-                  console.log(error);
+
+  })
+  .catch((error) => {
+    console.log(error);
+
                 });
       }
     }, [user])
+
+
+
     useEffect(() => {
         if (user) {
           const userID = user._id;
@@ -129,10 +124,10 @@ function Header_down() {
             setIsOpen(!isOpen);
         };
     }
-//     function toggleMenu() {
-//         var menu = document.querySelector('.menu-ul-mobile');
-//         menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-// }
+    function toggleMenu() {
+        var menu = document.querySelector('.menu-ul-mobile');
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+}
     return (
         <div className="header_down">
             <div className="header_down-scroll">
@@ -218,7 +213,7 @@ function Header_down() {
                     {user && hasOrder ?(                    
                     <div className="header_down-right-order">
                         <Link to="/MyOrder">
-                            {hasOrder ? (<Badge content={hasOrder}><FontAwesomeIcon icon={faBell} /></Badge>):
+                            {hasIncompleteOrder ? (<Badge content={hasIncompleteOrder}><FontAwesomeIcon icon={faBell} /></Badge>):
                             (<FontAwesomeIcon icon={faBell} />)}</Link>
                     </div>):(<></>)}
 
