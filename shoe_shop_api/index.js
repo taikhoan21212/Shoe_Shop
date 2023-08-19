@@ -11,6 +11,7 @@ const orderRoute = require("./router/order");
 const userRoute = require("./router/user");
 const cartRoute = require("./router/cart");
 const authRoute = require("./router/auth");
+const searchRoute = require("./router/search");
 app.use(bodyParser.json({limit:"50mb"}));
 app.use(helmet());
 app.use(cors());
@@ -42,4 +43,5 @@ app.use("/v1/user", userRoute);
 app.use("/v1/cart", cartRoute);
 app.use('/v1/auth', authRoute);
 app.use('/v1/image', imageRoute);
+app.use('/v1/search', searchRoute);
 

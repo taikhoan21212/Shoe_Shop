@@ -208,7 +208,7 @@ li:hover .subnav {
     display: contents;
 }
 
-.search-bar {
+/* .search-bar {
     border-radius: 6px;
     padding: 10px;
     font-weight: 200;
@@ -220,7 +220,7 @@ li:hover .subnav {
 .search-bar.active {
     display: block;
     margin: 10px 0 0 30px;
-}
+} */
 
 .logo-img{
     width: 60px;
@@ -228,7 +228,7 @@ li:hover .subnav {
     align-items: center;
 }
 
-#search-button{
+/* #search-button{
     font-size: 18px;
     margin: 0 18px 0 -24px;
-}
+} */

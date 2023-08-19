@@ -8,6 +8,7 @@ import { Badge } from 'rsuite';
 import {CartContext} from "../pages/cart/CartContext"
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import Search from '../../search';
  
 
 
@@ -200,10 +201,11 @@ function Header_down() {
                         {/* <a id="search-button" onClick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
                         <input type="text" className="search-bar" id="search-bar" placeholder="Nhập từ khóa tìm kiếm" /> */}
                         <div className="item no-border drop-left-padding">
-                            <div className="ui icon input icon">
+                            {/* <div className="ui icon input icon">
                                 <input placeholder="tìm kiếm" type="text" className="search-bar" />
                                 <a id="search-button" onClick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
-                            </div>
+                            </div> */}
+                            <Search />
                         </div>
                     </div>
                     <div className="header_down-right-cart">
