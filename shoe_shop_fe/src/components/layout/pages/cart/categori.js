@@ -98,8 +98,8 @@ function Categori() {
                             <div className="freeShipping">✔️Giao hàng miễn phí</div> :
                             <div className="noShipping">Đơn hàng từ {freeShippingPrice.toLocaleString()}đ sẽ được giao hàng miễn phí</div>
                         }
-                        <Link to="/payment">
-                        <button>Thanh Toán</button></Link>
+                        <Link to="/CreateOrder">
+                        <button>Đặt hàng</button></Link>
                     </div>
                 </div> 
             }

@@ -1,12 +1,12 @@
 import React,{ useContext, useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
-import './payment.css'
+import './createorder.css'
 import {CartContext}  from "../cart/CartContext"
 import {MDBCheckbox,MDBBtn, MDBCard, MDBCardBody, MDBCardFooter, MDBCardHeader, MDBCardImage, MDBCol, MDBContainer, MDBInput, MDBListGroup, MDBListGroupItem, MDBRow, MDBTextArea, MDBTypography } from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
 import axios from "axios";
 
-export default function PayMent() {
+export default function CreateOrder() {
     const { cartItems} = useContext(CartContext);
     const grandTotal = cartItems.reduce((total, product)=>{
         return total += product.price*product.quantity
@@ -83,7 +83,7 @@ export default function PayMent() {
     .then(() => {
       alert("Đặt hàng thành công");
       localStorage.removeItem("cartItems");
-      window.location.href = "/"; 
+      window.location.href = "/MyOrder"; 
     })
     .catch((error) => {
       if (error.response && error.response.data && error.response.data.message) {

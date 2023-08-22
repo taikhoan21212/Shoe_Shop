@@ -20,6 +20,7 @@ function Product_Details() {
     const [selectedColor, setSelectedColor] = useState(null);
     
     const user = useSelector((state)=> state.auth.login.currentUser);
+    const [isOutOfStock, setIsOutOfStock] = useState(false);
 
     useEffect(() => {
           axios
@@ -28,20 +29,25 @@ function Product_Details() {
               setProductDetail(res.data);
               setSliderImages(res.data.img);
               setSelectwatch(res.data.size_color_remaining);
+              // const remaining = res.data.size_color_remaining.find((item) => item.remaining > 0);
+              const sizeColorRemaining = res.data.size_color_remaining;
+              const sizeRemaining = sizeColorRemaining[0].size_remaining;
+              // console.log(sizeRemaining);
+              const totalRemaining = sizeRemaining.reduce((accumulator, currentValue) => accumulator + currentValue.remaining, 0);
+              // console.log(totalRemaining);
+              if(totalRemaining < 1){
+                setIsOutOfStock(true);
+              }else{
+                setIsOutOfStock(false);
+              }
             })
             .catch(console.log);
         
-      }, [id]);
+       }, [id]);
+            // console.log(isOutOfStock)
 
 
-      // console.log(productDetail);
-      // console.log(id)
-      
-    //   console.log(sliderImages);
-    //   console.log(selectSwatch);
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    // }
+
 
     function QuantityBtn({productInfo}) {
 
@@ -120,13 +126,14 @@ function Product_Details() {
                             <div className="content_container-body">
                                 <h3 className="place-time">{productDetail.title}</h3>
                                 {/* <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4> */}
-                                <p>Thương hiệu: {productDetail.brand}</p>
+                                <p>Thương hiệu: <strong>{productDetail.brand}</strong>  -{productDetail.category}</p>
                                 <p>Tình trạng: New</p>
                                 <p>Giao hàng và thanh toán:
                                     Giao hàng toàn quốc và thanh toán khi nhận hàng. Bạn có thể kiểm tra sản phẩm.</p>
                                 <p>Tặng hộp giày thay thế.</p>
                                 <div className="select-swatch">
-                                    <p>Tình trạng : {rem}</p>
+                                    {isOutOfStock ? (
+                                    <p >Tình trạng : <span className="out-of-stock-label">Hết hàng </span></p>):(<p>Tình trạng : {rem}</p>)}
                                     <div className="select-swatch-color">
                                     <div className="select-swatch-color-item">
                                         {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) => {
@@ -136,28 +143,47 @@ function Product_Details() {
                                             </>);
                                         })}
 
-                                        </div>  
+                                        </div>
+                                        {isOutOfStock ? (<>
                                         <div className="select-swatch-color-size-item">
-                                                    {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
+                                          {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
+                                            return (<>
+                                                <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => {setSelectedSize(item.size)}}/>
+                                                <label htmlFor={"size" + item.size}>{item.size}</label>
+                                            </>
+                                          );
+                                          })}
+                                        </div>
+                                        </>):(<>
+                                                                                <div className="select-swatch-color-size-item">
+                                                                                {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
+                            
+                                                                                    return (<>
+                                                                                      {item.remaining > 0 ? (
+                                                                                        <>
+                                                                                        <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
+                                                                                        <label htmlFor={"size" + item.size}>{item.size}</label>
+                                                                                        </>
+                                                                                    ) : (
+                                                                                      <>
+                                                                                      <input key={index}  type="radio" id={"size" + item.size} name="size" disabled value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
+                                                                                      <label className="disabled-label" htmlFor={"size" + item.size}>{item.size}</label>
+                                                                                      </>
+                                                                                    )}</>
+                                                                                );
+                                                                                })}
+                                                                        </div>
+                                                                        </>)}  
 
-                                                        return (<>
-                                                          {item.remaining > 0 ? (
-                                                            <>
-                                                            <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
-                                                            <label htmlFor={"size" + item.size}>{item.size}</label>
-                                                            </>
-                                                        ) : (
-                                                          <>
-                                                          <input key={index}  type="radio" id={"size" + item.size} name="size" disabled value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
-                                                          <label className="disabled-label" htmlFor={"size" + item.size}>{item.size}</label>
-                                                          </>
-                                                        )}</>
-                                                    );
-                                                    })}
-                                            </div>
                                         </div>
                                 </div>
-                                <QuantityBtn productInfo={productDetail}/>
+                                {isOutOfStock ? (
+      <button className="btn-product s-col-full js-buy-ticket" disabled>
+        HẾT HÀNG
+      </button>
+    ) : (
+      <QuantityBtn productInfo={productDetail} />
+    )}
    
                             </div>
                         </div>

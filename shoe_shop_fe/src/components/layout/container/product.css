@@ -43,14 +43,20 @@
     font-size: 16px;
     font-weight: 600;
 }
+.place-desc-outofstock{
+    color: red;
+    font-size: 18px;
+    font-weight: 650;
+}
 
 /* .place-time{
     font-size: 14px;
 } */
 
+
 .btn-product{
     color: #fff;
-    background-color: #000;
+    background-color: #252525;
     text-decoration: none;
     padding: 10px 12px;
     margin-top: 15px;
@@ -186,3 +192,8 @@
     background-position: 8px 0px;
 
 }
+
+.out-of-stock-label {
+    color: red; /* Đổi màu sắc thành màu đỏ */
+    font-weight: bold; /* In đậm văn bản */
+  }

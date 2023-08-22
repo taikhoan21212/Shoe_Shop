@@ -141,20 +141,20 @@ function Header_down() {
                                 <li className="header_down-menu-home-mobile"><Link to="/" >TRANG CHỦ</Link></li>
                                 <li className="header_down-menu-pages-mobile"><Link to="/ProductsMale" >NAM</Link>
 
-                                    <FontAwesomeIcon icon={faChevronDown} />
+                                    {/* <FontAwesomeIcon icon={faChevronDown} />
                                     <ul className="subnav-mobile">
                                         <li><a href="#">Hunter</a></li>
                                         <li><a href="#">Sandan</a></li>
                                         <li><a href="#">Media</a></li>
-                                    </ul>
+                                    </ul> */}
                                 </li>
                                 <li className="header_down-menu-pages-mobile"><Link to="/ProductsFemale">NỮ</Link>
-                                    <FontAwesomeIcon icon={faChevronDown} />
+                                    {/* <FontAwesomeIcon icon={faChevronDown} />
                                     <ul className="subnav-mobile">
                                         <li><a href="#">Hunter</a></li>
                                         <li><a href="#">Sandan</a></li>
                                         <li><a href="#">Guốc</a></li>
-                                    </ul>
+                                    </ul> */}
                                 </li>
                                 <li className="header_down-menu-products-mobile"><Link to="/ProductList">SẢN PHẨM</Link>
                                 </li>
@@ -175,20 +175,20 @@ function Header_down() {
                         <ul className="menu-ul">
                             <li className="header_down-menu-home"><Link to="/">TRANG CHỦ</Link></li>
                             <li className="header_down-menu-pages"><Link to="/ProductsMale" >NAM</Link>
-                                <FontAwesomeIcon icon={faChevronDown} />
+                                {/* <FontAwesomeIcon icon={faChevronDown} />
                                 <ul className="subnav">
                                     <li><a href="#">Hunter</a></li>
                                     <li><a href="#">Sandan</a></li>
                                     <li><a href="#">Media</a></li>
-                                </ul>
+                                </ul> */}
                             </li>
                             <li className="header_down-menu-pages"><Link to="/ProductsFemale">NỮ</Link>
-                                <FontAwesomeIcon icon={faChevronDown} />
+                                {/* <FontAwesomeIcon icon={faChevronDown} />
                                 <ul className="subnav">
                                     <li><a href="#">Hunter</a></li>
                                     <li><a href="#">Sandan</a></li>
                                     <li><a href="#">Guốc</a></li>
-                                </ul>
+                                </ul> */}
                             </li>
                             <li className="header_down-menu-products"><Link to="/ProductList">SẢN PHẨM</Link>
                             </li>

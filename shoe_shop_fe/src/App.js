@@ -16,7 +16,7 @@ import ProductFemale from './components/layout/container/productFemale';
 import ProductList from './components/layout/container/product-nine';
 import CustomerOrder from './components/layout/pages/order/customerorder';
 import { CartContext } from './components/layout/pages/cart/CartContext';
-import Payment from './components/layout/pages/payment/payment';
+import CreateOrder from './components/layout/pages/create-order/CreateOrder';
 import { useSelector } from 'react-redux';
 
 
@@ -58,7 +58,7 @@ function App() {
                     <Route path="/ProductsFemale" element={<ProductFemale />} />
                     <Route path="/ProductList" element={<ProductList />} />
                     <Route path="/MyOrder" element={<CustomerOrder />} />
-                    <Route path="/Payment" element={<Payment />} />
+                    <Route path="/CreateOrder" element={<CreateOrder />} />
                 </Routes>
             </div>
                 <Footer />
