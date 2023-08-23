@@ -11,8 +11,8 @@ router.get('/:search', async (req, res) => {
       products = await Product.find({
         $or: [
           { title: { $regex: query, $options: 'i' } }, // Tìm kiếm theo tiêu đề (không phân biệt chữ hoa/chữ thường)
-          { description: { $regex: query, $options: 'i' } }, // Tìm kiếm theo mô tả (không phân biệt chữ hoa/chữ thường)
-          { brand: { $regex: query, $options: 'i' } }// Tìm kiếm theo brand (không phân biệt chữ hoa/chữ thường)
+          { brand: { $regex: query, $options: 'i' } },// Tìm kiếm theo brand (không phân biệt chữ hoa/chữ thường)
+          { category: { $regex: query, $options: 'i' } }
         ]
       });
     } else {

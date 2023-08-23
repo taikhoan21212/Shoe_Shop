@@ -1,6 +1,5 @@
 const Cart = require("../model/cart");
-const express = require('express').Router;
-
+const express = require('express').Router();
 const router = require("express").Router();
 
 router.post("/add", async (req, res) => {

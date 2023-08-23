@@ -6,6 +6,7 @@ import SimpleImageSlider from "react-simple-image-slider";
 import {CartContext} from "../pages/cart/CartContext";
 import { useSelector } from 'react-redux';
 import {useNavigate} from "react-router-dom";
+import Comments from '../pages/comment/Comments';
 
 
 function Product_Details() {
@@ -197,6 +198,7 @@ function Product_Details() {
             </div>
         </div>
         )}
+        <Comments userId={user._id} productId={id} username={user.username}/>
         </>
     )
 }
