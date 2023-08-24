@@ -84,7 +84,20 @@ router.get("/gender/:gender", async (req, res) => {
  router.get("/:id", async (req, res) => {
     
     try {
-      const product = await Product.findById(req.params.id);
+      debugger
+      const productId = req.params.id;
+      const product = await Product.findById(productId);
+       // Sắp xếp mảng size_color_remaining theo kích thước từ bé đến lớn
+ 
+       const sortedSizes = product.size_color_remaining.sort((a, b) => {
+        const sizeA = a.size_remaining[0].size;
+        const sizeB = b.size_remaining[0].size;
+        return sizeA.localeCompare(sizeB);
+      });
+  
+    // Gán mảng size_color_remaining đã sắp xếp lại cho sản phẩm
+    product.size_color_remaining = sortedSizes;
+
       res.status(200).json(product);
     } catch (err) {
       res.status(500).json(err);

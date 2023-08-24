@@ -1,5 +1,5 @@
 import './product.css'
-import React, {useState, useEffect ,useContext} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import axios from 'axios';
 import {useParams } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
@@ -23,10 +23,12 @@ function Product_Details() {
     const user = useSelector((state)=> state.auth.login.currentUser);
     const [isOutOfStock, setIsOutOfStock] = useState(false);
 
+    
     useEffect(() => {
           axios
             .get(`${process.env.REACT_APP_API_URL}products/${id}`)
             .then((res) => {
+                debugger
               setProductDetail(res.data);
               setSliderImages(res.data.img);
               setSelectwatch(res.data.size_color_remaining);
@@ -137,11 +139,11 @@ function Product_Details() {
                                     <p >Tình trạng : <span className="out-of-stock-label">Hết hàng </span></p>):(<p>Tình trạng : {rem}</p>)}
                                     <div className="select-swatch-color">
                                     <div className="select-swatch-color-item">
-                                        {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) => {
+                                        {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) =>  {
                                             return (<>
-                                                    <input type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={(e) => {setIndexColor(index);setSelectedColor(item.color)}}/>
-                                                    <label htmlFor={"color"+index}>{item.color}</label>
-                                            </>);
+                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={(e) => setIndexColor(index)}/>
+                                                    <label htmlFor={"color"+index}>{item.color}</label></>
+                                            );
                                         })}
 
                                         </div>
@@ -177,6 +179,7 @@ function Product_Details() {
                                                                         </>)}  
 
                                         </div>
+                                    </div>
                                 </div>
                                 {isOutOfStock ? (
       <button className="btn-product s-col-full js-buy-ticket" disabled>
@@ -196,7 +199,6 @@ function Product_Details() {
                     </div>
                 </div>
             </div>
-        </div>
         )}
         <Comments user={user} productId={id} />
         </>

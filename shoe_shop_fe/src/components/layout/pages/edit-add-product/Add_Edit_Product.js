@@ -239,7 +239,7 @@ const Add_Edit_Product = () => {
       useEffect(() => {
         if (id) {
           axios
-            .get(`${process.env.REACT_APP_API_URL}products/${id}`)
+            .get(`${process.env.REACT_APP_API_URL}products/${id}?sort=size`)
             .then((res) => {
               setProductDetail(res.data);
             })
@@ -284,7 +284,7 @@ const Add_Edit_Product = () => {
       .post(`${process.env.REACT_APP_API_URL}products/add`, newProduct )
       .then((res) => {
         alert("Success");
-        navigate("/ProductList");
+        navigate("/PageAdmin/");
       })
       .catch(console.log);
     }else{

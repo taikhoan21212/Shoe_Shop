@@ -8,6 +8,7 @@ import HeaderDown from './components/layout/header/header-down';
 import HeaderTop from './components/layout/header/header-top';
 import Footer from './components/layout/footer/footer';
 import Add_Edit_Product from './components/layout/pages/edit-add-product/Add_Edit_Product';
+import Edit_Product from './components/layout/pages/Edit_Products/Edit_Products'
 import Product_detail from  './components/layout/container/product-details'
 import Register from './components/layout/pages/register/Register';
 import Cart from './components/layout/pages/cart/categori';
@@ -18,6 +19,7 @@ import CustomerOrder from './components/layout/pages/order/customerorder';
 import { CartContext } from './components/layout/pages/cart/CartContext';
 import CreateOrder from './components/layout/pages/create-order/CreateOrder';
 import { useSelector } from 'react-redux';
+import Layout from './components/layout/Layout';
 
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]");
@@ -51,8 +53,10 @@ function App() {
                     <Route path="/Login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/Cart" element={<Cart />} />
+                    <Route path="/PageAdmin/" element={<Layout />} />
+
                     <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
-                    <Route path="/PageAdmin/EditProduct/:id" element={<Add_Edit_Product />} />
+                    <Route path="/PageAdmin/EditProduct/" element={<Edit_Product />} />
                     <Route path="/Product/:id" element={<Product_detail />} />
                     <Route path="/ProductsMale" element={<ProductMale />} />
                     <Route path="/ProductsFemale" element={<ProductFemale />} />
