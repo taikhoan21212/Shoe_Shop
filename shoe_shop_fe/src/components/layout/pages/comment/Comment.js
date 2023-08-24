@@ -1,6 +1,8 @@
 import CommentForm from "./CommentForm";
 import "./comment.css";
-
+import userIcon from "../../img/user-icon.png";
+import { faKey} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Comment = ({
   comment,
   replies,
@@ -50,7 +52,11 @@ const Comment = ({
     <div key={comment._id} className="comment">
       <div className="comment-right-part">
         <div className="comment-content">
-          <div className="comment-author">{comment.username}</div>
+        <div className="comment-image-container">
+        <img src={userIcon} />
+      </div>
+      
+          <div className="comment-author">{comment.username} {comment.userId === '648a98e7a1cad6e07158c5df' && <FontAwesomeIcon icon={faKey} />}</div>
           <div className="comment-time">{createdAt}</div>
         </div>
         {!isEditing && <div className="comment-text">{comment.body}</div>}

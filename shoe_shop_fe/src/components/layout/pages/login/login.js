@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 const Login = () => {
 
-  const [username, setUsername] = useState("kimngoc");
+  const [username, setUsername] = useState("myadmin");
   const [password, setPassword] = useState("123456");
   const dispatch = useDispatch();
   const navigate = useNavigate();

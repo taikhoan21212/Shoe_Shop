@@ -126,7 +126,7 @@ function Product_Details() {
                         <div className="content_container-information">
                             <div className="content_container-body">
                                 <h3 className="place-time">{productDetail.title}</h3>
-                                {/* <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4> */}
+                                <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4>
                                 <p>Thương hiệu: <strong>{productDetail.brand}</strong>  -{productDetail.category}</p>
                                 <p>Tình trạng: New</p>
                                 <p>Giao hàng và thanh toán:
@@ -198,7 +198,7 @@ function Product_Details() {
             </div>
         </div>
         )}
-        <Comments userId={user._id} productId={id} username={user.username}/>
+        <Comments user={user} productId={id} />
         </>
     )
 }

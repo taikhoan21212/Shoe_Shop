@@ -34,6 +34,7 @@ const CommentForm = ({
         className="comment-form-textarea"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        placeholder="Enter your comment"
       />
       <div class="button-container">
       <button className="comment-form-button" disabled={isTextareaDisabled}>

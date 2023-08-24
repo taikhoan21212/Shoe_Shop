@@ -9,7 +9,8 @@ import {
   deleteComment as deleteCommentApi,
 } from "./commentsAPI";
 
-function Comments({ userId, productId, username }) {
+
+function Comments({ user, productId }) {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   const rootComments = backendComments.filter(
@@ -29,7 +30,8 @@ function Comments({ userId, productId, username }) {
       console.log(replies);
     return replies;
   };
-  const addComment = (userId, username, productId,text, parentId) => {
+  const addComment = (userId, username, productId, text, parentId) => {
+    console.log(userId, username, productId, text, parentId);
     createCommentApi(userId, username, productId, text, parentId).then((comment) => {
       setBackendComments([comment, ...backendComments]);
       setActiveComment(null);
@@ -67,9 +69,8 @@ function Comments({ userId, productId, username }) {
 
   return (
     <div className="comments">
-      <h3 className="comments-title">Comments</h3>
-      <div className="comment-form-title">Write comment</div>
-      <CommentForm submitLabel="Add" handleSubmit={addComment} userId={userId} username={username} productId={productId}/>
+      <h3 className="comments-title">Bình luận</h3>
+      <CommentForm submitLabel="Add" handleSubmit={addComment} userId={user._id} username={user.username} productId={productId} />
       <div className="comments-container">
         {rootComments.map((rootComment) => (
           <Comment
