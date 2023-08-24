@@ -14,6 +14,8 @@ import Cart from './components/layout/pages/cart/categori';
 import { CartContext } from './components/layout/pages/cart/CartContext';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import Layout from './components/layout/Layout';
+import { Edit_Products } from './components/layout/pages/Edit_Products/Edit_Products';
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]");
 function App() {
@@ -51,14 +53,14 @@ function App() {
     },[cartItems])
 
 
-
+    
     return (
         <BrowserRouter>
         <CartContext.Provider value={{cartItems,setCartItems}}>
         <div className='App'>
             <div className="header">
-                <HeaderTop />
-                <HeaderDown />
+           <><HeaderTop />
+                <HeaderDown /></> 
             </div>
             <div className='main'>
                 <Routes>
@@ -67,8 +69,9 @@ function App() {
                     <Route path="/Login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/Cart" element={<Cart />} />
+                    <Route path="/PageAdmin/" element={<Layout />} />
                     <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
-                    <Route path="/PageAdmin/EditProduct/:id" element={<Add_Edit_Product />} />
+                    <Route path="/PageAdmin/EditProduct" element={<Edit_Products/>} />
                     <Route path="/Products/:id" element={<Product_detail />} />
                 </Routes>
             </div>
