@@ -6,7 +6,10 @@ export default class TextIcon extends Component {
 
     style = {
         alignSelf: 'center',
-        paddingLeft: '4px'
+        padding: '4px',
+        marginTop:'5%',
+        marginLeft:'40px',
+        borderBottom: '1px solid #000000',
     };
 
     static propTypes = {

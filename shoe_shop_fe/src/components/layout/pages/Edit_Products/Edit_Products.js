@@ -4,6 +4,7 @@ import axios from "axios";
 import assets from "../../../../assets/assets.gif";
 import {BiPencil    } from 'react-icons/bi';
 import {AiFillCloseSquare    } from 'react-icons/ai';
+import "./edit_products.css"
 
 import {
   Button,
@@ -19,6 +20,8 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 export const Edit_Products = () => {
   const formRef = useRef(null);
+
+  
 
   const color_size_remaining = () => {
     return [{ color: "", size_remaining: [{ size: "", remaining: ""}] }];
@@ -84,8 +87,8 @@ export const Edit_Products = () => {
 
   const handleEditProduct = (productId) => {
 
-    console.log(productId);
-    console.log(products);
+    // console.log(productId);
+    // console.log(products);
     
     const selected = products.find((product) => product._id === productId);
     setProductDetail(selected)
@@ -124,44 +127,44 @@ export const Edit_Products = () => {
 
 
 
-function UploadInput() {
-  return (
-    <div className="flex float-left max-w-none items-center justify-center w-full " style={{ paddingTop: '2px' , marginLeft:"5px" }}>
-      <label
-        htmlFor="dropzone-file"
-        className="flex flex-col items-center justify-center w-full "
-      >
-        <div className="flex flex-col items-center justify-center pt-5 pb-6" >
-          <svg
-            aria-hidden="true"
-            width="34px"
-            height="40px"
-            className="mb-3 text-black"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            
+    function UploadInput() {
+      return (
+        <div className="flex float-left max-w-none items-center justify-center w-full " style={{ paddingTop: '2px' , marginLeft:"5px" }}>
+          <label
+            htmlFor="dropzone-file"
+            className="flex flex-col items-center justify-center w-full "
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-            ></path>
-          </svg>
+            <div className="flex flex-col items-center justify-center pt-5 pb-6" style={{ marginLeft: '100%' }}>
+              <svg
+                aria-hidden="true"
+                width="34px"
+                height="40px"
+                className="mb-3 text-black"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                ></path>
+              </svg>
+            </div>
+            <input
+              onChange={uploadImage}
+              id="dropzone-file"
+              type="file"
+              className="hidden"
+              multiple
+              style={{ display: 'none' }}
+            />
+          </label>
         </div>
-        <input
-          onChange={uploadImage}
-          id="dropzone-file"
-          type="file"
-          className="hidden"
-          multiple
-        />
-      </label>
-    </div>
-  );
-}
+      );
+    }
 const uploadImage = async (event) => {
   const files = event.target.files;
   console.log(files.length);
@@ -350,11 +353,11 @@ const handleDeleteProduct = (productId) => {
         //   </Table.Row>);
       
 
-    return (<div>
+    return (
+    <div className="container-productsTable">
         <Segment>
-
-        <Header>Product List</Header>
-        <Table compact celled>
+        {/* <Header>Product List</Header> */}
+        <Table compact celled id="productsTable">
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell>Title</Table.HeaderCell>
@@ -365,7 +368,8 @@ const handleDeleteProduct = (productId) => {
           </Table.Header>
 
           <Table.Body>
-            {products.map((product) => <Table.Row key={product._id}>
+            {products.map((product) => 
+            <Table.Row key={product._id} >
               <Table.Cell>
                 {/* {editingId === product._id ? (
                   <Input
@@ -384,7 +388,7 @@ const handleDeleteProduct = (productId) => {
               </Table.Cell>
 
               <Table.Cell>
-              {product.price} 
+              {product.price.toLocaleString()}
               </Table.Cell>
               <Table.Cell>
               <Button onClick={() => handleEditProduct(product._id)}  ><BiPencil size={24} />
@@ -404,11 +408,11 @@ const handleDeleteProduct = (productId) => {
 
             </Table.Body>
 
-          <Table.Footer fullWidth>
+          {/* <Table.Footer fullWidth>
             <Table.Row>
               <Table.HeaderCell colSpan={5} />
             </Table.Row>
-          </Table.Footer>
+          </Table.Footer> */}
         </Table>
         </Segment>,
 
@@ -494,7 +498,8 @@ const handleDeleteProduct = (productId) => {
 
       <label for="description">Description:</label>
       <textarea id="description" name="description"  value={editedDescription||""} onChange={(e) => seteditedDescription(e.target.value)}></textarea>
-      {hasProductDetail ?(<button className="submit-form" type="submit" onClick={()=> handleSubmit(productDetail._id)}>Edit</button>):(
+      {hasProductDetail ?(<button className="submit-form" type="submit" onClick={()=> handleSubmit(productDetail._id)}>Edit</button>
+      ):(
       <button className="submit-form" type="submit">Submit</button>)}
 
     </form>
