@@ -1,7 +1,7 @@
 //import './header.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEarthAmericas, faChevronDown, faMobile, faHeart,faUser} from '@fortawesome/free-solid-svg-icons';
+import { faEarthAmericas, faChevronDown, faMobile, faUser} from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../../redux/apiRequest";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,7 @@ function Header_top(){
                     </div> */}
                     {user? (
                         <>
-                        <p className="header_top-hello">Hi, <span> {user.username}  </span> </p>
+                        <p className="header_top-hello"><FontAwesomeIcon icon={faUser} /> Hi, <span> {user.username}  </span> </p>
                         { user.isAdmin? (<> <Link to="/PageAdmin/" className="header_top-admin"> <span> Admin page </span> </Link> </>):(<></>)}
                                     <Link to="/" className="header_top-admin" onClick={handleLogout} >Đăng xuất</Link>
         

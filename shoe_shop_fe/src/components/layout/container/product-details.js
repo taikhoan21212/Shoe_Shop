@@ -141,7 +141,7 @@ function Product_Details() {
                                     <div className="select-swatch-color-item">
                                         {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) =>  {
                                             return (<>
-                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={(e) => setIndexColor(index)}/>
+                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={(e) => {setIndexColor(index);setSelectedColor(item.color)}}/>
                                                     <label htmlFor={"color"+index}>{item.color}</label></>
                                             );
                                         })}

@@ -84,7 +84,6 @@ router.get("/gender/:gender", async (req, res) => {
  router.get("/:id", async (req, res) => {
     
     try {
-      debugger
       const productId = req.params.id;
       const product = await Product.findById(productId);
        // Sắp xếp mảng size_color_remaining theo kích thước từ bé đến lớn
