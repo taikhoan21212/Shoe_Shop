@@ -31,12 +31,15 @@ function Comments({ user, productId }) {
     return replies;
   };
   const addComment = (userId, username, productId, text, parentId) => {
-    console.log(userId, username, productId, text, parentId);
+    if(user){
+    //console.log(userId, username, productId, text, parentId);
     createCommentApi(userId, username, productId, text, parentId).then((comment) => {
       setBackendComments([comment, ...backendComments]);
       setActiveComment(null);
     });
-  };
+  }else{
+    alert("Bạn cần đăng nhập để bình luận");
+  }};
 
   const updateComment = (commentId, text ) => {
     updateCommentApi(commentId, text).then(() => {
@@ -51,7 +54,7 @@ function Comments({ user, productId }) {
     });
   };
   const deleteComment = (commentId) => {
-    if (window.confirm("Are you sure you want to remove comment?")) {
+    if (window.confirm("Bạn có chắc chắn muốn xóa bình luận?")) {
       deleteCommentApi(commentId).then(() => {
         const updatedBackendComments = backendComments.filter(
           (backendComment) => backendComment._id !== commentId
@@ -70,7 +73,10 @@ function Comments({ user, productId }) {
   return (
     <div className="comments">
       <h3 className="comments-title">Bình luận</h3>
-      <CommentForm submitLabel="Add" handleSubmit={addComment} userId={user._id} username={user.username} productId={productId} />
+      {user ? (
+        <CommentForm submitLabel="Add" handleSubmit={addComment} userId={user._id} username={user.username} productId={productId} />):(
+        <CommentForm submitLabel="Add" handleSubmit={addComment}/>)}
+      {/* <CommentForm submitLabel="Add" handleSubmit={addComment} userId={user._id} username={user.username} productId={productId} /> */}
       <div className="comments-container">
         {rootComments.map((rootComment) => (
           <Comment

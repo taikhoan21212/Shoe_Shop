@@ -1,8 +1,11 @@
 import './product.css'
 // import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react"
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+// import axios from 'axios';
+import {
+    getProducts as getProductsApi,
+} from "./productsAPI";
 
 function Product_hot() {
     window.onscroll = function () {
@@ -15,18 +18,24 @@ function Product_hot() {
         }
     }
     const [productList, setProductList] = useState([])
-    useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_URL}products/`, {
-          })
-            .then((res) => {
-                const limitedData = res.data.slice(0, 8);
-                setProductList(limitedData);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-    },[])
+    // useEffect(()=>{
+    //     axios.get(`${process.env.REACT_APP_API_URL}products/?sort=createdAt:-1`)
+    //     .then((res) => {
+    //       const limitedData = res.data.slice(0, 8);
+    //       setProductList(limitedData);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },[])
 
+    useEffect(() => {
+        getProductsApi()
+        .then((res) => {
+            const sortedData = res.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            const limitedData = sortedData.slice(0, 8);
+            setProductList(limitedData);
+        })},[])
 
     return (
         <div className="content">
@@ -36,7 +45,7 @@ function Product_hot() {
                         <h3>Sản phẩm nổi bật</h3>
                     </div>
                     <div className="content-product-hot-list row">
-                    {productList.map(product=>{
+                    {productList && productList.map(product=>{
                         let isOutOfStock = false;
                         const sizeColorRemaining = product.size_color_remaining;
                         const sizeRemaining = sizeColorRemaining[0].size_remaining;

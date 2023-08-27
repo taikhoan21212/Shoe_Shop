@@ -1,8 +1,15 @@
 import './product.css'
-import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react"
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {
+    getProducts as getProductsApi,
+} from "./productsAPI";
+// import {
+//     getProducts as getProductsApi,
+//     getProduct as getProductApi,
+//     editProduct as editProductApi,
+//     deleteProduct as deleteProductApi,
+// } from "./productsAPI";
 
 
 function ProductNine() {
@@ -17,24 +24,72 @@ function ProductNine() {
         }
     }
     const [productList, setProductList] = useState([])
-    useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_URL}products/`)
-            .then((res) => {
-                setProductList(res.data)
-              })
-              .catch((error) => {
-                console.log(error);
-              });
+    // const [categories, setCategories] = useState([])
+    // useEffect(()=>{
+    //     axios.get(`${process.env.REACT_APP_API_URL}products/`)
+    //         .then((res) => {
+    //             setProductList(res.data)
+    //           })
+    //           .catch((error) => {
+    //             console.log(error);
+    //           });
+    // },[])
+
+    useEffect(() => {
+        getProductsApi().then((res) => {
+            setProductList(res);
+            // if(selectedCategory===null){
+            //     setFilteredProductList(res)
+            // }
+        })
     },[])
+    //     const uniqueCategories = productList?.reduce((categories, product) => {
+    //     if (!categories.includes(product.category)) {
+    //       categories.push(product.category);
+    //     }
+    //     //console.log(categories);
+    //     return categories;
+    //   }, [])
+
+    //   const [selectedCategory, setSelectedCategory] = useState(null);
+    //   const [filteredProductList, setFilteredProductList] = useState([]);
+    //   const handleCategory = (category) => {
+    //     setSelectedCategory(category);
+    //     //console.log(category);
+    //   }
+
+
+    //   useEffect(() => {
+    //     if (selectedCategory===null) {
+    //         setFilteredProductList(productList);
+
+    //     } else {
+    //         setFilteredProductList(
+    //             productList.filter((product) => product.category === selectedCategory)
+    //           );
+    //     }
+    //   }, [selectedCategory]);
+
 
     return (
         <div className="content">
             <div className="content_product">
+                {/* <div className="content_cate">
+                    <p className="p-cate">Phân loại: </p>
+                    <button className={`btn-cate ${selectedCategory === null ? 'success' : 'default'}`} onClick={() => handleCategory(null)}>Tất cả</button>
+                    {uniqueCategories && uniqueCategories.map((category, index) => (
+                    <React.Fragment key={index}>
+                    <button className={`btn-cate ${selectedCategory === category ? 'success' : 'default'}`} onClick={() => handleCategory(category)}>{category}</button>        
+                    </React.Fragment>
+                    ))}
+                </div> */}
+
                 <div className="content_product-hot">
                     <div className="content_product-hot-title">
                         <h3>Sản phẩm nổi bật</h3>
                     </div>
                     <div className="content-product-hot-list row">
+                    {/* {filteredProductList.map(product=>{ */}
                     {productList.map(product=>{
                         let isOutOfStock = false;
                         const sizeColorRemaining = product.size_color_remaining;

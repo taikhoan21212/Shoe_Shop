@@ -53,7 +53,7 @@ const Login = () => {
             <label>Mật khẩu</label>
           </div>
           <p>Không có tài khoản? <Link to="/register">Đăng ký</Link></p>
-          <input type="submit" value="SUBMIT" />
+          <input type="submit" value="Đăng nhập" />
         </form>
         </>)}
       </div>

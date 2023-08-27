@@ -1,12 +1,15 @@
 import './product.css'
 import React, {useState, useEffect, useContext} from "react";
-import axios from 'axios';
+//import axios from 'axios';
 import {useParams } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 import {CartContext} from "../pages/cart/CartContext";
 import { useSelector } from 'react-redux';
 import {useNavigate} from "react-router-dom";
 import Comments from '../pages/comment/Comments';
+import {
+  getProduct as getProductApi,
+} from "./productsAPI";
 
 
 function Product_Details() {
@@ -24,15 +27,37 @@ function Product_Details() {
     const [isOutOfStock, setIsOutOfStock] = useState(false);
 
     
-    useEffect(() => {
-          axios
-            .get(`${process.env.REACT_APP_API_URL}products/${id}`)
-            .then((res) => {
-              setProductDetail(res.data);
-              setSliderImages(res.data.img);
-              setSelectwatch(res.data.size_color_remaining);
+    // useEffect(() => {
+    //       axios
+    //         .get(`${process.env.REACT_APP_API_URL}products/${id}`)
+    //         .then((res) => {
+    //           setProductDetail(res.data);
+    //           setSliderImages(res.data.img);
+    //           setSelectwatch(res.data.size_color_remaining);
+    //           // const remaining = res.data.size_color_remaining.find((item) => item.remaining > 0);
+    //           const sizeColorRemaining = res.data.size_color_remaining;
+    //           const sizeRemaining = sizeColorRemaining[0].size_remaining;
+    //           // console.log(sizeRemaining);
+    //           const totalRemaining = sizeRemaining.reduce((accumulator, currentValue) => accumulator + currentValue.remaining, 0);
+    //           // console.log(totalRemaining);
+    //           if(totalRemaining < 1){
+    //             setIsOutOfStock(true);
+    //           }else{
+    //             setIsOutOfStock(false);
+    //           }
+    //         })
+    //         .catch(console.log);
+        
+    //    }, [id]);
+            // console.log(isOutOfStock)
+
+            useEffect(() => {
+              getProductApi(id).then((res) => {
+                setProductDetail(res);
+                setSliderImages(res.img);
+                setSelectwatch(res.size_color_remaining);
               // const remaining = res.data.size_color_remaining.find((item) => item.remaining > 0);
-              const sizeColorRemaining = res.data.size_color_remaining;
+              const sizeColorRemaining = res.size_color_remaining;
               const sizeRemaining = sizeColorRemaining[0].size_remaining;
               // console.log(sizeRemaining);
               const totalRemaining = sizeRemaining.reduce((accumulator, currentValue) => accumulator + currentValue.remaining, 0);
@@ -42,12 +67,9 @@ function Product_Details() {
               }else{
                 setIsOutOfStock(false);
               }
-            })
-            .catch(console.log);
-        
-       }, [id]);
-            // console.log(isOutOfStock)
+              })
 
+            }, [id]);
 
 
 

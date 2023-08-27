@@ -1,8 +1,14 @@
 import './product.css'
 // import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react"
-import axios from 'axios';
+//import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {
+    getProducts as getProductsApi,
+    // getProduct as getProductApi,
+    // editProduct as editProductApi,
+    // deleteProduct as deleteProductApi,
+} from "./productsAPI";
 
 export const ProductMale = () => {
     window.onscroll = function () {
@@ -15,22 +21,34 @@ export const ProductMale = () => {
         }
     }
     const [productList, setProductList] = useState([])
-    useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_URL}products/gender/Man`)
-            .then((res) => {
-                setProductList(res.data)
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-    },[])
+    // useEffect(()=>{
+    //     axios.get(`${process.env.REACT_APP_API_URL}products/gender/Man`)
+    //         .then((res) => {
+    //             setProductList(res.data)
+    //           })
+    //           .catch((error) => {
+    //             console.log(error);
+    //           });
+    // },[])
     
+    useEffect(() => {
+        getProductsApi()
+        .then((res) => {
+            const dataList = res;
+            const validGenders = ['M', 'Male', 'Men', 'Man', 'Nam', 'Unsex', ''];
+            const filterData = dataList.filter((data) => validGenders.includes(data.gender));
+            setProductList(filterData);
+
+        })},[])
+
+
+
     return (
         <div className="content">
             <div className="content_product">
                 <div className="content_product-hot">
                     <div className="content_product-hot-title">
-                        <h3>Sản phẩm nổi bật</h3>
+                        <h3>Sản phẩm Nam</h3>
                     </div>
                     <div className="content-product-hot-list row">
                     {productList.map(product=>{

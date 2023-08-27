@@ -14,6 +14,16 @@ router.post("/add", async (req, res) => {
     }
   });
 
+
+
+  router.get('/', async (req, res) => {
+    try {
+      const products = await Product.find(); // Thay "YourModel" bằng tên model của bạn
+      res.status(200).json(products); // Trả về dữ liệu đã lấy được với mã trạng thái 200
+    } catch (err) {
+      res.status(500).json(err); // Trả về lỗi với mã trạng thái 500 nếu có lỗi xảy ra
+    }});
+
 //GET ALL PRODUCTS
  router.get("/", async (req, res) => {
     const qNew = req.query.new;
