@@ -80,7 +80,7 @@ export default function Customerorder() {
             {orders.map((order1, index1) => {
                   const cartId = order1.cartId;        
                   const products = carts.find((cart) => cart._id === cartId);
-                  console.log(products);
+                  // console.log(products);
                   const Orderstatus = order1.status;
                   const widthStatus = getOrderStatusWidth(Orderstatus);
 
@@ -91,7 +91,7 @@ export default function Customerorder() {
                     background: `linear-gradient(to right, #8ef5ca ${colorStop}%, #017a48)`,
                   };
 
-                  const totalQuantity = products.products ? products.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
+                  const totalQuantity = products ? products.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
 
                   return (
             

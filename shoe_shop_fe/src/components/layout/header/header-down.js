@@ -45,6 +45,7 @@ function Header_down() {
                 userId: userID,
                 products: Array.from(cartItems)
             };
+            console.log(newCart);
             // console.log("tài khoản đẵ thay đổi");
             axios
             .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`, {
@@ -60,7 +61,8 @@ function Header_down() {
                     .post(`${process.env.REACT_APP_API_URL}cart/add`, newCart)
                     .then((res) => {
                         setCartId(res.data._id);
-
+                        // const data = res.data;
+                        // console.log(data);
                     })
                     .catch((error) => {
                       console.log(error);

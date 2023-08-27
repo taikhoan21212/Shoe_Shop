@@ -2,17 +2,16 @@ import './categori.css';
 import {Link} from 'react-router-dom'
 import {CartContext}  from "./CartContext"
 import React,{ useContext} from "react"
-import axios from 'axios';
 
 function Categori() {
 
     const { cartItems, setCartItems } = useContext(CartContext);
     const cartId = sessionStorage.getItem("cartId");
 
-    const handleRedirect = () => {
-        // Navigate to the /Cart page with the cartId passed as a URL parameter
-        window.location.href = `/CreateOrder/${cartId}`;
-      };
+    // const handleRedirect = () => {
+    //     // Navigate to the /Cart page with the cartId passed as a URL parameter
+    //     window.location.href = `/CreateOrder/${cartId}`;
+    //   };
 
     const cartEmpty = cartItems.length<=0 ? true : false;
 
@@ -20,7 +19,7 @@ function Categori() {
     const grandTotal = cartItems.reduce((total, product)=>{
         return total += product.price*product.quantity
     },0)
-    const freeShippingPrice = 800000
+    // const freeShippingPrice = 800000
 
     const handleAdd = (index) => {
         const updatedCartItems = [...cartItems];
@@ -103,13 +102,14 @@ function Categori() {
                     <div className="checkoutSection">
                         <div>Tổng tiền</div>
                         <div className="grandTotal">{grandTotal.toLocaleString()} đ</div>
-                        {
+                        {/* {
                             grandTotal >= freeShippingPrice ? 
                             <div className="freeShipping">✔️Giao hàng miễn phí</div> :
                             <div className="noShipping">Đơn hàng từ {freeShippingPrice.toLocaleString()}đ sẽ được giao hàng miễn phí</div>
-                        }
-                        <Link to="/CreateOrder" onClick={handleRedirect}>
-                        <button>Đặt hàng</button></Link>
+                        } */}
+                        <div className="freeShipping">✔️Giao hàng miễn phí</div>
+                        <Link to={`/CreateOrder/${cartId}`}>
+                        <button type='submit'>Đặt hàng</button></Link>
                     </div>
                 </div> 
             }
