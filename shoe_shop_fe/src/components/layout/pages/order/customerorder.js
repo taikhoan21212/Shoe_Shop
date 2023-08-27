@@ -22,10 +22,11 @@ import {  faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg
 export default function Customerorder() {
   const user = useSelector((state) => state.auth.login.currentUser);
   const [orders, setOrders] = useState([]);
+  const [carts, setCarts] = useState([]);
+
 
     if (user) {
       const userID = user._id;
-
       axios
         .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
         .then((res) => {
@@ -35,7 +36,22 @@ export default function Customerorder() {
         .catch((error) => {
           console.log(error);
         });
+        axios
+        .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`, {
+          params: {
+            status: "completed", // Replace "completed" with the desired status
+          },
+        })
+        .then((res) => {
+          const carts = res.data;
+          setCarts(carts);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
+
+
 
 
   const getOrderStatusWidth = (status) => {
@@ -62,6 +78,9 @@ export default function Customerorder() {
           <MDBRow className="justify-content-center align-items-center h-100">
             <MDBCol lg="10" xl="8">
             {orders.map((order1, index1) => {
+                  const cartId = order1.cartId;        
+                  const products = carts.find((cart) => cart._id === cartId);
+                  console.log(products);
                   const Orderstatus = order1.status;
                   const widthStatus = getOrderStatusWidth(Orderstatus);
 
@@ -72,7 +91,7 @@ export default function Customerorder() {
                     background: `linear-gradient(to right, #8ef5ca ${colorStop}%, #017a48)`,
                   };
 
-                  const totalQuantity = order1.products.reduce((accumulator, product) => accumulator + product.quantity, 0);
+                  const totalQuantity = products.products ? products.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
 
                   return (
             
@@ -95,7 +114,7 @@ export default function Customerorder() {
                       </p>
                     </div>
                     <MDBCard className="shadow-0 border mb-4">
-                      {order1.products.map((item, index) => (
+                      {products && products.products.map((item, index) => (
                         <MDBCardBody key={index}>
                           <MDBRow>
                             <MDBCol md="2">

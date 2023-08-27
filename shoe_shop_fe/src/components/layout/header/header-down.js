@@ -3,13 +3,12 @@ import React, { useState,useContext, useEffect } from 'react';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faSearch, faShoppingCart,faBell} from '@fortawesome/free-solid-svg-icons';
 // import { faFile } from '@fortawesome/free-regular-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { Badge } from 'rsuite';
 import {CartContext} from "../pages/cart/CartContext"
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Search from '../../search';
- 
 
 
 function Header_down() {
@@ -19,9 +18,13 @@ function Header_down() {
     const [isOpen, setIsOpen] = useState(false);
     const [hasOrder, setHasOrder] = useState(false)
     const [hasIncompleteOrder, setHasIncompleteOrder] = useState(false)
+    const [cartId, setCartId] = useState("");
+    sessionStorage.setItem("cartId", cartId);
 
-
-
+    const handleRedirect = () => {
+        // Navigate to the /Cart page with the cartId passed as a URL parameter
+        window.location.href = `/Cart`;
+      };
 
     useEffect(() => {
         if (cartN > 0) {
@@ -44,26 +47,36 @@ function Header_down() {
             };
             // console.log("tài khoản đẵ thay đổi");
             axios
-            .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`)
+            .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`, {
+                params: {
+                  status: "pending"
+                }
+              })
             .then((res) => {
               const data = res.data;
-              if (data.length === 0) {
+              console.log(data);
+              if (data === null || data.length === 0) {
                   axios
                     .post(`${process.env.REACT_APP_API_URL}cart/add`, newCart)
                     .then((res) => {
-                    //   console.log("Thêm mới giỏ hàng thành công");
+                        setCartId(res.data._id);
+
                     })
                     .catch((error) => {
                       console.log(error);
                     });
-              } else if(data.length === 1 && data[0].products.length > 0){ 
+              } else if(data.length > 0){ 
+                console.log("123");
                 const foundCartItems = data[0].products;
                 // console.log(foundCartItems.length);
-                if (foundCartItems.length > 0) { // Kiểm tra cartItems chưa có giá trị
+                // Kiểm tra cartItems chưa có giá trị
                   setCartItems(foundCartItems);
+                  setCartId(data[0]._id);
+                  console.log(cartId);
+
                 //   setCartId(data[0]._id);
                 //   console.log("gắn giỏ hàng");
-                }
+                
           }})
           .catch((error) => {
             console.log(error);
@@ -105,9 +118,12 @@ function Header_down() {
             products: cartItems
             };
             axios
-            .put(`${process.env.REACT_APP_API_URL}cart/find/${userID}`, newCart)
+            .put(`${process.env.REACT_APP_API_URL}cart/${cartId}`, newCart)
             .then((res) => {
                     // console.log("Cập nhật giỏ hàng thành công");
+                    const id = res.data._id;
+                    // console.log(id);
+                    setCartId(id);
                     })
                     .catch((error) => {
                       console.log(error);
@@ -209,7 +225,7 @@ function Header_down() {
                         </div>
                     </div>
                     <div className="header_down-right-cart">
-                        <Link to="/Cart">
+                        <Link to="/Cart" onClick={handleRedirect}>
                             {isOpen ? (<Badge content={cartN}><FontAwesomeIcon icon={faShoppingCart} /></Badge>):(<FontAwesomeIcon icon={faShoppingCart} />)}</Link>
                     </div>
                     {user && hasOrder ?(                    

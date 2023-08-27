@@ -29,14 +29,26 @@ router.post("/add", async (req, res) => {
     }
   });
 
-  // router.delete("/delete/:id", async (req, res) => {
-  //   try {
-  //     const deletedCart = await Cart.findByIdAndDelete(req.params.id);
-  //     res.status(200).json(deletedCart);
-  //   } catch (err) {
-  //     res.status(500).json(err);
-  //   }
-  // });
+  router.get("/:id", async (req, res) => {
+    try {
+      const cart = await Cart.findById(req.params.id);
+      if (!cart) {
+        return res.status(404).json({ message: "Cart not found" });
+      }
+      res.status(200).json(cart);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  router.delete("/deletecartId/:id", async (req, res) => {
+    try {
+      const deletedCart = await Cart.findByIdAndDelete(req.params.id);
+      res.status(200).json(deletedCart);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
   router.delete("/delete/:userId", async (req, res) => {
     try {
@@ -53,13 +65,20 @@ router.post("/add", async (req, res) => {
 
   router.get("/find/:userId", async (req, res) => {
     try {
-      const carts = await Cart.find({ userId: req.params.userId });
+      const { userId } = req.params;
+      const { status } = req.query;
+      let query = { userId };
+  
+      if (status) {
+        query = { ...query, status };
+      }
+  
+      const carts = await Cart.find(query);
       res.status(200).json(carts);
     } catch (err) {
       res.status(500).json(err);
     }
-  });
-
+  }); 
   router.put("/find/:userId", async (req, res) => {
     try {
       const { userId } = req.params;

@@ -27,7 +27,6 @@ const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]
 function App() {
   const [cartItems, setCartItems] = useState(Array.isArray(cartFromLocalStorage) ? cartFromLocalStorage : []);
   const user = useSelector((state) => state.auth.login.currentUser);
-
   useEffect(() => {
     if (user) {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -62,7 +61,7 @@ function App() {
                     <Route path="/ProductsFemale" element={<ProductFemale />} />
                     <Route path="/ProductList" element={<ProductList />} />
                     <Route path="/MyOrder" element={<CustomerOrder />} />
-                    <Route path="/CreateOrder" element={<CreateOrder />} />
+                    <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />
                 </Routes>
             </div>
                 <Footer />

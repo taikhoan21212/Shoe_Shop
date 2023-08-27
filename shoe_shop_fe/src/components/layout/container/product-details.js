@@ -28,7 +28,6 @@ function Product_Details() {
           axios
             .get(`${process.env.REACT_APP_API_URL}products/${id}`)
             .then((res) => {
-                debugger
               setProductDetail(res.data);
               setSliderImages(res.data.img);
               setSelectwatch(res.data.size_color_remaining);

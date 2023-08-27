@@ -1,5 +1,5 @@
 import React,{ useContext, useState, useEffect} from "react";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './createorder.css'
 import {CartContext}  from "../cart/CartContext"
 import {MDBCheckbox,MDBBtn, MDBCard, MDBCardBody, MDBCardFooter, MDBCardHeader, MDBCardImage, MDBCol, MDBContainer, MDBInput, MDBListGroup, MDBListGroupItem, MDBRow, MDBTextArea, MDBTypography } from 'mdb-react-ui-kit';
@@ -14,6 +14,7 @@ export default function CreateOrder() {
     //const freeShippingPrice = 800000;
     const cartN = cartItems.reduce((total, item) => total + item.quantity, 0);
     const user = useSelector((state)=> state.auth.login.currentUser);
+    const { cartId } = useParams();
 
     const [surname,setSurname] = useState("");
     const [name,setName] = useState("");
@@ -31,6 +32,7 @@ export default function CreateOrder() {
       setAddress(details.address);
       setPhone(details.phone);
       setEmail(user.email);
+      setInformation(user.information)
       setSaveInfo(false);
     }
   }, [user]);
@@ -71,6 +73,7 @@ export default function CreateOrder() {
         information: information
       };
       const newOrder = {
+        cartId: cartId,
         userId: user._id,
         products: cartItems,
         amount: grandTotal,
@@ -82,13 +85,14 @@ export default function CreateOrder() {
     .post(`${process.env.REACT_APP_API_URL}order/add`, newOrder)
     .then(() => {
       alert("Đặt hàng thành công");
+      sessionStorage.removeItem("cartId");
       localStorage.removeItem("cartItems");
       window.location.href = "/MyOrder"; 
     })
     .catch((error) => {
       if (error.response && error.response.data && error.response.data.message) {
         alert(error.response.data.message);
-        window.location.href = "/Cart"; 
+        window.location.href = "/Cart/"+cartId; 
       } else {
         console.log("Đặt hàng không thành công");
       }
@@ -119,7 +123,7 @@ export default function CreateOrder() {
                 <MDBInput label='Địa chỉ' type='text'id="address" name="address" required value={address||""} onChange={(e)=>setAddress(e.target.value)}/><br />
                 <MDBInput label='Email' type='text'id="email" name="email" required  value={email||""}  onChange={(e)=>setEmail(e.target.value)}/><br />
                 <MDBInput label='Số điện thoại' type='text'id="phone" name="phone" required  value={phone||""}  onChange={(e)=>setPhone(e.target.value)}/><br />
-                <MDBTextArea label='Thông tin thêm'id="information" name="information" rows={4} onChange={(e)=>setInformation(e.target.value)}/><br />
+                <MDBTextArea label='Thông tin thêm'id="information" name="information" rows={4} value={information||""} onChange={(e)=>setInformation(e.target.value)}/><br />
 
                 <div className="d-flex justify-content-center">
                   {user.shipmentdetails[0] !== undefined ? (

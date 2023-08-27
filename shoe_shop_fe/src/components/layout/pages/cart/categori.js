@@ -2,11 +2,21 @@ import './categori.css';
 import {Link} from 'react-router-dom'
 import {CartContext}  from "./CartContext"
 import React,{ useContext} from "react"
+import axios from 'axios';
 
 function Categori() {
 
     const { cartItems, setCartItems } = useContext(CartContext);
+    const cartId = sessionStorage.getItem("cartId");
+
+    const handleRedirect = () => {
+        // Navigate to the /Cart page with the cartId passed as a URL parameter
+        window.location.href = `/CreateOrder/${cartId}`;
+      };
+
     const cartEmpty = cartItems.length<=0 ? true : false;
+
+    
     const grandTotal = cartItems.reduce((total, product)=>{
         return total += product.price*product.quantity
     },0)
@@ -98,7 +108,7 @@ function Categori() {
                             <div className="freeShipping">✔️Giao hàng miễn phí</div> :
                             <div className="noShipping">Đơn hàng từ {freeShippingPrice.toLocaleString()}đ sẽ được giao hàng miễn phí</div>
                         }
-                        <Link to="/CreateOrder">
+                        <Link to="/CreateOrder" onClick={handleRedirect}>
                         <button>Đặt hàng</button></Link>
                     </div>
                 </div> 
