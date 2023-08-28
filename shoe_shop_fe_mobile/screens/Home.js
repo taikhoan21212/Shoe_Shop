@@ -11,13 +11,14 @@ import Constants from 'expo-constants';
 const Home = ({ navigation }) => {
     const [productList, setProductList] = useState([])
     useEffect(() => {
-        console.log(Constants.expoConfig.extra)
-        console.log(`${Constants.expoConfig.extra.apiURL}products`)
+        // console.log("http://localhost:8000/v1/products/")
+        //console.log(`${Constants.expoConfig.extra.apiURL}products/`)
         // axios.get('https://jsonplaceholder.typicode.com/photos')
-            axios.get(`${Constants.expoConfig.extra.apiURL}products`)
+            axios.get(`${Constants.expoConfig.extra.apiURL}products/`)
             .then((res) => {
-                console.log(res)
-                setProductList(res.data.slice(0, 20))
+                //console.log(res)
+                setProductList(res.data)
+                //setProductList(res.data.slice(0, 20))
             })
             .catch((error) => {
                 console.log(error);
@@ -117,7 +118,7 @@ const Home = ({ navigation }) => {
                         <FlatList
                             // horizontal={false}
                             data={productList}
-                            keyExtractor={item => `key=${item.id}`}
+                            keyExtractor={item => `key=${item._id}`}
                             renderItem={
                                 ({ item, index }) => 
                                 
@@ -127,7 +128,7 @@ const Home = ({ navigation }) => {
                                         marginRight: SIZES.padding
                                     }}>
                                         <TouchableOpacity
-                                            onPress={() => navigation.navigate("Details")}
+                                            onPress={() => navigation.navigate("Details", { productId: item._id })}
                                         >
                                             <Image
                                                 source={{ uri: 
@@ -151,7 +152,7 @@ const Home = ({ navigation }) => {
                                             fontSize: 10,
                                             color: COLORS.black
                                         }}>
-                                            {item.barnd}
+                                            {item.brand}
                                         </Text>
 
                                         <View style={{
