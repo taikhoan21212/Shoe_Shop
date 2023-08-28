@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [mes, setMes] = useState("");
-  const [IsLoggedIn, setIsLoggedIn] = useState(false);
+  // const [IsLoggedIn, setIsLoggedIn] = useState(false);
 
   
     const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ const Login = () => {
       if(Logg){
         setMes(newUser.username +" Đăng nhập thành công!");
         setError(true);
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
         setTimeout(() =>navigate("/"),500);
       }else{
         setMes("Tên đăng nhập hoặc mật khẩu không đúng");

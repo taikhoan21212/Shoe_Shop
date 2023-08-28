@@ -4,7 +4,8 @@ import userIcon from "../../img/user-icon.png";
 import { faKey} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faCheckCircle} from '@fortawesome/free-solid-svg-icons';
-import {daMua as damuaApi } from './damua'
+import {checkHasOrder} from './commentsAPI'
+
 import React, {useState} from "react";
 const Comment = ({
   comment,
@@ -18,7 +19,7 @@ const Comment = ({
   currentUserId,
 }) => {
   const [apiResult, setApiResult] = useState(false);
-  damuaApi(comment.userId, comment.productId)
+  checkHasOrder(comment.userId, comment.productId)
   .then((result) => {
     setApiResult(result) ;
   })

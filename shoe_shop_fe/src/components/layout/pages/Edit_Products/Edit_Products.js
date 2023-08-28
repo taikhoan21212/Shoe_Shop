@@ -8,14 +8,8 @@ import "./edit_products.css"
 
 import {
   Button,
-  Form,
-  Header,
-  Icon,
-  Input,
-  Message,
   Segment,
   Table,
-  TableCell
 } from "semantic-ui-react";
 import { useNavigate, useParams } from "react-router-dom";
 export const Edit_Products = () => {
