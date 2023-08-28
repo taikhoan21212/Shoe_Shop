@@ -107,7 +107,7 @@
   
   .form-group img{
     max-width: 130px;
-    height: auto;
+    height: 130px;
     /* width: 120px;
     height: 130px; */
     min-width: 60px;
@@ -162,6 +162,7 @@
   th.add-column{
     text-align: center;
   }
+
   
   .add-column button{
     width: 30%;
@@ -286,8 +287,13 @@
     background-color: rgb(228, 228, 228);
     font-weight: bold;
 }
+    table#productsTable tr.editing {
+      background-color: rgb(228, 228, 228);
+      font-weight: bold;
+    }
  table#productsTable th{
     background-color: #fff;
     font-weight: bold;
     font-size: 18px;
  }
+

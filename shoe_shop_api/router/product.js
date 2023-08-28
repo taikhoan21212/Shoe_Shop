@@ -51,39 +51,39 @@ router.post("/add", async (req, res) => {
 
 //GET ALL PRODUCTS BY GENDER
 
-router.get("/gender/:gender", async (req, res) => {
-  const qNew = req.query.new;
-  const qCategory = req.query.category;
-  const gender = req.params.gender; // Lấy giới tính từ tham số đường dẫn
+// router.get("/gender/:gender", async (req, res) => {
+//   const qNew = req.query.new;
+//   const qCategory = req.query.category;
+//   const gender = req.params.gender; // Lấy giới tính từ tham số đường dẫn
 
-  let genderValues = []; // Danh sách các giá trị liên quan đến giới tính
-  if (gender === "Man") {
-    genderValues = ["M", "Male", "Unsex", "Man", "Men", "Nam"];
-  } else if (gender === "Woman"){
-    genderValues = ["F", "Female", "Unsex", "Women", "Woman", "Nữ"];
-  }
+//   let genderValues = []; // Danh sách các giá trị liên quan đến giới tính
+//   if (gender === "Man") {
+//     genderValues = ["M", "Male", "Unsex", "Man", "Men", "Nam"];
+//   } else if (gender === "Woman"){
+//     genderValues = ["F", "Female", "Unsex", "Women", "Woman", "Nữ"];
+//   }
 
-  try {
-    let products;
+//   try {
+//     let products;
 
-    if (qNew) {
-      products = await Product.find().sort({ createdAt: -1 }).limit(1);
-    } else if (qCategory) {
-      products = await Product.find({
-        categories: {
-          $in: [qCategory],
-        },
-        gender: { $in: genderValues }, // Sử dụng $in để tìm kiếm các giá trị trong danh sách
-      });
-    } else {
-      products = await Product.find({ gender: { $in: genderValues } }).sort({ createdAt: -1 }); // Tìm kiếm dựa trên giới tính
-    }
+//     if (qNew) {
+//       products = await Product.find().sort({ createdAt: -1 }).limit(1);
+//     } else if (qCategory) {
+//       products = await Product.find({
+//         categories: {
+//           $in: [qCategory],
+//         },
+//         gender: { $in: genderValues }, // Sử dụng $in để tìm kiếm các giá trị trong danh sách
+//       });
+//     } else {
+//       products = await Product.find({ gender: { $in: genderValues } }).sort({ createdAt: -1 }); // Tìm kiếm dựa trên giới tính
+//     }
 
-    res.status(200).json(products);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.status(200).json(products);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 
 
@@ -96,17 +96,15 @@ router.get("/gender/:gender", async (req, res) => {
     try {
       const productId = req.params.id;
       const product = await Product.findById(productId);
-       // Sắp xếp mảng size_color_remaining theo kích thước từ bé đến lớn
- 
-       const sortedSizes = product.size_color_remaining.sort((a, b) => {
-        const sizeA = a.size_remaining[0].size;
-        const sizeB = b.size_remaining[0].size;
+       //Sắp xếp mảng packing theo kích thước từ bé đến lớn
+       const sortedSizes = product.packing.sort((a, b) => {
+        const sizeA = a.size[0].value;
+        const sizeB = b.size[0].value;
         return sizeA.localeCompare(sizeB);
       });
-  
-    // Gán mảng size_color_remaining đã sắp xếp lại cho sản phẩm
-    product.size_color_remaining = sortedSizes;
 
+    // Gán mảng packing đã sắp xếp lại cho sản phẩm
+    product.packing = sortedSizes;
       res.status(200).json(product);
     } catch (err) {
       res.status(500).json(err);
@@ -148,24 +146,24 @@ router.get("/gender/:gender", async (req, res) => {
       if (!product) {
         return res.status(404).json({ message: "Sản phẩm không tồn tại" });
       }
-      const size_color_remaining = product.size_color_remaining;
+      const packing = product.packing;
       const color = req.params.color;
   
-      const sizeColorRemaining = size_color_remaining.find(
+      const pacKing = packing.find(
         (item) => item.color.toString() === color
       );
   
-      if (!sizeColorRemaining) {
+      if (!pacKing) {
         return res
           .status(404)
           .json({ message: "Màu không toàn tại" });
       }
 
-      const size_remaining = sizeColorRemaining.size_remaining;
+      const size_remaining = pacKing.size;
       const size = req.params.size;
   
       const sizeremaining = size_remaining.find(
-        (item) => item.size === size
+        (item) => item.value === size
       );
   
       if (!sizeremaining) {

@@ -10,7 +10,7 @@ import useConfirmExit from '../../../useConfirmExit';
 const Add_Edit_Product = () => {
   useConfirmExit();
   const color_size_remaining = () => {
-    return [{ color: "", size_remaining: [{ size: "", remaining: ""}] }];
+    return [{ color: "", size: [{ value: "", remaining: ""}] }];
   };
 
   const [colorRows, setColorRows] = useState(color_size_remaining());
@@ -32,8 +32,8 @@ const Add_Edit_Product = () => {
         if (index === colorIndex) {
           return {
             ...row,
-            size_remaining: [
-              ...(row.size_remaining || []),
+            size: [
+              ...(row.size || []),
               { size: "", remaining: "" }
             ]
           };
@@ -50,7 +50,7 @@ const Add_Edit_Product = () => {
         if (rowIndex === colorIndex) {
           return {
             ...row,
-            size_remaining: row.size_remaining.filter((_, i) => i !== index)
+            size: row.size.filter((_, i) => i !== index)
           };
         }
         return row;
@@ -60,7 +60,7 @@ const Add_Edit_Product = () => {
   };
 
   const addColorRow = () => {
-    setColorRows([...colorRows, {color: "", size_remaining: [{ size: "", remaining: ""}] }]);
+    setColorRows([...colorRows, {color: "", size: [{ value: "", remaining: ""}] }]);
   };
 
   // const handleChangecolorRows = (index, field, value) => {
@@ -78,11 +78,11 @@ const Add_Edit_Product = () => {
         updatedRows[colorIndex][field] = value;
         return updatedRows;
       });
-    } else if (field === "size" || field === "remaining") {
+    } else if (field === "value" || field === "remaining") {
       setColorRows(prevColorRows => {
         const updatedRows = [...prevColorRows];
         const colorRow = updatedRows[colorIndex];
-        const updatedSizeRemaining = [...colorRow.size_remaining];
+        const updatedSizeRemaining = [...colorRow.size];
   
         // if (!updatedSizeRemaining[sizeIndex]) {
         //   // Create a new size row if it doesn't exist
@@ -90,7 +90,7 @@ const Add_Edit_Product = () => {
         // }
   
         updatedSizeRemaining[sizeIndex][field] = value;
-        colorRow.size_remaining = updatedSizeRemaining;
+        colorRow.size = updatedSizeRemaining;
         return updatedRows;
       });
     }
@@ -250,7 +250,7 @@ const Add_Edit_Product = () => {
       useEffect(() => {
         if (productDetail !== null) {
           setHasProductDetail(true);
-          setColorRows(productDetail.size_color_remaining || []);
+          setColorRows(productDetail.packing || []);
           setPrice(productDetail.price);
           setGender(productDetail.gender);
           setCategory(productDetail.category);
@@ -274,7 +274,7 @@ const Add_Edit_Product = () => {
       brand: brand,
       gender: gender,
       img: imageList,
-      size_color_remaining : colorRows,
+      packing : colorRows,
       category: category,
       description: description
     };
@@ -353,18 +353,18 @@ const Add_Edit_Product = () => {
           <tr key={colorIndex}>
             <td className="color-cell"><input type="text" id="color" name="color" value={rowf.color || ""} onChange={(e) => handleChangecolorRows(colorIndex,0 ,"color", e.target.value)}/></td>
             <td className="size-remaining-cell">
-            {rowf.size_remaining && rowf.size_remaining.length > 0 && rowf.size_remaining.map((row, index) => (
+            {rowf.size && rowf.size.length > 0 && rowf.size.map((row, index) => (
               <div key={index}>
               <div className="input-s-r">
-              <input type="text" id="size" name="size" placeholder="size..." pattern="^(?:[1-9]|[1-3][0-9]|4[0-5])$" value={row.size|| ""}  onChange={(e) => handleChangecolorRows(colorIndex, index, "size", e.target.value)}/>
+              <input type="text" id="size" name="size" placeholder="size..." pattern="^(?:[1-9]|[1-3][0-9]|4[0-5])$" value={row.value|| ""}  onChange={(e) => handleChangecolorRows(colorIndex, index, "value", e.target.value)}/>
               <input type="text" id="remaining" name="remaining" placeholder="remaining..." pattern="^[0-9]*$" value={row.remaining|| ""} onChange={(e) => handleChangecolorRows(colorIndex, index, "remaining", e.target.value)}/>
-              {rowf.size_remaining.length > 1 && (
+              {rowf.size.length > 1 && (
               <button className="remove-row set-del" type="button" onClick={() => removeRow(colorIndex,index)}>
                 x
               </button>
             )}
               </div>
-              {index === rowf.size_remaining.length-1 && (
+              {index === rowf.size.length-1 && (
               <button className="td-set-add set-add" type="button" onClick={()=>addDiv({colorIndex})}>Add</button>)}</div>))}
             </td>
             <td className="td-set"><button className="td-set-del set-del" type="button" onClick={() => removecolorRows(colorIndex)}>Del</button></td>

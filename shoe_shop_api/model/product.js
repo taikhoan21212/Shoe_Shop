@@ -6,12 +6,12 @@ price: { type: Number, required: true },
 brand: { type: String, required: true },
 gender: { type: String, required: true },
 img: [{ type: String }],
-size_color_remaining: [
+packing: [
   {
     color: { type: String },
-    size_remaining: [
+    size: [
       {
-        size: { type: String },
+        value: { type: String },
         remaining: {
           type: Number,
           min: 0,

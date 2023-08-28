@@ -86,10 +86,9 @@ router.post("/add", async (req, res) => {
       if (!product) {
         return res.status(404).json({ message: "Sản phẩm không tồn tại" });
       }
-      const size_color_remaining = product.size_color_remaining;
+      const packing = product.packing;
       const color = productItem.color;
-  
-      const sizeColorRemaining = size_color_remaining.find(
+      const sizeColorRemaining = packing.find(
         (item) => item.color.toString() === color
       );
   
@@ -97,10 +96,10 @@ router.post("/add", async (req, res) => {
         return res.status(404).json({ message: "Màu không tồn tại" });
       }
   
-      for (const sizeRemainingItem of sizeColorRemaining.size_remaining) {
-        const size = sizeRemainingItem.size;
+      for (const sizeRemainingItem of sizeColorRemaining.size) {
+        const size = sizeRemainingItem.value;
   
-        if (size === productItem.size) {
+        if (size === productItem.value) {
           if (sizeRemainingItem.remaining < productItem.quantity) {
             return res.status(400).json({
               message: productItem.title +" Số lượng không đủ",

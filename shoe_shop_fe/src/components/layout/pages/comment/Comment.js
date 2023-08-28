@@ -2,7 +2,10 @@ import CommentForm from "./CommentForm";
 import "./comment.css";
 import userIcon from "../../img/user-icon.png";
 import { faKey} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import {daMua as damuaApi } from './damua'
+import React, {useState} from "react";
 const Comment = ({
   comment,
   replies,
@@ -14,6 +17,12 @@ const Comment = ({
   parentId,
   currentUserId,
 }) => {
+  const [apiResult, setApiResult] = useState(false);
+  damuaApi(comment.userId, comment.productId)
+  .then((result) => {
+    setApiResult(result) ;
+  })
+    
   
   // const getReplies = (commentId) => {
   //   const list = replies
@@ -48,6 +57,7 @@ const Comment = ({
   const replyId = parentId ? parentId : comment._id;
   const createdAt = new Date(comment.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) +(" ")+ new Date(comment.createdAt).toLocaleDateString();
 
+
   return (
     <div key={comment._id} className="comment">
       <div className="comment-right-part">
@@ -56,7 +66,7 @@ const Comment = ({
         <img src={userIcon} />
       </div>
       
-          <div className="comment-author">{comment.username} {comment.userId === '648a98e7a1cad6e07158c5df' && <FontAwesomeIcon icon={faKey} />}</div>
+          <div className="comment-author">{comment.username} {comment.userId === '648a98e7a1cad6e07158c5df' && <FontAwesomeIcon icon={faKey} />}  {apiResult && <><FontAwesomeIcon icon={faCheckCircle} className="icongreen"/><p>Đã mua</p></>}</div>
           <div className="comment-time">{createdAt}</div>
         </div>
         {!isEditing && <div className="comment-text">{comment.body}</div>}

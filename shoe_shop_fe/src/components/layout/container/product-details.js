@@ -55,10 +55,10 @@ function Product_Details() {
               getProductApi(id).then((res) => {
                 setProductDetail(res);
                 setSliderImages(res.img);
-                setSelectwatch(res.size_color_remaining);
+                setSelectwatch(res.packing);
               // const remaining = res.data.size_color_remaining.find((item) => item.remaining > 0);
-              const sizeColorRemaining = res.size_color_remaining;
-              const sizeRemaining = sizeColorRemaining[0].size_remaining;
+              const sizeColorRemaining = res.packing;
+              const sizeRemaining = sizeColorRemaining[0].size;
               // console.log(sizeRemaining);
               const totalRemaining = sizeRemaining.reduce((accumulator, currentValue) => accumulator + currentValue.remaining, 0);
               // console.log(totalRemaining);
@@ -170,28 +170,28 @@ function Product_Details() {
                                         </div>
                                         {isOutOfStock ? (<>
                                         <div className="select-swatch-color-size-item">
-                                          {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
+                                          {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size.map((item, index) => {
                                             return (<>
-                                                <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => {setSelectedSize(item.size)}}/>
-                                                <label htmlFor={"size" + item.size}>{item.size}</label>
+                                                <input key={index} type="radio" id={"size" + item.value} name="size" value={item.value} onChange={(e) => {setSelectedSize(item.value)}}/>
+                                                <label htmlFor={"size" + item.value}>{item.value}</label>
                                             </>
                                           );
                                           })}
                                         </div>
                                         </>):(<>
                                                                                 <div className="select-swatch-color-size-item">
-                                                                                {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size_remaining.map((item, index) => {
+                                                                                {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size.map((item, index) => {
                             
                                                                                     return (<>
                                                                                       {item.remaining > 0 ? (
                                                                                         <>
-                                                                                        <input key={index} type="radio" id={"size" + item.size} name="size" value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
-                                                                                        <label htmlFor={"size" + item.size}>{item.size}</label>
+                                                                                        <input key={index} type="radio" id={"size" + item.value} name="size" value={item.value} onChange={(e) => {setSelectedSize(item.value); setRem(item.remaining)}}/>
+                                                                                        <label htmlFor={"size" + item.value}>{item.value}</label>
                                                                                         </>
                                                                                     ) : (
                                                                                       <>
-                                                                                      <input key={index}  type="radio" id={"size" + item.size} name="size" disabled value={item.size} onChange={(e) => {setSelectedSize(item.size); setRem(item.remaining)}}/>
-                                                                                      <label className="disabled-label" htmlFor={"size" + item.size}>{item.size}</label>
+                                                                                      <input key={index}  type="radio" id={"size" + item.value} name="size" disabled value={item.value} onChange={(e) => {setSelectedSize(item.value); setRem(item.remaining)}}/>
+                                                                                      <label className="disabled-label" htmlFor={"size" + item.value}>{item.value}</label>
                                                                                       </>
                                                                                     )}</>
                                                                                 );

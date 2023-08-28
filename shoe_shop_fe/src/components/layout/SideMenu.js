@@ -39,7 +39,6 @@ class SideMenu extends Component {
                 </Menu.Item>
                 <Menu.Item
                     as={Link} to={'/PageAdmin/EditProduct'}
-                    debugger
                     onClick={this.handleItemClick}
                     >
                     <TextIcon hideText={this.props.smallMenu} name='users'>

@@ -92,8 +92,8 @@ function ProductNine() {
                     {/* {filteredProductList.map(product=>{ */}
                     {productList.map(product=>{
                         let isOutOfStock = false;
-                        const sizeColorRemaining = product.size_color_remaining;
-                        const sizeRemaining = sizeColorRemaining[0].size_remaining;
+                        const sizeColorRemaining = product.packing;
+                        const sizeRemaining = sizeColorRemaining[0].size;
                         // console.log(sizeRemaining);
                         const totalRemaining = sizeRemaining.reduce((accumulator, currentValue) => accumulator + currentValue.remaining, 0);
                          //console.log(totalRemaining);
