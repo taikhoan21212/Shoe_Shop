@@ -1,0 +1,50 @@
+.manage-order{
+    padding-top: 80px;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+    text-align: center;
+
+}
+.manage-order-section{
+    align-items: center;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.manage-btn{
+    padding: 1%;
+}
+
+.manage-order-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+table.order-table{
+    width: 90%;
+    position: relative;
+    z-index: 1;
+}
+.order-detail{
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 10%;
+    /* background-color: #eee; */
+}
+.icon-close{
+    color: rgb(54, 54, 54);
+    font-size: large;
+    /* margin-left: 80%; */
+}
+
+.icon-close:hover{
+    color: black;
+    font-size: large;
+    cursor: pointer;
+}

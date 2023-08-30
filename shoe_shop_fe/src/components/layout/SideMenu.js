@@ -46,6 +46,15 @@ class SideMenu extends Component {
                     </TextIcon>
                 </Menu.Item>
 
+                <Menu.Item
+                    as={Link} to={'/PageAdmin/ManageOrder'}
+                    onClick={this.handleItemClick}
+                    >
+                    <TextIcon hideText={this.props.smallMenu} name='users'>
+                        Quản lý đơn hàng
+                    </TextIcon>
+                </Menu.Item>
+
                 {/* <Menu.Item as={Link} to={'/card'} name='card' active={activeItem === 'card'}
                            onClick={this.handleItemClick}>
 
