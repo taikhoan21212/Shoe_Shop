@@ -22,7 +22,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 table.order-table{
     width: 90%;
@@ -32,13 +31,16 @@ table.order-table{
 .icon-container {
     transform: rotate(90deg);
   }
+
+.detail{
+    z-index: 2;
+}
 .order-detail{
     display: flex;
     position: absolute;
     z-index: 2;
     /* top: 0; */
     left: 30%;
-    background-color: #eee;
 }
 .icon-close{
     color: rgb(54, 54, 54);
@@ -51,13 +53,44 @@ table.order-table{
     font-size: large;
     cursor: pointer;
 }
+.control-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
 
+.btn-control-order {
+  background-color: #ffffff;
+  margin-bottom: 30px;
+  z-index: 2;
+}
+
+.order-upload{
+    z-index: 2;
+    background-color: #eeeeee;
+    width: 300px;
+    height: 280px;
+    padding-top: 50px;
+}
+.order-upload input,
+.order-upload select {
+  width: 220px;
+  height: 41px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.order-upload button{
+  margin-top: 15px;
+  margin-left: 10px;
+}
 
 .container-order-detail {
+  background-color: #eeeeee;
   max-width: 21cm;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2cm;
+  padding: 1.5cm;
+  z-index: 2;
 }
   
   h2 {

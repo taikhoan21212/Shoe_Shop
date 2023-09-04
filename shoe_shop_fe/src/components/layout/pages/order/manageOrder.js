@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./customerorder.css";
 import "./manageOrder.css"
 import Invoice from './Invoice';
@@ -22,7 +22,7 @@ export default function ManageOrder() {
           .then((res) => {
             const orders = res.data;
             setOrders(orders);
-            console.log(orders);
+            setFilteredOrderList(orders);
           })
           .catch((error) => {
             console.log(error);
@@ -82,7 +82,7 @@ return (
                   <th scope="col">No.</th>
                   <th scope="col">Ngày đặt hàng</th>
                   <th scope="col">Mã đơn hàng</th>
-                  <th scope="col">Số lượng đặt</th>
+                  <th scope="col">Số kiện</th>
                   <th scope="col">Thanh toán</th>
                   <th scope="col">...</th>
                   </tr>
@@ -113,7 +113,7 @@ return (
                           }</td>
                           {/* <td><FontAwesomeIcon icon={faChevronDown} className={`${openDetail === order._id ? 'icon-container' : ''}`} onClick={() => setOpenDetail(order._id)}/></td> */}
                         </tr>{openDetail === order._id && 
-                                <div className='order-detail'>
+                                <div className='detail'>
                                   {order.status !== "pending" ? <Invoice order={order} cart={cart}/> : <OrderDetail order={order} cart={cart}/>}
                                   </div>}
                             

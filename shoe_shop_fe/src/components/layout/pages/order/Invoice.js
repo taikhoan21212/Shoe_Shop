@@ -1,14 +1,40 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import "./manageOrder.css"
 import { format } from 'date-fns';
 import viLocale from 'date-fns/locale/vi';
-
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {  faPenToSquare, faPrint } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 function Invoice({order, cart}) {
     const formattedDate = (date) => {
         return format(new Date(date), 'do MMMM yyyy', { locale: viLocale });
       };
       const totalQuantity = cart ? cart.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
-  return (
+
+      const [showForm, setShowForm] = useState(false);
+      const [status, setStatus] = useState(order.status);
+      const [orderCode, setOrderCode] = useState('');
+    
+      const handleIconClick = () => {
+        setShowForm(true);
+      };
+    
+      const handleSubmit = () => {
+        // Xử lý logic khi submit form
+        axios.put(`${process.env.REACT_APP_API_URL}order/${order._id}`, {
+          status: status
+        }).then((res) => {
+          setShowForm(false);
+        }).catch((err) => {
+          alert("Error");
+        })
+      };
+    
+      const handleCancel = () => {
+        setShowForm(false);
+      };
+
+  return (<div className='order-detail'>
 <div className="container-order-detail">
     <table className="fullPadding" width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
                   <tbody>
@@ -22,7 +48,7 @@ function Invoice({order, cart}) {
                             <tr>
                               <td className="header-text-left">
                                 Chào, <strong>{order.shipmentdetails.name} {order.shipmentdetails.surname}</strong>.
-                                <br /> Cảm ơn bạn đã mua sắm từ cửa hàng của chúng tôi.
+                                <br /> Cảm ơn quý khách đã mua sắm từ cửa hàng của chúng tôi.
                               </td>
                             </tr>
                           </tbody>
@@ -168,6 +194,24 @@ function Invoice({order, cart}) {
 
 
 </div>
+<div className='control-order'>
+      <button type='button' className='btn btn-control-order' onClick={handleIconClick}><FontAwesomeIcon icon={faPenToSquare} /></button>
+      <button type='button' className='btn btn-control-order'><FontAwesomeIcon icon={faPrint} /></button>
+    </div>
+    {showForm && (
+        <div className="order-upload">
+            <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                <option value="pending">Đang cho xác nhận</option>
+                <option value="delivery">Gửi hàng</option>
+                <option value="completed">Đã hoàn thành</option>
+                <option value="cancel">Hủy đơn hàng</option>
+          </select><br />
+           <input type="text" placeholder="Mã đơn hàng" value={orderCode} onChange={(e) => setOrderCode(e.target.value)} required/><br/>
+          <button type='submit' className='btn btn-primary' onClick={handleSubmit}>Submit</button>
+          <button type='button' className='btn btn-light' onClick={handleCancel}>Cancel</button>
+        </div>
+      )}
+    </div>
   )
 }
 
