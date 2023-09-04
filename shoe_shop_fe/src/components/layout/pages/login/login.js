@@ -3,9 +3,12 @@ import "./login.css"
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from '../../../../redux/apiRequest';
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faEye , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+
 
 const Login = () => {
-
+  const [isPasswordShown, setIsPasswordShown] = useState(true);
   const [username, setUsername] = useState("myadmin");
   const [password, setPassword] = useState("123456");
   const dispatch = useDispatch();
@@ -48,9 +51,17 @@ const Login = () => {
             <label>Tên đăng nhập</label>
           </div>
           <div className="user-box">
-            <input type="password" id="password" name="password" 
+            <input type={isPasswordShown ? "password" : "text"} id="password" name="password"
              onChange={(e) => setPassword(e.target.value)} value={password}  required autoComplete='on'/>
             <label>Mật khẩu</label>
+            {
+              isPasswordShown == true ? (
+                                  <FontAwesomeIcon icon={faEyeSlash} className="eye-icon" onClick={() => setIsPasswordShown(false)}/>
+                                ) : (
+                                  <FontAwesomeIcon icon={faEye} className="eye-icon" onClick={() => setIsPasswordShown(true)}/>
+                                )
+                            }
+
           </div>
           <p>Không có tài khoản? <Link to="/register">Đăng ký</Link></p>
           <input type="submit" value="Đăng nhập" />
