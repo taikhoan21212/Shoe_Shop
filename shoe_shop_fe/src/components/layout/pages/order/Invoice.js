@@ -1,11 +1,21 @@
-import React, { useState }  from 'react'
+import React, { useState, useRef }  from 'react'
 import "./manageOrder.css"
 import { format } from 'date-fns';
 import viLocale from 'date-fns/locale/vi';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {  faPenToSquare, faPrint } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import {useReactToPrint} from 'react-to-print';
 function Invoice({order, cart}) {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: 'Invoice',
+    onAfterPrint: () => {
+      alert("Print success");
+    }
+  })
+
     const formattedDate = (date) => {
         return format(new Date(date), 'do MMMM yyyy', { locale: viLocale });
       };
@@ -34,8 +44,8 @@ function Invoice({order, cart}) {
         setShowForm(false);
       };
 
-  return (<div className='order-detail'>
-<div className="container-order-detail">
+  return (<>
+<div className="container-order-detail" ref={componentRef}>
     <table className="fullPadding" width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
                   <tbody>
                     <tr>
@@ -67,8 +77,8 @@ function Invoice({order, cart}) {
                               <td height="20"></td>
                             </tr>
                             <tr>
-                              <td className="header-text-right" style={{fontSize: '14px'}}>
-                                Đơn hàng: #{order._id}
+                              <td className="header-text-right" style={{fontSize: '15px'}}>
+                                Đơn hàng: {order._id}
                                 <br /> <br />
                                 <small>{formattedDate(order.createdAt)}</small>
                               </td>
@@ -139,6 +149,7 @@ function Invoice({order, cart}) {
         {totalQuantity}
         </td>
       </tr>
+      <tr height="30"></tr>
     </tbody>
   </table>
   <table width="50%" border="0" cellpadding="0" cellspacing="0" align="left" className="col">
@@ -196,9 +207,8 @@ function Invoice({order, cart}) {
 </div>
 <div className='control-order'>
       <button type='button' className='btn btn-control-order' onClick={handleIconClick}><FontAwesomeIcon icon={faPenToSquare} /></button>
-      <button type='button' className='btn btn-control-order'><FontAwesomeIcon icon={faPrint} /></button>
-    </div>
-    {showForm && (
+      <button type='button' className='btn btn-control-order' onClick={handlePrint}><FontAwesomeIcon icon={faPrint} /></button>
+      {showForm && (
         <div className="order-upload">
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
                 <option value="pending">Đang cho xác nhận</option>
@@ -212,6 +222,8 @@ function Invoice({order, cart}) {
         </div>
       )}
     </div>
+
+    </>
   )
 }
 

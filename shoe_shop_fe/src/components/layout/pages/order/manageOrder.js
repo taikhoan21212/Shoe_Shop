@@ -102,7 +102,7 @@ return (
                         };
     
                     return(<>
-                        <tr key={index}>
+                        <tr key={index} className={openDetail === order._id ? 'selTr' : ''}>
                           <th scope="row">{index}</th>
                           <td>{new Date(order.createdAt).toLocaleDateString()} {new Date(order.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
                           <td>{order._id}</td>
@@ -113,7 +113,7 @@ return (
                           }</td>
                           {/* <td><FontAwesomeIcon icon={faChevronDown} className={`${openDetail === order._id ? 'icon-container' : ''}`} onClick={() => setOpenDetail(order._id)}/></td> */}
                         </tr>{openDetail === order._id && 
-                                <div className='detail'>
+                                <div className='order-detail'>
                                   {order.status !== "pending" ? <Invoice order={order} cart={cart}/> : <OrderDetail order={order} cart={cart}/>}
                                   </div>}
                             

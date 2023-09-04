@@ -3,7 +3,7 @@ import "./manageOrder.css"
 import { format } from 'date-fns';
 import viLocale from 'date-fns/locale/vi';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {  faPenToSquare, faPrint } from '@fortawesome/free-solid-svg-icons';
+import {  faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 function OrderDetail({order, cart}) {
     const totalQuantity = cart ? cart.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
@@ -34,7 +34,7 @@ function OrderDetail({order, cart}) {
         const handleCancel = () => {
           setShowForm(false);
         };
-  return (<div className='order-detail'>
+  return (<>
     
     <div className="container-order-detail">
         <div className="customer-detail" width="45%" style={{ textAlign: 'left' , marginTop: '10px'}}> 
@@ -78,9 +78,7 @@ function OrderDetail({order, cart}) {
 
     <div className='control-order'>
       <button type='button' className='btn btn-control-order' onClick={handleIconClick}><FontAwesomeIcon icon={faPenToSquare} /></button>
-      <button type='button' className='btn btn-control-order'><FontAwesomeIcon icon={faPrint} /></button>
-    </div>
-    {showForm && (
+      {showForm && (
         <div className="order-upload">
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
                 <option value="pending">Đang cho xác nhận</option>
@@ -93,7 +91,9 @@ function OrderDetail({order, cart}) {
           <button type='button' className='btn btn-light' onClick={handleCancel}>Cancel</button>
         </div>
       )}
-    </div>)
+      </div>
+
+    </>)
 }
 
 export default OrderDetail
