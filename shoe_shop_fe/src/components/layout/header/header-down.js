@@ -45,7 +45,7 @@ function Header_down() {
                 userId: userID,
                 products: Array.from(cartItems)
             };
-            console.log(newCart);
+            //console.log(newCart);
             // console.log("tài khoản đẵ thay đổi");
             axios
             .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`, {
@@ -55,7 +55,7 @@ function Header_down() {
               })
             .then((res) => {
               const data = res.data;
-              console.log(data);
+              //console.log(data);
               if (data === null || data.length === 0) {
                   axios
                     .post(`${process.env.REACT_APP_API_URL}cart/add`, newCart)
@@ -68,13 +68,13 @@ function Header_down() {
                       console.log(error);
                     });
               } else if(data.length > 0){ 
-                console.log("123");
+                //console.log("123");
                 const foundCartItems = data[0].products;
                 // console.log(foundCartItems.length);
                 // Kiểm tra cartItems chưa có giá trị
                   setCartItems(foundCartItems);
                   setCartId(data[0]._id);
-                  console.log(cartId);
+                  //console.log(cartId);
 
                 //   setCartId(data[0]._id);
                 //   console.log("gắn giỏ hàng");
