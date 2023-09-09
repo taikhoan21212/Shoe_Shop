@@ -55,6 +55,14 @@ section{
     transition: 0.5s;
 }
 
+.register-box .user-box .eye-icon {
+    position: absolute;
+    top: 30%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
 input:focus{
     outline: none;
     border-color: #007bff;

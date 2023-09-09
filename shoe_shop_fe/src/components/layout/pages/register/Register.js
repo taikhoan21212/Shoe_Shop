@@ -4,9 +4,13 @@ import { Link , useNavigate} from "react-router-dom";
 import { registerUser } from '../../../../redux/apiRequest';
 import { useDispatch } from 'react-redux';
 import useConfirmExit from '../../../useConfirmExit';
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faEye , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+
 
 const Register = () => {
     useConfirmExit();
+    const [isPasswordShown, setIsPasswordShown] = useState(true);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -53,12 +57,26 @@ const Register = () => {
                     <label>Email</label>
                 </div>
                 <div className="user-box">
-                    <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} required/>
+                    <input type={isPasswordShown ? "password" : "text"} id="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} required/>
                     <label>Mật khẩu</label>
+                    {
+              isPasswordShown == true ? (
+                                  <FontAwesomeIcon icon={faEyeSlash} className="eye-icon" onClick={() => setIsPasswordShown(false)}/>
+                                ) : (
+                                  <FontAwesomeIcon icon={faEye} className="eye-icon" onClick={() => setIsPasswordShown(true)}/>
+                                )
+                            }
                 </div>
                 <div className="user-box">
-                    <input type="password" id="cfpassword" pattern={password} name="cfpassword" onChange={(e) => setCfpassword(e.target.value)} value={cfpassword} title="Confirm password must be the same password" required/>
+                    <input type={isPasswordShown ? "password" : "text"} id="cfpassword" pattern={password} name="cfpassword" onChange={(e) => setCfpassword(e.target.value)} value={cfpassword} title="Confirm password must be the same password" required/>
                     <label>Nhập lại mật khẩu</label>
+                    {
+              isPasswordShown == true ? (
+                                  <FontAwesomeIcon icon={faEyeSlash} className="eye-icon" onClick={() => setIsPasswordShown(false)}/>
+                                ) : (
+                                  <FontAwesomeIcon icon={faEye} className="eye-icon" onClick={() => setIsPasswordShown(true)}/>
+                                )
+                            }
                 </div>
                 <p>Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link></p>
                 <input type="submit" value="Đăng ký tài khoản" />

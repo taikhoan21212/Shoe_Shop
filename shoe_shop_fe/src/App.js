@@ -16,6 +16,7 @@ import ProductMale from './components/layout/container/productMale';
 import ProductFemale from './components/layout/container/productFemale';
 import ProductList from './components/layout/container/product-nine';
 import CustomerOrder from './components/layout/pages/order/customerorder';
+import ManageOrder from './components/layout/pages/order/manageOrder';
 import { CartContext } from './components/layout/pages/cart/CartContext';
 import CreateOrder from './components/layout/pages/create-order/CreateOrder';
 import { useSelector } from 'react-redux';
@@ -53,9 +54,9 @@ function App() {
                     <Route path="/Register" element={<Register />} />
                     <Route path="/Cart" element={<Cart />} />
                     <Route path="/PageAdmin/" element={<Layout />} />
-
                     <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
                     <Route path="/PageAdmin/EditProduct/" element={<Edit_Product />} />
+                    <Route path="/PageAdmin/ManageOrder" element={<ManageOrder />} />
                     <Route path="/Product/:id" element={<Product_detail />} />
                     <Route path="/ProductsMale" element={<ProductMale />} />
                     <Route path="/ProductsFemale" element={<ProductFemale />} />

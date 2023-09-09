@@ -26,6 +26,7 @@ const orderSchema = new mongoose.Schema(
             information: { type: String}
           },
         status: { type: String, default: "pending" },
+        comment: { type: String},
       },
       { timestamps: true }
     );
