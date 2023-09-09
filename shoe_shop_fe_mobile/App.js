@@ -6,12 +6,15 @@ import { Details, Home } from "./screens"
 import { EditProfile, Welcome, Signup, Login } from './screens';
 import { useCallback, useState, useEffect } from "react";
 import BottomTabNavigation from "./navigations/BottomTabNavigation";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createNativeStackNavigator()
+AsyncStorage.setItem('userData', JSON.stringify(null));
 
 export default function App() {
+
   const [fontsLoaded] = useFonts({
     black: require("./assets/fonts/Inter-Black.ttf"),
     bold: require("./assets/fonts/Inter-Bold.ttf"),

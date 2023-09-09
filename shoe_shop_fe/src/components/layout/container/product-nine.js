@@ -37,7 +37,15 @@ function ProductNine() {
 
     useEffect(() => {
         getProductsApi().then((res) => {
-            setProductList(res);
+            const sortedProducts = res.sort((a, b) => {
+                // Sắp xếp theo createdAt mới nhất
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              });
+            
+              setProductList(sortedProducts);
+            //setProductList(res);
+            
+            // phân loại theo category
             // if(selectedCategory===null){
             //     setFilteredProductList(res)
             // }
@@ -93,7 +101,7 @@ function ProductNine() {
                     {productList.map(product=>{
                         let isOutOfStock = false;
                         const sizeColorRemaining = product.packing;
-                        const sizeRemaining = sizeColorRemaining[0].size;
+                        const sizeRemaining =  sizeColorRemaining[0] ? sizeColorRemaining[0].size : [];
                         // console.log(sizeRemaining);
                         const totalRemaining = sizeRemaining.reduce((accumulator, currentValue) => accumulator + currentValue.remaining, 0);
                          //console.log(totalRemaining);

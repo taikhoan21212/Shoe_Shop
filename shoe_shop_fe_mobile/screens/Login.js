@@ -1,45 +1,111 @@
-import { View, Text, Image, Pressable, TextInput, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, Image, Pressable, TextInput, TouchableOpacity} from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from "react-router-native";
-// import { loginUser } from '../redux/apiRequest'
+import { Alert} from 'react-native';
+import axios from 'axios';
+import Constants from 'expo-constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
+    const [user, setUser] = useState(null);
+    const [checkLogined, setCheckLogined] = useState(false);
+    useEffect(() => {
+        getUserData();
+        //console.log("check logined: " + checkLogined);
+        if(checkLogined){
+            navigation.navigate("BottomTabNavigation")
+        }
+      }, []);
+
+      const getUserData = async () => {
+        try {
+            await AsyncStorage.getItem('userData')
+            .then((userData) => {
+                setUser(JSON.parse(JSON.stringify(userData)));
+            });
+            if (user !== null) {
+                setCheckLogined(true);
+            }
+          } catch (error) {
+            console.log(error);
+          }
+      };
+
+
     const [isPasswordShown, setIsPasswordShown] = useState(true);
     const [isChecked, setIsChecked] = useState(false);
-
     const [username, setUsername] = useState("kimngoc");
     const [password, setPassword] = useState("123456");
     // const dispatch = useDispatch();
     // const navigate = useNavigate();
-    // const [error, setError] = useState(false);
-    // const [mes, setMes] = useState("");
-    // const [IsLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleUsernameChange = (text) => {
+        setUsername(text);
+      };
+      const handlePasswordChange = (text) => {
+        setPassword(text);
+      };
+
+      const _userData = async (data) => {
+        try {
+          await AsyncStorage.setItem('userData', JSON.stringify(data));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const newUser = {
+            username: username,
+            password: password
+        };
+        //console.log(newUser);
+        axios
+        .post(`${Constants.expoConfig.extra.apiURL}auth/login`, newUser)
+        .then((res) => {
+            //console.log(res.data);
+            _userData(res.data);
+            // await AsyncStorage.setItem('userData',JSON.stringify(res.data));
+
+            Alert.alert(
+                'Đăng nhập thành công',
+                'Đăng nhập thành công.',
+                [
+                  { text: 'Close', onPress: () => console.log('Close button pressed') }
+                ]
+            );
+            navigation.navigate("BottomTabNavigation")
+        })
+        .catch((err) => {
+            console.log(err);
+            Alert.alert(
+                'Đăng nhập thất bại',
+                'Tên tài khoản hoặc mật khẩu không đúng.',
+                [
+                  { text: 'Close', onPress: () => console.log('Close button pressed') }
+                ]
+              );
+        })
+        
+        // const Logg = await loginUser(newUser, dispatch);
+        // if (Logg) {
+        //     navigate("BottomTabNavigation")
+        // } else {
+        //     Alert.alert(
+        //         'Đăng nhập thất bại',
+        //         'Tên tài khoản hoặc mật khẩu không đúng.',
+        //         [
+        //           { text: 'Close', onPress: () => console.log('Close button pressed') }
+        //         ]
+        //       );
+        // };
 
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const newUser = {
-    //         username: username,
-    //         password: password
-    //     };
-    //     const Logg = await loginUser(newUser, dispatch);
-    //     if (Logg) {
-    //         setMes(newUser.username + " Login successful");
-    //         setError(true);
-    //         setIsLoggedIn(true);
-    //         setTimeout(() => navigate("/"), 500);
-    //     } else {
-    //         setMes("Login failed!!!");
-    //         setError(true);
-    //         setTimeout(() => setError(false), 2000)
-    //     };
-    // };
+    };
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -67,7 +133,7 @@ const Login = ({ navigation }) => {
                     <Text style={{
                         fontSize: 16,
                         fontWeight: 400,
-                        marginVertical: 8
+                        marginVertical: 8,
                     }}>Email address</Text>
 
                     <View style={{
@@ -85,7 +151,7 @@ const Login = ({ navigation }) => {
                             placeholderTextColor={COLORS.black}
                             keyboardType='email-address'
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChangeText={handleUsernameChange}
                             style={{
                                 width: "100%"
                             }}
@@ -115,7 +181,7 @@ const Login = ({ navigation }) => {
                             placeholderTextColor={COLORS.black}
                             secureTextEntry={isPasswordShown}
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChangeText={handlePasswordChange}
                             style={{
                                 width: "100%"
                             }}
@@ -157,7 +223,8 @@ const Login = ({ navigation }) => {
                 <Button
                     title="Login"
                     filled
-                    onPress={() => navigation.navigate("BottomTabNavigation")}
+                    //onPress={() => navigation.navigate("BottomTabNavigation")}
+                    onPress={handleSubmit}
                     style={{
                         marginTop: 18,
                         marginBottom: 4,

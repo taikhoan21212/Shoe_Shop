@@ -1,10 +1,11 @@
-import { View, Text, Image, TouchableOpacity, useWindowDimensions, FlatList, ScrollView } from "react-native";
-import React, { useState } from "react";
+import { View, Text, Image, TouchableOpacity, useWindowDimensions, FlatList, ScrollView} from "react-native";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, FONTS, SIZES, images } from "../constants";
 import { StatusBar } from "expo-status-bar";
 import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { SceneMap, TabBar, TabView } from "react-native-tab-view";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 // const PhotosRoutes = () => (
@@ -45,7 +46,13 @@ import { SceneMap, TabBar, TabView } from "react-native-tab-view";
 //   second: LikesRoutes,
 // });
 
-const Profile = (navigation) => {
+const Profile = ({ navigation }) => {
+  const [user, setUser] = useState(null);
+  AsyncStorage.getItem('userData')
+  .then((userData) => {
+    setUser(JSON.parse(JSON.stringify(userData)));
+  });
+
 
   // const layout = useWindowDimensions();
   // const [index, setIndex] = useState(0);
@@ -90,12 +97,28 @@ const Profile = (navigation) => {
   };
 
   const addAccount = () => {
-    console.log("Aadd account ");
+    console.log("Add account ");
   };
 
-  const logout = () => {
-    console.log("Logout");
+  // const clearData = async () => {
+  //   try {
+  //     await AsyncStorage.removeItem('userData');
+  //     console.log('Dữ liệu đã được xóa thành công.');
+  //   } catch (error) {
+  //     console.log('Đã xảy ra lỗi khi xóa dữ liệu:', error);
+  //   }
+  // };
+  const logout = async() => {
+    try {
+      await AsyncStorage.removeItem('userData');
+      // console.log('Dữ liệu đã được xóa thành công.');
+      setUser(null);
+      navigation.navigate("Login");
+    } catch (error) {
+      console.log('Đã xảy ra lỗi khi đăng xuất:', error);
+    }
   };
+
 
   const orderAndSuport = [
     {
@@ -215,7 +238,7 @@ const Profile = (navigation) => {
             color: COLORS.primary,
             marginVertical: 8,}}
         >
-          PhanTai
+          {user.username}
         </Text>
         <Text
           style={{

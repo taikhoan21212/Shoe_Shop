@@ -58,7 +58,7 @@ function Product_Details() {
                 setSelectwatch(res.packing);
               // const remaining = res.data.size_color_remaining.find((item) => item.remaining > 0);
               const sizeColorRemaining = res.packing;
-              const sizeRemaining = sizeColorRemaining[0].size;
+              const sizeRemaining =  sizeColorRemaining[0] ? sizeColorRemaining[0].size : [];
               // console.log(sizeRemaining);
               const totalRemaining = sizeRemaining.reduce((accumulator, currentValue) => accumulator + currentValue.remaining, 0);
               // console.log(totalRemaining);

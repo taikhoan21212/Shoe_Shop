@@ -60,7 +60,7 @@ const Register = () => {
                     <input type={isPasswordShown ? "password" : "text"} id="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} required/>
                     <label>Mật khẩu</label>
                     {
-              isPasswordShown == true ? (
+              isPasswordShown === true ? (
                                   <FontAwesomeIcon icon={faEyeSlash} className="eye-icon" onClick={() => setIsPasswordShown(false)}/>
                                 ) : (
                                   <FontAwesomeIcon icon={faEye} className="eye-icon" onClick={() => setIsPasswordShown(true)}/>
@@ -71,7 +71,7 @@ const Register = () => {
                     <input type={isPasswordShown ? "password" : "text"} id="cfpassword" pattern={password} name="cfpassword" onChange={(e) => setCfpassword(e.target.value)} value={cfpassword} title="Confirm password must be the same password" required/>
                     <label>Nhập lại mật khẩu</label>
                     {
-              isPasswordShown == true ? (
+              isPasswordShown === true ? (
                                   <FontAwesomeIcon icon={faEyeSlash} className="eye-icon" onClick={() => setIsPasswordShown(false)}/>
                                 ) : (
                                   <FontAwesomeIcon icon={faEye} className="eye-icon" onClick={() => setIsPasswordShown(true)}/>
