@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
   status: {type: Number,},
   password: { type: String, required: true },
   isAdmin: {type: Boolean,default: false},
-  uid: {type: mongoose.Schema.Types.ObjectId,},
   shipmentdetails: [
     {
       surname: { type: String, required: true },
