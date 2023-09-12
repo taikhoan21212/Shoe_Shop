@@ -25,7 +25,7 @@ const Login = ({ navigation }) => {
         try {
             await AsyncStorage.getItem('userData')
             .then((userData) => {
-                setUser(JSON.parse(JSON.stringify(userData)));
+                setUser(JSON.parse((userData)));
             });
             if (user !== null) {
                 setCheckLogined(true);
@@ -64,13 +64,12 @@ const Login = ({ navigation }) => {
             password: password
         };
         //console.log(newUser);
+        //console.log(`${Constants.expoConfig.extra.apiURL}auth/login`);
         axios
         .post(`${Constants.expoConfig.extra.apiURL}auth/login`, newUser)
         .then((res) => {
             //console.log(res.data);
             _userData(res.data);
-            // await AsyncStorage.setItem('userData',JSON.stringify(res.data));
-
             Alert.alert(
                 'Đăng nhập thành công',
                 'Đăng nhập thành công.',
@@ -134,7 +133,7 @@ const Login = ({ navigation }) => {
                         fontSize: 16,
                         fontWeight: 400,
                         marginVertical: 8,
-                    }}>Email address</Text>
+                    }}>User name</Text>
 
                     <View style={{
                         width: "100%",

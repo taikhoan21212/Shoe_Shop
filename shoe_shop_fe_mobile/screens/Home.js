@@ -16,8 +16,8 @@ const Home = ({ navigation }) => {
         // axios.get('https://jsonplaceholder.typicode.com/photos')
             axios.get(`${Constants.expoConfig.extra.apiURL}products/`)
             .then((res) => {
-                //console.log(res)
-                setProductList(res.data)
+                const sortedData = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setProductList(sortedData)
                 //setProductList(res.data.slice(0, 20))
             })
             .catch((error) => {

@@ -49,9 +49,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Profile = ({ navigation }) => {
   const [user, setUser] = useState(null);
   AsyncStorage.getItem('userData')
-  .then((userData) => {
-    setUser(JSON.parse(JSON.stringify(userData)));
-  });
+    .then((userData) => {
+      setUser(JSON.parse(userData));
+    });
+
+  const [username, setUsername] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if(user !== null){
+      setUsername(user.username);
+      setIsAdmin(user.isAdmin);
+    }else{
+      setUsername("");
+      setIsAdmin(false);
+    }
+  })
 
 
   // const layout = useWindowDimensions();
@@ -100,25 +113,16 @@ const Profile = ({ navigation }) => {
     console.log("Add account ");
   };
 
-  // const clearData = async () => {
-  //   try {
-  //     await AsyncStorage.removeItem('userData');
-  //     console.log('Dữ liệu đã được xóa thành công.');
-  //   } catch (error) {
-  //     console.log('Đã xảy ra lỗi khi xóa dữ liệu:', error);
-  //   }
-  // };
   const logout = async() => {
     try {
-      await AsyncStorage.removeItem('userData');
-      // console.log('Dữ liệu đã được xóa thành công.');
-      setUser(null);
-      navigation.navigate("Login");
+    AsyncStorage.clear();
+    console.log('Dữ liệu đã được xóa thành công.');
+    setUser(null);
+    navigation.navigate("Welcome");
     } catch (error) {
-      console.log('Đã xảy ra lỗi khi đăng xuất:', error);
+    console.log('Đã xảy ra lỗi khi đăng xuất:', error);
     }
-  };
-
+    }; 
 
   const orderAndSuport = [
     {
@@ -177,6 +181,7 @@ const Profile = ({ navigation }) => {
     </TouchableOpacity>
   );
   return (
+
     <SafeAreaView
       style={{
         flex: 1,
@@ -238,7 +243,7 @@ const Profile = ({ navigation }) => {
             color: COLORS.primary,
             marginVertical: 8,}}
         >
-          {user.username}
+          {username}
         </Text>
         <Text
           style={{
@@ -246,7 +251,7 @@ const Profile = ({ navigation }) => {
             ...FONTS.body4,
           }}
         >
-          Web Deverloper
+          {isAdmin ? "Admin" : "User"}
         </Text>
 
         {/* <View
@@ -440,7 +445,7 @@ const Profile = ({ navigation }) => {
         />
       </View> */}
     </SafeAreaView>
-  );
+);
 };
 
 export default Profile;

@@ -48,9 +48,11 @@ const Details = ({ navigation, route }) => {
       }}>
       <View style={{
         flex: 1,
-        backgroundColor: COLORS.gray
+        backgroundColor: COLORS.gray,
+        flexDirection: 'column',
       }}>
         <View style={{
+          flex: 1,
           marginHorizontal: 22,
           flexDirection: "row",
           justifyContent: "space-between",
@@ -90,23 +92,19 @@ const Details = ({ navigation, route }) => {
             }
           </TouchableOpacity>
         </View>
-
-        {/* {sliderImages && sliderImages.length > 0 && (
-        <SimpleImageSlider width={500} height={500} images={sliderImages} showNavs={true} />)}
-         */}
+        <View style={{ flex: 1}}>
          {sliderImages && sliderImages.length > 0 && (
-         <SliderBox images={sliderImages} sliderBoxHeight={400} 
-        //  onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
-         />)}
-          
+         <SliderBox images={sliderImages} sliderBoxHeight={400}/>)}
+          </View>
           <View style={{
-        backgroundColor: COLORS.white,
-        borderRadius: 36,
-        paddingHorizontal: 22,
-        paddingVertical: 22,
-        position: "absolute",
-        width: "100%",
-        bottom: 0
+            flex: 2,
+      backgroundColor: COLORS.white,
+      borderRadius: 36,
+      paddingHorizontal: 22,
+      paddingVertical: 22,
+      position: "absolute",
+      width: "100%",
+      bottom: 0,
       }}>
         <Text style={{ ...FONTS.h3 }}>{productDetail.title}</Text>
         <Text style={{ ...FONTS.body3 }}>{productDetail.brand}</Text>
@@ -116,11 +114,11 @@ const Details = ({ navigation, route }) => {
           <Text style={{ ...FONTS.h4 }}>Select Size: </Text>
 
           <View style={{
-            flexDirection: "row",
+            flexDirection: "column",
             marginVertical: 18
           }}>
 
-            <TouchableOpacity>
+            <TouchableOpacity style={{flexDirection: 'row',}}>
               {selectSwatch && selectSwatch.length > 0 && selectSwatch.map((item, index) => {
                 return (<>
                   <TextInput key={index} type="radio" id={"color" + index} name="color" checked={index === indexColor} onChange={(e) => setIndexColor(index)} />
@@ -128,7 +126,7 @@ const Details = ({ navigation, route }) => {
                 );
               })}
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity style={{flexDirection: 'row',}}>
               {selectSwatch && selectSwatch.length > 0 && selectSwatch[indexColor].size.map((item, index) => {
                 return (<>
                   {item.remaining > 0 ? (
