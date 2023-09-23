@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { createRoot } from 'react-dom/client';
+import _ from 'lodash';
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
