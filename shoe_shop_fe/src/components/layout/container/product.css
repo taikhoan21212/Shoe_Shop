@@ -234,3 +234,8 @@
     color: red; /* Đổi màu sắc thành màu đỏ */
     font-weight: bold; /* In đậm văn bản */
   }
+
+  .highlight {
+    font-weight: bold; /* Kiểu chữ nổi bật */
+    /* Các thuộc tính CSS khác tùy ý */
+  }

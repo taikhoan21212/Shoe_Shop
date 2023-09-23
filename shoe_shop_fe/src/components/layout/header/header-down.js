@@ -9,6 +9,9 @@ import {CartContext} from "../pages/cart/CartContext"
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Search from '../../search';
+import {
+    getProducts as getProductsApi
+} from "../container/productsAPI";
 
 
 function Header_down() {
@@ -20,6 +23,32 @@ function Header_down() {
     const [hasIncompleteOrder, setHasIncompleteOrder] = useState(false)
     const [cartId, setCartId] = useState("");
     sessionStorage.setItem("cartId", cartId);
+    const [FproductList, setFProductList] = useState([])
+    const [MproductList, setMProductList] = useState([])
+
+    useEffect(() => {
+        getProductsApi()
+        .then((res) => {
+            const dataList = res;
+            const FvalidGenders = ['F', 'Female', 'Women', 'Woman', 'Nữ', 'Unsex', ''];
+            const FfilterData = dataList.filter((data) => FvalidGenders.includes(data.gender));
+            setFProductList(FfilterData);
+            const MvalidGenders = ['M', 'Male', 'Men', 'Man', 'Nam', 'Unsex', ''];
+            const MfilterData = dataList.filter((data) => MvalidGenders.includes(data.gender));
+            setMProductList(MfilterData);
+        })},[])
+
+      function uniqueBrands(productList) {
+        return productList?.reduce((brands, product) => {
+          if (!brands.includes(product.brand)) {
+            brands.push(product.brand);
+          }
+          return brands;
+        }, []);
+      }
+      const FBrands = uniqueBrands(FproductList);
+      const MBrands = uniqueBrands(MproductList);
+
 
     const handleRedirect = () => {
         // Navigate to the /Cart page with the cartId passed as a URL parameter
@@ -158,21 +187,26 @@ function Header_down() {
                             <ul className="menu-ul-mobile">
                                 <li className="header_down-menu-home-mobile"><Link to="/" >TRANG CHỦ</Link></li>
                                 <li className="header_down-menu-pages-mobile"><Link to="/ProductsMale" >NAM</Link>
-
-                                    {/* <FontAwesomeIcon icon={faChevronDown} />
+                                    <FontAwesomeIcon icon={faChevronDown} />
                                     <ul className="subnav-mobile">
-                                        <li><a href="#">Hunter</a></li>
+                                    {MBrands.map((brand) => (
+                                        <li key={brand}><Link to={`/ProductsMale/${brand}`}>{brand}</Link></li>
+                                    ))}
+                                        {/* <li><a href="#">Hunter</a></li>
                                         <li><a href="#">Sandan</a></li>
-                                        <li><a href="#">Media</a></li>
-                                    </ul> */}
+                                        <li><a href="#">Media</a></li> */}
+                                    </ul>
                                 </li>
                                 <li className="header_down-menu-pages-mobile"><Link to="/ProductsFemale">NỮ</Link>
-                                    {/* <FontAwesomeIcon icon={faChevronDown} />
+                                    <FontAwesomeIcon icon={faChevronDown} />
                                     <ul className="subnav-mobile">
-                                        <li><a href="#">Hunter</a></li>
+                                    {FBrands.map((brand) => (
+                                        <li key={brand}><Link to={`/ProductsFemale/${brand}`}>{brand}</Link></li>
+                                    ))}
+                                        {/* <li><a href="#">Hunter</a></li>
                                         <li><a href="#">Sandan</a></li>
-                                        <li><a href="#">Guốc</a></li>
-                                    </ul> */}
+                                        <li><a href="#">Guốc</a></li> */}
+                                    </ul>
                                 </li>
                                 <li className="header_down-menu-products-mobile"><Link to="/ProductList">SẢN PHẨM</Link>
                                 </li>
@@ -193,20 +227,26 @@ function Header_down() {
                         <ul className="menu-ul">
                             <li className="header_down-menu-home"><Link to="/">TRANG CHỦ</Link></li>
                             <li className="header_down-menu-pages"><Link to="/ProductsMale" >NAM</Link>
-                                {/* <FontAwesomeIcon icon={faChevronDown} />
+                                <FontAwesomeIcon icon={faChevronDown} />
                                 <ul className="subnav">
-                                    <li><a href="#">Hunter</a></li>
+                                    {MBrands.map((brand) => (
+                                        <li key={brand}><Link to={`/ProductsMale/${brand}`}>{brand}</Link></li>
+                                    ))}
+                                    {/* <li><a href="#">Hunter</a></li>
                                     <li><a href="#">Sandan</a></li>
-                                    <li><a href="#">Media</a></li>
-                                </ul> */}
+                                    <li><a href="#">Media</a></li> */}
+                                </ul>
                             </li>
                             <li className="header_down-menu-pages"><Link to="/ProductsFemale">NỮ</Link>
-                                {/* <FontAwesomeIcon icon={faChevronDown} />
+                                <FontAwesomeIcon icon={faChevronDown} />
                                 <ul className="subnav">
-                                    <li><a href="#">Hunter</a></li>
+                                {FBrands.map((brand) => (
+                                        <li key={brand}><Link to={`/ProductsFemale/${brand}`}>{brand}</Link></li>
+                                    ))}
+                                    {/* <li><a href="#">Hunter</a></li>
                                     <li><a href="#">Sandan</a></li>
-                                    <li><a href="#">Guốc</a></li>
-                                </ul> */}
+                                    <li><a href="#">Guốc</a></li> */}
+                                </ul>
                             </li>
                             <li className="header_down-menu-products"><Link to="/ProductList">SẢN PHẨM</Link>
                             </li>

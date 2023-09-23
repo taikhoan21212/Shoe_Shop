@@ -1,7 +1,5 @@
 import './product.css'
-// import product1 from '../img/product1.webp';
 import React, {useState, useEffect} from "react"
-// import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
     getProducts as getProductsApi,
@@ -9,9 +7,11 @@ import {
     // editProduct as editProductApi,
     // deleteProduct as deleteProductApi,
 } from "./productsAPI";
+import { useParams } from "react-router-dom";
 
 
 export const ProductFemale = () => {
+    const { brand } = useParams();
 window.onscroll = function () {
     var navbar = document.querySelector('.header_down');
     var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -21,34 +21,36 @@ window.onscroll = function () {
         navbar.style.top = "0";
     }
 }
-const [productList, setProductList] = useState([])
-// useEffect(()=>{
-//     axios.get(`${process.env.REACT_APP_API_URL}products/gender/Woman`)
-//         .then((res) => {
-//             setProductList(res.data)
-//           })
-//           .catch((error) => {
-//             console.log(error);
-//           });
-// },[])
+//const [productList, setProductList] = useState([])
+const [filteredProductList, setFilteredProductList] = useState([]);
+
+
 useEffect(() => {
     getProductsApi()
-    .then((res) => {
+      .then((res) => {
         const dataList = res;
         const validGenders = ['F', 'Female', 'Women', 'Woman', 'Nữ', 'Unsex', ''];
         const filterData = dataList.filter((data) => validGenders.includes(data.gender));
-        setProductList(filterData);
-    })},[])
+        //setProductList(filterData);
+  
+        if (brand === undefined) {
+          setFilteredProductList(filterData);
+        } else {
+          const filteredList = filterData.filter((product) => product.brand === brand);
+          setFilteredProductList(filteredList);
+        }
+      });
+  }, [brand]);
 
 return (
     <div className="content">
         <div className="content_product">
             <div className="content_product-hot">
                 <div className="content_product-hot-title">
-                    <h3>Sản phẩm Nữ</h3>
+                    <h3>Sản phẩm Nữ {brand && <span className="highlight">- {brand}</span>}</h3>
                 </div>
                 <div className="content-product-hot-list row">
-                {productList.map(product=>{
+                {filteredProductList.map(product=>{
                     let isOutOfStock = false;
                     const sizeColorRemaining = product.packing;
                     const sizeRemaining =  sizeColorRemaining[0] ? sizeColorRemaining[0].size : [];

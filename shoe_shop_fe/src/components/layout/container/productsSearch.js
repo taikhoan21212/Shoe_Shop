@@ -5,9 +5,10 @@ import {
     getProducts as getProductsApi,
 } from "./productsAPI";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const ProductMale = () => {
-    const { brand } = useParams();
+    const { search } = useParams();
     window.onscroll = function () {
         var navbar = document.querySelector('.header_down');
         var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -17,24 +18,28 @@ export const ProductMale = () => {
             navbar.style.top = "0";
         }
     }
-    //const [productList, setProductList] = useState([])
-    const [filteredProductList, setFilteredProductList] = useState([]);
+    const [productList, setProductList] = useState([])
     useEffect(() => {
-        getProductsApi()
+        axios
+        .get(`${process.env.REACT_APP_API_URL}search/${search}`)
         .then((res) => {
-            const dataList = res;
-            const validGenders = ['M', 'Male', 'Men', 'Man', 'Nam', 'Unsex', ''];
-            const filterData = dataList.filter((data) => validGenders.includes(data.gender));
-            //setProductList(filterData);
+            setProductList(res.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
 
-            if (brand === undefined) {
-                setFilteredProductList(filterData);
-              } else {
-                const filteredList = filterData.filter((product) => product.brand === brand);
-                setFilteredProductList(filteredList);
-              }
-
-        })},[brand])
+    },[search])
+    // const handleSearchInput = () => {
+    //     axios
+    //       .get(`${process.env.REACT_APP_API_URL}search/${searchInput}`)
+    //       .then((res) => {
+    //         console.log(res);
+    //       })
+    //       .catch((error) => {
+    //         console.error(error);
+    //       });
+    //   };
 
 
 
@@ -43,10 +48,10 @@ export const ProductMale = () => {
             <div className="content_product">
                 <div className="content_product-hot">
                     <div className="content_product-hot-title">
-                        <h3>Sản phẩm Nam {brand && <span className="highlight">- {brand}</span>}</h3>
+                        <h3>Tìm kiếm {search && <span className="highlight">- {search}</span>}</h3>
                     </div>
                     <div className="content-product-hot-list row">
-                    {filteredProductList.map(product=>{
+                    {productList.length > 0 && productList.map(product=>{
                         let isOutOfStock = false;
                         const sizeColorRemaining = product.packing;
                         const sizeRemaining =  sizeColorRemaining[0] ? sizeColorRemaining[0].size : [];
@@ -72,7 +77,10 @@ export const ProductMale = () => {
                                 
                             </div>
                             </Link>
-                        </div></>)})}
+                        </div></>)}
+
+                        )}
+                     {productList.length === 0 && (<h2>Không có sản phẩm liên quan</h2>)}
                     </div>
                 </div>
             </div>
