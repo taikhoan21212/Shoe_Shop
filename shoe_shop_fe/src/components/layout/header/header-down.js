@@ -157,7 +157,7 @@ function Header_down() {
                     setCartId(id);
                     })
                     .catch((error) => {
-                      console.log(error);
+                      //console.log(error);
                     });
         }
       }, [cartItems]);

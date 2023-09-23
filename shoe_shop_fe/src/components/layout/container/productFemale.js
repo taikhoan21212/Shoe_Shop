@@ -50,7 +50,7 @@ return (
                     <h3>Sản phẩm Nữ {brand && <span className="highlight">- {brand}</span>}</h3>
                 </div>
                 <div className="content-product-hot-list row">
-                {filteredProductList.map(product=>{
+                {filteredProductList && filteredProductList.map(product=>{
                     let isOutOfStock = false;
                     const sizeColorRemaining = product.packing;
                     const sizeRemaining =  sizeColorRemaining[0] ? sizeColorRemaining[0].size : [];

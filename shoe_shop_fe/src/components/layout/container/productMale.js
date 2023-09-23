@@ -46,7 +46,7 @@ export const ProductMale = () => {
                         <h3>Sản phẩm Nam {brand && <span className="highlight">- {brand}</span>}</h3>
                     </div>
                     <div className="content-product-hot-list row">
-                    {filteredProductList.map(product=>{
+                    {filteredProductList && filteredProductList.map(product=>{
                         let isOutOfStock = false;
                         const sizeColorRemaining = product.packing;
                         const sizeRemaining =  sizeColorRemaining[0] ? sizeColorRemaining[0].size : [];
@@ -56,7 +56,7 @@ export const ProductMale = () => {
                         if(totalRemaining < 1){
                         isOutOfStock = true;
                         }
-                        return(<>
+                        return(
                         <div key={product._id} className="col-12 col-md-4 col-sm-6 col-lg-3">
                             <Link to={`/Product/${product._id}`} className="product-link">
                             <img src={product.img[0]} alt="" className="product-img" />
@@ -72,7 +72,7 @@ export const ProductMale = () => {
                                 
                             </div>
                             </Link>
-                        </div></>)})}
+                        </div>)})}
                     </div>
                 </div>
             </div>
