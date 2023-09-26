@@ -27,7 +27,7 @@ function Comments({ user, productId }) {
         (a, b) =>
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
       );
-      console.log(replies);
+      //console.log(replies);
     return replies;
   };
   const addComment = (userId, username, productId, text, parentId) => {
@@ -98,7 +98,7 @@ function Comments({ user, productId }) {
 
 Comments.propTypes = {
   user: PropTypes.object.isRequired,
-  productId: PropTypes.number.isRequired,
+  productId: PropTypes.string.isRequired,
 };
 
 export default Comments

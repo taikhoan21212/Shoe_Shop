@@ -55,8 +55,7 @@ export default function ManageOrder() {
     useEffect(() => {
       if (selectedBtn ==='all') {
         setFilteredOrderList(orders);
-
-      } else {
+      }else {
         setFilteredOrderList(
           orders.filter((order) => order.status === selectedBtn)
             );
@@ -75,6 +74,7 @@ return (
           <button type='button' value='pending' className={`btn manage-btn ${selectedBtn === 'pending' ? 'btn-primary' : 'tn-light'}`} onClick={(e) => handleBtn(e.target.value)}>Đợi xác nhận</button>
           <button type='button' value='delivery' className={`btn manage-btn ${selectedBtn === 'delivery' ? 'btn-primary' : 'tn-light'}`} onClick={(e) => handleBtn(e.target.value)}>Đang giao</button>
           <button type='button' value='completed' className={`btn manage-btn ${selectedBtn === 'completed' ? 'btn-primary' : 'tn-light'}`} onClick={(e) => handleBtn(e.target.value)}>Đã hoàn thành</button>
+          <button type='button' value='cancel' className={`btn manage-btn ${selectedBtn === 'cancel' ? 'btn-primary' : 'tn-light'}`} onClick={(e) => handleBtn(e.target.value)}>Đã hủy</button>
       </div>
         <div className='manage-order-table'>
             <table className="table table-striped order-table">
@@ -91,7 +91,7 @@ return (
                 <tbody>
                     {filteredOrderList.map((order, index) => {
                         const cart = carts.find((cart) => cart._id === order.cartId);
-                        //const totalQuantity = cart ? cart.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;       
+                        const totalQuantity = cart ? cart.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;       
                         //const Orderstatus = order.status;
                         //const widthStatus = getOrderStatusWidth(Orderstatus);
       
@@ -107,7 +107,7 @@ return (
                           <th scope="row">{index}</th>
                           <td>{new Date(order.createdAt).toLocaleDateString()} {new Date(order.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
                           <td>{order._id}</td>
-                          <td>1</td>
+                          <td>{totalQuantity}</td>
                           <td>COD - {order.amount.toLocaleString()} đ</td>
                           <td>{openDetail === order._id ? (<FontAwesomeIcon icon={faChevronDown}  onClick={() => setOpenDetail(null)}/>):
                           (<FontAwesomeIcon icon={faChevronDown} className='icon-container' onClick={() => setOpenDetail(order._id)}/>) 
@@ -115,7 +115,7 @@ return (
                           {/* <td><FontAwesomeIcon icon={faChevronDown} className={`${openDetail === order._id ? 'icon-container' : ''}`} onClick={() => setOpenDetail(order._id)}/></td> */}
                         </tr>{openDetail === order._id && 
                                 <div className='order-detail'>
-                                  {order.status !== "pending" ? <Invoice order={order} cart={cart}/> : <OrderDetail order={order} cart={cart}/>}
+                                  {order.status !== "pending"  && order.status !== "cancel" ? <Invoice order={order} cart={cart}/> : <OrderDetail order={order} cart={cart}/>}
                                   </div>}
                             
                             </>)})}

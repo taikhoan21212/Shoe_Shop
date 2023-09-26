@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./customerorder.css";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -24,32 +24,34 @@ export default function Customerorder() {
   const [orders, setOrders] = useState([]);
   const [carts, setCarts] = useState([]);
 
-
-    if (user) {
-      const userID = user._id;
+useEffect(() => {
+  if (user) {
+    const userID = user._id;
+    axios
+      .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
+      .then((res) => {
+        const orders = res.data;
+        setOrders(orders);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
       axios
-        .get(`${process.env.REACT_APP_API_URL}order/find/${userID}`)
-        .then((res) => {
-          const orders = res.data;
-          setOrders(orders);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axios
-        .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`, {
-          params: {
-            status: "completed", // Replace "completed" with the desired status
-          },
-        })
-        .then((res) => {
-          const carts = res.data;
-          setCarts(carts);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+      .get(`${process.env.REACT_APP_API_URL}cart/find/${userID}`, {
+        params: {
+          status: "completed", // Replace "completed" with the desired status
+        },
+      })
+      .then((res) => {
+        const carts = res.data;
+        setCarts(carts);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+}, [user]);
+
 
 
 
@@ -59,7 +61,7 @@ export default function Customerorder() {
       return 25;
     } else if (status === "delivery") {
       return 55;
-    } else if (status === "completed") {
+    } else if (status === "completed" || status === "cancel") {
       return 100;
     }
   };
@@ -91,6 +93,11 @@ export default function Customerorder() {
                     background: `linear-gradient(to right, #8ef5ca ${colorStop}%, #017a48)`,
                   };
 
+                  const progressBarStylecancel = {
+                    borderRadius: "16px",
+                    background: `#fa4807`,
+                  };
+
                   const totalQuantity = products ? products.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
 
                   return (
@@ -98,14 +105,17 @@ export default function Customerorder() {
               <MDBCard style={{ borderRadius: "10px", marginBottom: "20px"  }}  key={index1}>
                   <MDBCardBody className="p-4">
                     <div className="d-flex justify-content-between align-items-center mb-4">
-                      {order1.status === "completed" ? (
+                      {order1.status === "completed" && (
                         <div className="alert alert-success mb-0" role="alert" style={{ display: "flex", alignItems: "center" }}>
                         <FontAwesomeIcon icon={faCheckCircle} style={{ fontSize: "2rem", marginRight: "1rem" }} />
                         <div>
                           <p style={{ marginBottom: "0" }}>ĐÃ HOÀN THÀNH: {new Date(order1.updatedAt).toLocaleDateString()} {new Date(order1.updatedAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}.</p>
                         </div>
                       </div>
-                        ):(<p className="lead fw-normal mb-0" style={{ color: "#a8729a" }}>Đơn hàng chưa hoàn thành</p>)}
+                        )}
+                      {order1.status === "cancel" && (<p className="lead fw-normal mb-0" style={{ color: "#e61e46" }}>Đơn hàng đã hủy: {new Date(order1.updatedAt).toLocaleDateString()} {new Date(order1.updatedAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>)}
+                      
+                        {order1.status !== "completed" && order1.status !== "cancel" && (<p className="lead fw-normal mb-0" style={{ color: "#a8729a" }}>Đơn hàng chưa hoàn thành</p>)}
                       {/* <div><FontAwesomeIcon icon={faExclamationCircle} /></div> */}
                       <p className="small text-muted mb-0">
                         Người nhận: {order1.shipmentdetails.surname} {order1.shipmentdetails.name} <br />
@@ -152,9 +162,28 @@ export default function Customerorder() {
                       ))}
                       <MDBRow className="align-items-center">
                           <MDBCol md="2">
-                            <p className="text-muted mb-0 small">Tình trạng:</p>
+                            <p className="text-muted mb-4 small">Tình trạng:</p>
                           </MDBCol>
-
+                          {Orderstatus === "cancel" && (<>
+                          <MDBCol md="10">
+                            <MDBProgress
+                              style={{ height: "6px", borderRadius: "16px" }}
+                            >
+                              <MDBProgressBar
+                                style={progressBarStylecancel}
+                                width={widthStatus}
+                                valuemin={0}
+                                valuemax={100}
+                              />
+                            </MDBProgress>
+                            <div className="d-flex justify-content-around mb-1">
+                                <p className="text-muted mt-1 mb-0 small ms-xl-5" style={{ fontWeight: "bold" }}>
+                                Đơn hàng đã hủy
+                              </p>
+                            </div>
+                          </MDBCol>
+                          </>)}
+                          {Orderstatus !== "cancel" && (<>
                           <MDBCol md="10">
                             <MDBProgress
                               style={{ height: "6px", borderRadius: "16px" }}
@@ -167,7 +196,8 @@ export default function Customerorder() {
                               />
                             </MDBProgress>
                             <div className="d-flex justify-content-around mb-1">
-                              <p className="text-muted mt-1 mb-0 small ms-xl-5">
+                              
+                                <p className="text-muted mt-1 mb-0 small ms-xl-5">
                                 Đang xử lý
                               </p>
                               <p className="text-muted mt-1 mb-0 small ms-xl-5">
@@ -176,8 +206,11 @@ export default function Customerorder() {
                               <p className="text-muted mt-1 mb-0 small ms-xl-5">
                                 Đơn hàng đã hòa thành
                               </p>
+
                             </div>
                           </MDBCol>
+                          </>
+                        )}
                         </MDBRow>
                     </MDBCard>
                     <div className="d-flex justify-content-between pt-2">

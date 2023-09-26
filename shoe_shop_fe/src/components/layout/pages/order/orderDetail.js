@@ -77,6 +77,7 @@ function OrderDetail({order, cart}) {
             Tổng kiện hàng  : <strong>{totalQuantity}</strong><br />
             Giá trị đơn hàng    : {order.amount.toLocaleString()} đ<br />
             Ngày tạo đơn hàng   : {formattedDate(order.createdAt)}<br />
+            {order.status === 'cancel' && (<span>Ngày hủy đơn : {formattedDate(order.updatedAt)}</span>)}
         </div>
 
     </div>

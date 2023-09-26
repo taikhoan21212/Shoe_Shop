@@ -13,7 +13,7 @@ const MyComponent = props => (
   );
   
   MyComponent.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
   };
   
   export default MyComponent;

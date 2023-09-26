@@ -151,14 +151,14 @@ const Comment = ({
 };
 
 Comment.propTypes = {
-  comment: PropTypes.string.isRequired,
+  comment: PropTypes.object.isRequired,
   replies: PropTypes.array.isRequired,
   setActiveComment: PropTypes.func.isRequired,
-  activeComment: PropTypes.string.isRequired,
+  activeComment: PropTypes.string,
   updateComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
-  parentId: PropTypes.string.isRequired,
+  parentId: PropTypes.string,
   currentUserId: PropTypes.string.isRequired,
 };
   
