@@ -6,6 +6,7 @@ import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {  faPenToSquare, faPrint } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import {useReactToPrint} from 'react-to-print';
+import PropTypes from 'prop-types';
 function Invoice({order, cart}) {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -33,8 +34,11 @@ function Invoice({order, cart}) {
         // Xử lý logic khi submit form
         axios.put(`${process.env.REACT_APP_API_URL}order/${order._id}`, {
           status: status
-        }).then((res) => {
+        })
+        // eslint-disable-next-line
+        .then((res) => {
           setShowForm(false);
+          // eslint-disable-next-line
         }).catch((err) => {
           alert("Error");
         })
@@ -46,11 +50,11 @@ function Invoice({order, cart}) {
 
   return (<>
 <div className="container-order-detail" ref={componentRef}>
-    <table className="fullPadding" width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <table className="fullPadding" width="100%" border="0" cellPadding="0" cellSpacing="0" align="center">
                   <tbody>
                     <tr>
                       <td>
-                        <table className="col" width="45%" border="0" cellpadding="0" cellspacing="0" align="left">
+                        <table className="col" width="45%" border="0" cellPadding="0" cellSpacing="0" align="left">
                           <tbody>
                             <tr>
                               <td align="left"> <img className="logo" src={require('../../img/shoe.png')} alt="logo" border="0" /></td>
@@ -63,7 +67,7 @@ function Invoice({order, cart}) {
                             </tr>
                           </tbody>
                         </table>
-                        <table className="col" width="45%" border="0" cellpadding="0" cellspacing="0" align="right">
+                        <table className="col" width="45%" border="0" cellPadding="0" cellSpacing="0" align="right">
                           <tbody>
                             <tr>
                               <td className="header-text-right" style={{color: 'red' ,fontSize: '28px'}}>
@@ -115,7 +119,7 @@ function Invoice({order, cart}) {
 })}
   </table>
 
-  <table className="total-table" width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <table className="total-table" width="100%" border="0" cellPadding="0" cellSpacing="0" align="center">
     <tbody>
       <tr>
         <td className="subtotal" align="right">
@@ -152,7 +156,7 @@ function Invoice({order, cart}) {
       <tr height="30"></tr>
     </tbody>
   </table>
-  <table width="50%" border="0" cellpadding="0" cellspacing="0" align="left" className="col">
+  <table width="50%" border="0" cellPadding="0" cellSpacing="0" align="left" className="col">
   <tbody>
     <tr>
       <td style={{ fontSize: "14px",  color: "#5b5b5b", lineHeight: "1", verticalAlign: "top" }}>
@@ -171,7 +175,7 @@ function Invoice({order, cart}) {
 </table>
 
 
-<table width="50%" border="0" cellpadding="0" cellspacing="0" align="right" className="col">
+<table width="50%" border="0" cellPadding="0" cellSpacing="0" align="right" className="col">
   <tbody>
     <tr>
       <td style={{ fontSize: "14px",  color: "#5b5b5b", lineHeight: "1", verticalAlign: "top" }}>
@@ -193,7 +197,7 @@ function Invoice({order, cart}) {
   </tbody>
 </table>
 
-            {/* <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" className="fullPadding">
+            {/* <table width="100%" border="0" cellPadding="0" cellSpacing="0" align="center" className="fullPadding">
               <tbody>
                 <tr>
                   <td style={{ fontSize: "18px", color: "#5b5b5b",  lineHeight: "18px", verticalAlign: "top", textAlign: "center" }}>
@@ -226,5 +230,8 @@ function Invoice({order, cart}) {
     </>
   )
 }
-
+Invoice.propTypes = {
+  order: PropTypes.object.isRequired,
+  cart: PropTypes.array.isRequired,
+};
 export default Invoice

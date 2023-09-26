@@ -282,6 +282,7 @@ const Add_Edit_Product = () => {
     if(!id){
       axios
       .post(`${process.env.REACT_APP_API_URL}products/add`, newProduct )
+       // eslint-disable-next-line
       .then((res) => {
         alert("Success");
         navigate("/PageAdmin/");
@@ -290,6 +291,7 @@ const Add_Edit_Product = () => {
     }else{
       axios
       .put(`${process.env.REACT_APP_API_URL}products/${id}`, newProduct )
+       // eslint-disable-next-line
       .then((res) => {
         alert("Success");
         navigate(`/Products/${id}`);
@@ -304,20 +306,20 @@ const Add_Edit_Product = () => {
     {user && user.isAdmin? (
     <div className="form-product">
     <form onSubmit={handleSubmit}>
-      <label for="title">Title:</label>
+      <label htmlFor="title">Title:</label>
       <input type="text" id="title" name="title" value={title||""} onChange={(e)=>setTitle(e.target.value)} required/>
 
       <div className="form-row">
         <div className="form-row-group">
-          <label for="price">Price:</label>
+          <label htmlFor="price">Price:</label>
           <input type="number" id="price" name="price" required pattern="[0-9]+([\.,][0-9]+)?" value={price||""} onChange={(e)=>setPrice(e.target.value)}/>
         </div>
         <div className="form-row-group">
-          <label for="brand">Brand:</label>
+          <label htmlFor="brand">Brand:</label>
           <input type="text" id="brand" name="brand" required value={brand||""} onChange={(e)=>setBrand(e.target.value)} />
         </div>
         <div className="form-row-group">
-          <label for="gender">Gender:</label>
+          <label htmlFor="gender">Gender:</label>
           <input type="text" id="gender" name="gender" required value={gender||""} onChange={(e)=>setGender(e.target.value)} />
         </div>
       </div>
@@ -351,12 +353,12 @@ const Add_Edit_Product = () => {
           <tbody>
           {colorRows.map((rowf,colorIndex)=>(
           <tr key={colorIndex}>
-            <td className="color-cell"><input type="text" id="color" name="color" value={rowf.color || ""} onChange={(e) => handleChangecolorRows(colorIndex,0 ,"color", e.target.value)}/></td>
+            <td className="color-cell"><input type="text" id="color" name="color" value={rowf.color || ""} required onChange={(e) => handleChangecolorRows(colorIndex,0 ,"color", e.target.value)}/></td>
             <td className="size-remaining-cell">
             {rowf.size && rowf.size.length > 0 && rowf.size.map((row, index) => (
               <div key={index}>
               <div className="input-s-r">
-              <input type="text" id="size" name="size" placeholder="size..." pattern="^(?:[1-9]|[1-3][0-9]|4[0-5])$" value={row.value|| ""}  onChange={(e) => handleChangecolorRows(colorIndex, index, "value", e.target.value)}/>
+              <input type="text" id="size" name="size" placeholder="size..." pattern="^(?:[1-9]|[1-3][0-9]|4[0-5])$" value={row.value|| ""} required onChange={(e) => handleChangecolorRows(colorIndex, index, "value", e.target.value)}/>
               <input type="text" id="remaining" name="remaining" placeholder="remaining..." pattern="^[0-9]*$" value={row.remaining|| ""} onChange={(e) => handleChangecolorRows(colorIndex, index, "remaining", e.target.value)}/>
               {rowf.size.length > 1 && (
               <button className="remove-row set-del" type="button" onClick={() => removeRow(colorIndex,index)}>
@@ -375,11 +377,11 @@ const Add_Edit_Product = () => {
 
     </div>
 
-      <label for="category">Category:</label>
+      <label htmlFor="category">Category:</label>
       <input type="text" id="category" name="category" value={category||""} required onChange={(e) => setCategory(e.target.value)}/>
 
 
-      <label for="description">Description:</label>
+      <label htmlFor="description">Description:</label>
       <textarea id="description" name="description"  value={description||""} onChange={(e) => setDescription(e.target.value)}></textarea>
       {hasProductDetail ?(<button className="submit-form" type="submit">Edit</button>):(
       <button className="submit-form" type="submit">Submit</button>)}

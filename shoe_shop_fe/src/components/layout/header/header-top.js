@@ -5,6 +5,7 @@ import { faEarthAmericas, faChevronDown, faMobile, faUser} from '@fortawesome/fr
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../../redux/apiRequest";
 import { useNavigate } from "react-router-dom";
+import React from 'react';
 
 function Header_top(){
     const user = useSelector((state)=> state.auth.login.currentUser);

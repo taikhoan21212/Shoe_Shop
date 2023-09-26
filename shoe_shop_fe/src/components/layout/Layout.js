@@ -1,14 +1,19 @@
 import React from 'react';
 import SideMenu from "../layout/SideMenu";
+import PropTypes from 'prop-types';
 
-export default props => (
+const MyComponent = props => (
     <div className="grid">
-        
-        <div className="main-content">
-            <SideMenu>
-                {props.children}
-            </SideMenu>
-        </div>
+      <div className="main-content">
+        <SideMenu>
+          {props.children}
+        </SideMenu>
+      </div>
     </div>
-);
-    
+  );
+  
+  MyComponent.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+  
+  export default MyComponent;

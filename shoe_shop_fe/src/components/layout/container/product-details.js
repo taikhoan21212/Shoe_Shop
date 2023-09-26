@@ -10,7 +10,7 @@ import Comments from '../pages/comment/Comments';
 import {
   getProduct as getProductApi,
 } from "./productsAPI";
-
+import PropTypes from 'prop-types';
 
 function Product_Details() {
     const { id } = useParams();
@@ -72,15 +72,15 @@ function Product_Details() {
             }, [id]);
 
 
-
+    /* eslint-disable */
     function QuantityBtn({productInfo}) {
 
         const {cartItems, setCartItems} = useContext(CartContext)
-    
-        let productIndexInCart = cartItems.findIndex((element)=>{
-            return element.id === productInfo.productId
-        })
-
+        let productIndexInCart = cartItems.findIndex((element) => {
+          return element.id === productInfo.productId;
+        });
+      
+        
         let [numInCart,setNumInCart] = useState(
             (productIndexInCart===-1) ? 0 : cartItems[productIndexInCart].quantity
         )
@@ -134,6 +134,9 @@ function Product_Details() {
           <button className="btn-product s-col-full js-buy-ticket" disabled>MUA NGAY</button>      
         ))
     }
+    QuantityBtn.propTypes = {
+      productInfo: PropTypes.object.isRequired,
+    };
 
     return (
         <>
@@ -162,7 +165,7 @@ function Product_Details() {
                                     <div className="select-swatch-color-item">
                                         {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) =>  {
                                             return (<>
-                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={(e) => {setIndexColor(index);setSelectedColor(item.color)}}/>
+                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={() => {setIndexColor(index);setSelectedColor(item.color)}}/>
                                                     <label htmlFor={"color"+index}>{item.color}</label></>
                                             );
                                         })}
@@ -172,7 +175,7 @@ function Product_Details() {
                                         <div className="select-swatch-color-size-item">
                                           {selectSwatch && selectSwatch.length >0 && selectSwatch[indexColor].size.map((item, index) => {
                                             return (<>
-                                                <input key={index} type="radio" id={"size" + item.value} name="size" value={item.value} onChange={(e) => {setSelectedSize(item.value)}}/>
+                                                <input key={index} type="radio" id={"size" + item.value} name="size" value={item.value} onChange={() => {setSelectedSize(item.value)}}/>
                                                 <label htmlFor={"size" + item.value}>{item.value}</label>
                                             </>
                                           );
@@ -185,12 +188,12 @@ function Product_Details() {
                                                                                     return (<>
                                                                                       {item.remaining > 0 ? (
                                                                                         <>
-                                                                                        <input key={index} type="radio" id={"size" + item.value} name="size" value={item.value} onChange={(e) => {setSelectedSize(item.value); setRem(item.remaining)}}/>
+                                                                                        <input key={index} type="radio" id={"size" + item.value} name="size" value={item.value} onChange={() => {setSelectedSize(item.value); setRem(item.remaining)}}/>
                                                                                         <label htmlFor={"size" + item.value}>{item.value}</label>
                                                                                         </>
                                                                                     ) : (
                                                                                       <>
-                                                                                      <input key={index}  type="radio" id={"size" + item.value} name="size" disabled value={item.value} onChange={(e) => {setSelectedSize(item.value); setRem(item.remaining)}}/>
+                                                                                      <input key={index}  type="radio" id={"size" + item.value} name="size" disabled value={item.value} onChange={() => {setSelectedSize(item.value); setRem(item.remaining)}}/>
                                                                                       <label className="disabled-label" htmlFor={"size" + item.value}>{item.value}</label>
                                                                                       </>
                                                                                     )}</>

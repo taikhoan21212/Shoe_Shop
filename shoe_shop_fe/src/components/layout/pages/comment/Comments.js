@@ -8,7 +8,7 @@ import {
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
 } from "./commentsAPI";
-
+import PropTypes from "prop-types";
 
 function Comments({ user, productId }) {
   const [backendComments, setBackendComments] = useState([]);
@@ -94,7 +94,11 @@ function Comments({ user, productId }) {
       </div>
     </div>
   );
-};
+}
 
+Comments.propTypes = {
+  user: PropTypes.object.isRequired,
+  productId: PropTypes.number.isRequired,
+};
 
 export default Comments

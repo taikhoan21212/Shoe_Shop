@@ -59,6 +59,7 @@ export default function CreateOrder() {
         .then(()=> {
           console.log("cập nhật thông tin thành công")
         })
+         // eslint-disable-next-line
         .catch((error)=>{
           console.log("quá trình lưu thông tin giao hàng bị lỗi")
         })
@@ -147,7 +148,8 @@ export default function CreateOrder() {
                   </MDBTypography>
                 </MDBCardHeader>
                 {
-                                    cartItems.map((product,index)=>(
+                                    cartItems.map((product)=>(
+                                //eslint-disable-next-line      
                 <MDBCardBody>
                   <MDBRow key={product.productId} className="border-bottom border-grey">
                     <MDBCol md="4">

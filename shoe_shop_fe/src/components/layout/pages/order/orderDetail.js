@@ -5,6 +5,7 @@ import viLocale from 'date-fns/locale/vi';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {  faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 function OrderDetail({order, cart}) {
     const totalQuantity = cart ? cart.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
     const formattedDate = (date) => {
@@ -24,9 +25,13 @@ function OrderDetail({order, cart}) {
           // Xử lý logic khi submit form
           axios.put(`${process.env.REACT_APP_API_URL}order/${order._id}`, {
             status: status
-          }).then((res) => {
+          })
+          // eslint-disable-next-line
+          .then((res) => {
             setShowForm(false);
-          }).catch((err) => {
+          })
+          // eslint-disable-next-line
+          .catch((err) => {
             alert("Error");
           })
         };
@@ -77,7 +82,7 @@ function OrderDetail({order, cart}) {
     </div>
 
     <div className='control-order'>
-      <button type='button' className='btn btn-control-order' onClick={handleIconClick}><FontAwesomeIcon icon={faPenToSquare} /></button>
+      <button type='button' className='btn btn-control-order ' onClick={handleIconClick}><FontAwesomeIcon icon={faPenToSquare} /></button>
       {showForm && (
         <div className="order-upload">
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
@@ -95,5 +100,10 @@ function OrderDetail({order, cart}) {
 
     </>)
 }
+
+OrderDetail.propTypes = {
+  order: PropTypes.object.isRequired,
+  cart: PropTypes.object,
+};
 
 export default OrderDetail

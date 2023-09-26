@@ -1,7 +1,7 @@
 import './header.css';
 import React, { useState,useContext, useEffect } from 'react';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faBars, faChevronDown, faSearch, faShoppingCart,faBell} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronDown, faShoppingCart,faBell} from '@fortawesome/free-solid-svg-icons';
 // import { faFile } from '@fortawesome/free-regular-svg-icons';
 import { Link} from 'react-router-dom';
 import { Badge } from 'rsuite';
@@ -157,14 +157,14 @@ function Header_down() {
                     setCartId(id);
                     })
                     .catch((error) => {
-                      //console.log(error);
+                      console.log(error);
                     });
         }
       }, [cartItems]);
 
 
 
-
+/* eslint-disable */
     const Menu = () => {
         const [isOpen, setIsOpen] = useState(false);
 
@@ -256,13 +256,7 @@ function Header_down() {
                 </div>
                 <div className="header_down-right">
                     <div className="header_down-right-search">
-                        {/* <a id="search-button" onClick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
-                        <input type="text" className="search-bar" id="search-bar" placeholder="Nhập từ khóa tìm kiếm" /> */}
                         <div className="item no-border drop-left-padding">
-                            {/* <div className="ui icon input icon">
-                                <input placeholder="tìm kiếm" type="text" className="search-bar" />
-                                <a id="search-button" onClick="toggleSearchBar()"><FontAwesomeIcon icon={faSearch} /></a>
-                            </div> */}
                             <Search />
                         </div>
                     </div>

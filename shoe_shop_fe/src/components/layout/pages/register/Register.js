@@ -36,7 +36,7 @@ const Register = () => {
         setMes("Tên đăng nhập hoặc email đã tồn tại");
         setError(true);
         setTimeout(() =>setError(false),2000)
-    };
+    }
 };
  
 

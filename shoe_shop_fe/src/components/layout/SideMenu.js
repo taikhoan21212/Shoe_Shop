@@ -5,9 +5,15 @@ import TextIcon from "./extension/TextIcon";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import { actionCreators } from "../layout/store/SideMenu";
+import PropTypes from 'prop-types';
 
 class SideMenu extends Component {
-    state = {
+    static propTypes = {
+        smallMenu: PropTypes.bool.isRequired,
+        children: PropTypes.node.isRequired,
+      };
+    
+      static state = {
         activeItem: 'dashboard',
     };
 
@@ -15,7 +21,7 @@ class SideMenu extends Component {
     changeSize = () => this.setState({smallSidebar: !this.props.smallMenu});
 
     getMenu() {
-        const {activeItem} = this.state;
+        //const {activeItem} = this.state;
         return (
             <Menu fixed='left' borderless className={(this.props.smallMenu ? 'small-side' : '') + ' side'} vertical>
                 
