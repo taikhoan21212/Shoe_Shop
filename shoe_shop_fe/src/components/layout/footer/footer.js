@@ -81,7 +81,7 @@ function footer(){
                 </footer>
                 <div className='footer__second'></div>
                 <div className='footer__lang'>
-                    <div className='footer-language'>
+                    {/* <div className='footer-language'>
                         <div className='footer-language-flex'>
                             <div className='footer-language-text'>
                                 <span><svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24"
@@ -121,7 +121,7 @@ function footer(){
                                     </svg></span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

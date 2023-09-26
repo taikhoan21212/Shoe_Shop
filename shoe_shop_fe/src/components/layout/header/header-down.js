@@ -121,7 +121,7 @@ function Header_down() {
             let hasIncompleteOrder = false;
 
             res.data.forEach((order) => {
-              if (order.status !== "completed") {
+              if (order.status !== "completed" || order.status !== "cancel") {
                 hasIncompleteOrder = true;
                 // Nếu tìm thấy đơn hàng chưa hoàn thành, thoát khỏi vòng lặp
                 return;
