@@ -3,6 +3,6 @@ module.exports = {
   // All values in extra will be passed to your app.
   extra: {
     // apiURL: "http://localhost:8000/v1/",
-    apiURL: "http://192.168.1.14:8000/v1/",
+    apiURL: "http://192.168.1.23:8000/v1/",
   },
 };

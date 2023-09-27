@@ -9,6 +9,7 @@ section{
 }
 
 .register-box {
+    margin-top: 40px;
     position: absolute;
     top: 50%;
     left: 50%;
