@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 // import { render } from "react-dom";
 import axios from "axios";
 import assets from "../../../../assets/assets.gif";
-import {BiPencil    } from 'react-icons/bi';
-import {AiFillCloseSquare    } from 'react-icons/ai';
+import {BiPencil } from 'react-icons/bi';
+import {AiFillCloseSquare} from 'react-icons/ai';
 import "./edit_products.css"
 
 import {

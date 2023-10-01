@@ -17,6 +17,8 @@ import ProductFemale from './components/layout/container/productFemale';
 import ProductList from './components/layout/container/product-nine';
 import CustomerOrder from './components/layout/pages/order/customerorder';
 import ManageOrder from './components/layout/pages/order/manageOrder';
+import ManageUser from './components/layout/pages/user/manageUser';
+import NotFound from './components/layout/pages/404/NotFound';
 import { CartContext } from './components/layout/pages/cart/CartContext';
 import CreateOrder from './components/layout/pages/create-order/CreateOrder';
 import Search from './components/layout/container/productsSearch';
@@ -29,15 +31,28 @@ const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]
 function App() {
   const [cartItems, setCartItems] = useState(Array.isArray(cartFromLocalStorage) ? cartFromLocalStorage : []);
   const user = useSelector((state) => state.auth.login.currentUser);
+
   useEffect(() => {
     if (user) {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
   }, [cartItems, user]);
 
+
   if (!Array.isArray(cartItems)) {
     setCartItems([]);
   }
+
+  const isAdmin = user && user.isAdmin;
+  const adminRoutes = (
+    <>
+      <Route path="/PageAdmin/" element={<Layout />} />
+      <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
+      <Route path="/PageAdmin/EditProduct/" element={<Edit_Product />} />
+      <Route path="/PageAdmin/ManageOrder" element={<ManageOrder />} />
+      <Route path="/PageAdmin/ManageUser" element={<ManageUser />} />
+    </>
+  );
 
     return (
         <BrowserRouter>
@@ -54,10 +69,6 @@ function App() {
                     <Route path="/Login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/Cart" element={<Cart />} />
-                    <Route path="/PageAdmin/" element={<Layout />} />
-                    <Route path="/PageAdmin/AddProduct" element={<Add_Edit_Product />} />
-                    <Route path="/PageAdmin/EditProduct/" element={<Edit_Product />} />
-                    <Route path="/PageAdmin/ManageOrder" element={<ManageOrder />} />
                     <Route path="/Product/:id" element={<Product_detail />} />
                     <Route path="/Search/:search" element={<Search />} />
                     <Route path="/ProductsMale" element={<ProductMale />} />
@@ -67,6 +78,8 @@ function App() {
                     <Route path="/ProductList" element={<ProductList />} />
                     <Route path="/MyOrder" element={<CustomerOrder />} />
                     <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />
+                    <Route path="/*" element={<NotFound />} />
+                    {isAdmin && adminRoutes}                    
                 </Routes>
             </div>
                 <Footer />

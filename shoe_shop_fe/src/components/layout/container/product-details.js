@@ -147,7 +147,8 @@ function Product_Details() {
                     <div className="content_container">
                     <div className="content_container-img">
                     {sliderImages && sliderImages.length > 0 && (
-                    <SimpleImageSlider width={500} height={500} images={sliderImages} showNavs={true}/>)}
+                    <SimpleImageSlider className="slider" width={500} height={500} images={sliderImages} showNavs={true}/>
+                    )}
                     </div>
                         <div className="content_container-information">
                             <div className="content_container-body">
@@ -220,6 +221,19 @@ function Product_Details() {
                     <div className="content_container-details">
                         <h3>Mô tả sản phẩm</h3>
                         <p>{productDetail.description}</p>
+                        <h3>Bảng size của giày</h3>
+                        {productDetail.brand === "Nike" && (
+                        <img src={require('../img/size/nike.jpg')} className="img-size" alt="size"/>
+                        )}
+                        {productDetail.brand === "Adidas" && (
+                        <img src={require('../img/size/adidas.jpg')} className="img-size" alt="size" />
+                        )}
+                        {productDetail.brand === "New Balance" && (
+                        <img src={require('../img/size/newbalance.jpg')} className="img-size" alt="size" />
+                        )}
+                        {productDetail.brand !== "Nike" && productDetail.brand !== "Adidas" && productDetail.brand !== "New Balance" && (
+                          <img src={require('../img/size/all.jpg')} className="img-size" alt="size" />
+                        )}
                     </div>
                 </div>
             </div>
