@@ -1,12 +1,13 @@
 import './footer.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react';
 
 function footer(){
     return(
         <div className='footer'>
             <div className='footer__first container'>
                 <footer className='footer__foo row'>
-                    <div className='footer__flex col-sm'>
+                    <div className='footer__flex '>
                         <div className='footer__foo-tt'>
                             <h3>Duyệt</h3>
                         </div>
@@ -19,7 +20,7 @@ function footer(){
                             <li className='footer-li'><p>Infographic</p> </li>
                         </ul>
                     </div>
-                    <div className='footer__flex' col-sm>
+                    <div className='footer__flex' >
                         <div className='footer__foo-tt'>
                             <h3>Tính năng</h3>
                         </div>
@@ -42,7 +43,7 @@ function footer(){
                         </ul>
                     </div>
                     
-                    <div className='footer__flex' col-sm>
+                    <div className='footer__flex' >
                         <div className='footer__foo-tt'>
                             <h3>Sản phẩm</h3>
                         </div>
@@ -64,7 +65,7 @@ function footer(){
                             </li>
                         </ul>
                     </div>
-                    <div className='footer__flex' col-sm>
+                    <div className='footer__flex' >
                         <div className='footer__foo-tt'>
                             <h3>Công ty</h3>
                         </div>
@@ -80,17 +81,17 @@ function footer(){
                 </footer>
                 <div className='footer__second'></div>
                 <div className='footer__lang'>
-                    <div className='footer-language'>
+                    {/* <div className='footer-language'>
                         <div className='footer-language-flex'>
                             <div className='footer-language-text'>
-                                <span><svg xmlns="http://www.w3.org/2000/svg" mr-2 width="24" height="24"
+                                <span><svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                             d="M3.8 14.25h3.81a21.9 21.9 0 010-4.5h-3.8a8.5 8.5 0 000 4.5zm.57 1.5c1 2.04 2.8 3.61 4.98 4.33-.68-1.1-1.2-2.6-1.52-4.33H4.37zm15.83-1.5a8.5 8.5 0 000-4.5h-3.81a21.9 21.9 0 010 4.5h3.8zm-.57 1.5h-3.46a12.78 12.78 0 01-1.52 4.33 8.53 8.53 0 004.98-4.33zm-10.5-1.5h5.74a20.12 20.12 0 000-4.5H9.13a20.12 20.12 0 000 4.5zm.23 1.5c.56 2.84 1.69 4.75 2.64 4.75.95 0 2.08-1.9 2.64-4.75H9.36zm-4.99-7.5h3.46c.31-1.74.84-3.24 1.52-4.33a8.53 8.53 0 00-4.98 4.33zm15.26 0a8.53 8.53 0 00-4.98-4.33c.68 1.1 1.2 2.6 1.52 4.33h3.46zm1.64 0h.04v.1a10 10 0 11-.04-.1zm-11.91 0h5.28C14.08 5.41 12.95 3.5 12 3.5c-.95 0-2.08 1.9-2.64 4.75z">
                                         </path>
                                     </svg></span>
                                 <span>Tiếng Việt (Việt Nam)</span>
-                                <span><svg xmlns="http://www.w3.org/2000/svg" ma width="16" height="16"
+                                <span><svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16"
                                         viewBox="0 0 16 16">
                                         <path fill="currentColor"
                                             d="m11.71 6.47-3.53 3.54c-.1.1-.26.1-.36 0L4.3 6.47a.75.75 0 1 0-1.06 1.06l3.53 3.54c.69.68 1.8.68 2.48 0l3.53-3.54a.75.75 0 0 0-1.06-1.06z">
@@ -120,7 +121,7 @@ function footer(){
                                     </svg></span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

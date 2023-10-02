@@ -8,7 +8,7 @@ import {
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
 } from "./commentsAPI";
-
+import PropTypes from "prop-types";
 
 function Comments({ user, productId }) {
   const [backendComments, setBackendComments] = useState([]);
@@ -27,7 +27,7 @@ function Comments({ user, productId }) {
         (a, b) =>
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
       );
-      console.log(replies);
+      //console.log(replies);
     return replies;
   };
   const addComment = (userId, username, productId, text, parentId) => {
@@ -94,7 +94,11 @@ function Comments({ user, productId }) {
       </div>
     </div>
   );
-};
+}
 
+Comments.propTypes = {
+  user: PropTypes.object.isRequired,
+  productId: PropTypes.string.isRequired,
+};
 
 export default Comments

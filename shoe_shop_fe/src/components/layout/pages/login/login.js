@@ -34,7 +34,7 @@ const Login = () => {
         setMes("Tên đăng nhập hoặc mật khẩu không đúng");
         setError(true);
         setTimeout(() =>setError(false),2000)
-      };
+      }
     };
 
     return (

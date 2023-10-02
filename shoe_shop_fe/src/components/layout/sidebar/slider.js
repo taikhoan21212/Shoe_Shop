@@ -55,7 +55,7 @@ function MySlider() {
                         </div>
                         <div className="Top_center__Fg+xp">
                             <img src={require('../img/img1.webp')} />
-                            <div className="Top_title__ZfHaq">BEST SELLER</div>
+                            {/* <div className="Top_title__ZfHaq">BEST SELLER</div> */}
                         </div>
                     </div>
                 </div>

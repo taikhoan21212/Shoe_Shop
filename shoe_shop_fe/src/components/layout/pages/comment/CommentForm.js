@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./comment.css";
+import PropTypes from "prop-types";
 
 const CommentForm = ({
   handleSubmit,
@@ -11,6 +12,7 @@ const CommentForm = ({
   username,
   productId,
   parentId,
+   // eslint-disable-next-line
   commentId
 }) => {
   const [text, setText] = useState(initialText);
@@ -28,6 +30,9 @@ const CommentForm = ({
     
     setText("");
   };
+
+
+
   return (
     <form onSubmit={onSubmit}>
       <textarea
@@ -36,7 +41,7 @@ const CommentForm = ({
         onChange={(e) => setText(e.target.value)}
         placeholder="Enter your comment"
       />
-      <div class="button-container">
+      <div className="button-container">
       <button className="comment-form-button" disabled={isTextareaDisabled}>
         {submitLabel}
       </button>
@@ -52,6 +57,19 @@ const CommentForm = ({
       </div>
     </form>
   );
+};
+
+CommentForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  submitLabel: PropTypes.string.isRequired,
+  hasCancelButton: PropTypes.bool,
+  handleCancel: PropTypes.func,
+  initialText: PropTypes.string,
+  userId: PropTypes.string,
+  username: PropTypes.string,
+  productId: PropTypes.string,
+  parentId: PropTypes.string,
+  commentId: PropTypes.string
 };
 
 export default CommentForm;

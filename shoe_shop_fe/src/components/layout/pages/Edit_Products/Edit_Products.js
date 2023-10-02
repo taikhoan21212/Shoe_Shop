@@ -1,5 +1,5 @@
-import React, { useRef,Component, useState, useEffect } from "react";
-import { render } from "react-dom";
+import React, { useRef, useState, useEffect } from "react";
+// import { render } from "react-dom";
 import axios from "axios";
 import assets from "../../../../assets/assets.gif";
 import {BiPencil    } from 'react-icons/bi';
@@ -11,7 +11,7 @@ import {
   Segment,
   Table,
 } from "semantic-ui-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 export const Edit_Products = () => {
   const formRef = useRef(null);
 
@@ -30,6 +30,7 @@ export const Edit_Products = () => {
     const [editedTitle, seteditedTitle] = useState([]);
    const [editedImageList, seteditedImageList] = useState([]);
     const [loading, setLoading] = useState(false);
+     // eslint-disable-next-line
     const [editingId, setEditingId] = useState(null);
     const [products,setProducts] = useState([]);
     const [hasProductDetail, setHasProductDetail] = useState(false);
@@ -106,8 +107,10 @@ export const Edit_Products = () => {
        category: editedCategory,
        description: editedDescription
       }
+      
       axios
       .put(`${process.env.REACT_APP_API_URL}products/${productId}`, newProduct )
+       // eslint-disable-next-line
       .then((res) => {
         alert("Success");
         setIsEditing(false);
@@ -304,8 +307,7 @@ sortedColorRows.forEach((item)=>
   })
 })
 const handleDeleteProduct = (productId) => {
-  if (window.confirm("Are you sure you want to delete this product?")) {
-    debugger  
+  if (window.confirm("Are you sure you want to delete this product?")) { 
     axios.delete(`${process.env.REACT_APP_API_URL}products/del/${productId}`)
       .then(() => {
         alert("Product deleted successfully");
@@ -414,20 +416,20 @@ const handleDeleteProduct = (productId) => {
         <Segment>
                   <div className="form-product" ref={formRef}>
     <form onSubmit={handleSubmit}>
-       <label for="title">Title:</label>
+       <label htmlFor="title">Title:</label>
       <input type="text" id="title" name="title" value={editedTitle||""} onChange={(e)=>seteditedTitle(e.target.value)} required/>
 
      <div className="form-row">
         <div className="form-row-group">
-           <label for="price">Price:</label>
+           <label htmlFor="price">Price:</label>
           <input type="number" id="price" name="price" required pattern="[0-9]+([\.,][0-9]+)?" value={editedPrice||""} onChange={(e)=>seteditedPrice(e.target.value)}/>
         </div>
          <div className="form-row-group">
-           <label for="brand">Brand:</label>
+           <label htmlFor="brand">Brand:</label>
            <input type="text" id="brand" name="brand" required value={editedBrand||""} onChange={(e)=>seteditedBrand(e.target.value)} />
          </div>
          <div className="form-row-group">
-           <label for="gender">Gender:</label>
+           <label htmlFor="gender">Gender:</label>
            <input type="text" id="gender" name="gender" required value={editedgender||""} onChange={(e)=>seteditedGender(e.target.value)} />
          </div>
        </div>
@@ -460,12 +462,12 @@ const handleDeleteProduct = (productId) => {
           <tbody> 
           {sortedColorRows.map((rowf,colorIndex)=>(
           <tr key={colorIndex}>
-            <td className="color-cell"><input type="text" id="color" name="color" value={rowf.color || ""} onChange={(e) => handleChangecolorRows(colorIndex,0 ,"color", e.target.value)}/></td>
+            <td className="color-cell"><input type="text" id="color" name="color" required value={rowf.color || ""} onChange={(e) => handleChangecolorRows(colorIndex,0 ,"color", e.target.value)}/></td>
             <td className="size-remaining-cell">
             {rowf.size && rowf.size.length > 0 && rowf.size.map((row, index) => (
               <div key={index}>
               <div className="input-s-r">
-              <input type="text" id="size" name="size" placeholder="size..." pattern="^(?:[1-9]|[1-3][0-9]|4[0-5])$" value={row.value|| ""}  onChange={(e) => handleChangecolorRows(colorIndex, index, "value", e.target.value)}/>
+              <input type="text" id="size" name="size" placeholder="size..." pattern="^(?:[1-9]|[1-3][0-9]|4[0-5])$" value={row.value|| ""} required onChange={(e) => handleChangecolorRows(colorIndex, index, "value", e.target.value)}/>
               <input type="text" id="remaining" name="remaining" placeholder="remaining..." pattern="^(?:[0-9][0-9]*)$" value={row.remaining|| ""} onChange={(e) => handleChangecolorRows(colorIndex, index, "remaining", e.target.value)}/>
               {rowf.size.length > 1 && (
               <button className="remove-row set-del"  type="button" onClick={() => removeRow(colorIndex,index)}>
@@ -484,11 +486,11 @@ const handleDeleteProduct = (productId) => {
 
     </div>
 
-      <label for="category">Category:</label>
+      <label htmlFor="category">Category:</label>
       <input type="text" id="category" name="category" value={editedCategory||""} required onChange={(e) => seteditedCategory(e.target.value)}/>
 
 
-      <label for="description">Description:</label>
+      <label htmlFor="description">Description:</label>
       <textarea id="description" name="description"  value={editedDescription||""} onChange={(e) => seteditedDescription(e.target.value)}></textarea>
       {hasProductDetail ?(<button className="submit-form" type="submit" onClick={()=> handleSubmit(productDetail._id)}>Edit</button>
       ):(
@@ -507,16 +509,16 @@ export default Edit_Products;
          
 //         <div className="form-product">
 //     <form onSubmit={handleSubmit}>
-//       <label for="title">Title:</label>
+//       <label htmlFor="title">Title:</label>
 //       <input type="text" id="title" name="title" value={editedTitle||""} onChange={(e)=>seteditedTitle(e.target.value)} required/>
 
 //       <div className="form-row">
 //         <div className="form-row-group">
-//           <label for="price">Price:</label>
+//           <label htmlFor="price">Price:</label>
 //           <input type="number" id="price" name="price" required pattern="[0-9]+([\.,][0-9]+)?" value={editedPrice||""} onChange={(e)=>seteditedPrice(e.target.value)}/>
 //         </div>
 //         <div className="form-row-group">
-//           <label for="brand">Brand:</label>
+//           <label htmlFor="brand">Brand:</label>
 //           <input type="text" id="brand" name="brand" required value={editedBrand||""} onChange={(e)=>seteditedBrand(e.target.value)} />
 //         </div>
 //       </div>
@@ -574,11 +576,11 @@ export default Edit_Products;
 
 //     </div>
 
-//       <label for="category">Category:</label>
+//       <label htmlFor="category">Category:</label>
 //       <input type="text" id="category" name="category" value={editedCategory||""} required onChange={(e) => seteditedCategory(e.target.value)}/>
 
 
-//       <label for="description">Description:</label>
+//       <label htmlFor="description">Description:</label>
 //       <textarea id="description" name="description"  value={editedDescription||""} onChange={(e) => seteditedDescription(e.target.value)}></textarea>
 //       {hasProductDetail ?(<button className="submit-form" type="submit">Edit</button>):(
 //       <button className="submit-form" type="submit">Submit</button>)}

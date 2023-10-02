@@ -5,6 +5,7 @@ import { faEarthAmericas, faChevronDown, faMobile, faUser} from '@fortawesome/fr
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../../redux/apiRequest";
 import { useNavigate } from "react-router-dom";
+import React from 'react';
 
 function Header_top(){
     const user = useSelector((state)=> state.auth.login.currentUser);
@@ -30,9 +31,9 @@ function Header_top(){
                         VietNam
                         <FontAwesomeIcon icon={faChevronDown} />
                     </div>
-                    <div className="header_top-unit">VND
+                    {/* <div className="header_top-unit">VND
                         <FontAwesomeIcon icon={faChevronDown} />
-                    </div>
+                    </div> */}
                     <div className="header_top-hostline">
                         <FontAwesomeIcon icon={faMobile} />
                         123-456-789

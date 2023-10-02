@@ -5,8 +5,8 @@ import { faKey} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 import {checkHasOrder} from './commentsAPI'
-
 import React, {useState} from "react";
+import PropTypes from "prop-types";
 const Comment = ({
   comment,
   replies,
@@ -23,8 +23,8 @@ const Comment = ({
   .then((result) => {
     setApiResult(result) ;
   })
-    
-  
+
+
   // const getReplies = (commentId) => {
   //   const list = replies
   //     .filter((replie) => replie.parentId === commentId)
@@ -67,7 +67,7 @@ const Comment = ({
         <img src={userIcon} />
       </div>
       
-          <div className="comment-author">{comment.username} {comment.userId === '648a98e7a1cad6e07158c5df' && <FontAwesomeIcon icon={faKey} />}  {apiResult && <><FontAwesomeIcon icon={faCheckCircle} className="icongreen"/><p>Đã mua</p></>}</div>
+          <div className="comment-author">{comment.username} {comment.userId === '648a98e7a1cad6e07158c5df' && <FontAwesomeIcon icon={faKey} className="iconblue" />}  {apiResult && <><FontAwesomeIcon icon={faCheckCircle} className="icongreen"/><p>Đã mua</p></>}</div>
           <div className="comment-time">{createdAt}</div>
         </div>
         {!isEditing && <div className="comment-text">{comment.body}</div>}
@@ -149,5 +149,19 @@ const Comment = ({
     </div>
   );
 };
+
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired,
+  replies: PropTypes.array.isRequired,
+  setActiveComment: PropTypes.func.isRequired,
+  activeComment: PropTypes.string,
+  updateComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
+  parentId: PropTypes.string,
+  currentUserId: PropTypes.string.isRequired,
+};
+  
+
 
 export default Comment;
