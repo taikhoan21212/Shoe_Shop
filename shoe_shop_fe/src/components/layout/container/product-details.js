@@ -138,37 +138,37 @@ function Product_Details() {
     productInfo: PropTypes.object.isRequired,
   };
 
-  return (
-    <>
-      {productDetail && (
-        <div className="main">
-          <div className="content">
-            <div className="content_main">
-              <div className="content_container row">
-                <div className="content_container-img col-lg-7 col-md-12 col-12">
-                  {sliderImages && sliderImages.length > 0 && (
-                    <SimpleImageSlider width={500} height={500} images={sliderImages} showNavs={true} />)}
-                </div>
-                <div className="content_container-information col-lg-4 col-md-12 col-12">
-                  <div className="content_container-body">
-                    <h3 className="place-time">{productDetail.title}</h3>
-                    <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4>
-                    <p>Thương hiệu: <strong>{productDetail.brand}</strong>  -{productDetail.category}</p>
-                    <p>Tình trạng: New</p>
-                    <p>Giao hàng và thanh toán:
-                      Giao hàng toàn quốc và thanh toán khi nhận hàng. Bạn có thể kiểm tra sản phẩm.</p>
-                    <p>Tặng hộp giày thay thế.</p>
-                    <div className="select-swatch">
-                      {isOutOfStock ? (
-                        <p >Tình trạng : <span className="out-of-stock-label">Hết hàng </span></p>) : (<p>Tình trạng : {rem}</p>)}
-                      <div className="select-swatch-color">
-                        <div className="select-swatch-color-item">
-                          {selectSwatch && selectSwatch.length > 0 && selectSwatch.map((item, index) => {
-                            return (<>
-                              <input key={index} type="radio" id={"color" + index} name="color" value={item._id} checked={index === indexColor} onChange={() => { setIndexColor(index); setSelectedColor(item.color) }} />
-                              <label htmlFor={"color" + index}>{item.color}</label></>
-                            );
-                          })}
+    return (
+        <>
+        {productDetail && (
+        <div className='main'>
+            <div className="content">                    
+                <div className="content_main">
+                    <div className="content_container">
+                    <div className="content_container-img">
+                    {sliderImages && sliderImages.length > 0 && (
+                    <SimpleImageSlider width={500} height={500} images={sliderImages} showNavs={true}/>)}
+                    </div>
+                        <div className="content_container-information">
+                            <div className="content_container-body">
+                                <h3 className="place-time">{productDetail.title}</h3>
+                                <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4>
+                                <p>Thương hiệu: <strong>{productDetail.brand}</strong>  -{productDetail.category}</p>
+                                <p>Tình trạng: New</p>
+                                <p>Giao hàng và thanh toán:
+                                    Giao hàng toàn quốc và thanh toán khi nhận hàng. Bạn có thể kiểm tra sản phẩm.</p>
+                                <p>Tặng hộp giày thay thế.</p>
+                                <div className="select-swatch">
+                                    {isOutOfStock ? (
+                                    <p >Tình trạng : <span className="out-of-stock-label">Hết hàng </span></p>):(<p>Tình trạng : {rem}</p>)}
+                                    <div className="select-swatch-color">
+                                    <div className="select-swatch-color-item">
+                                        {selectSwatch && selectSwatch.length >0 && selectSwatch.map((item, index) =>  {
+                                            return (<>
+                                                    <input key={index}  type="radio" id={"color"+index} name="color" value={item._id} checked={index === indexColor} onChange={() => {setIndexColor(index);setSelectedColor(item.color)}}/>
+                                                    <label htmlFor={"color"+index}>{item.color}</label></>
+                                            );
+                                        })}
 
                         </div>
                         {isOutOfStock ? (<>
@@ -217,16 +217,16 @@ function Product_Details() {
               </div>
             </div>
 
-            <div className="content_container-details">
-              <h3>Mô tả sản phẩm</h3>
-              <p>{productDetail.description}</p>
+                    <div className="content_container-details">
+                        <h3>Mô tả sản phẩm</h3>
+                        <p>{productDetail.description}</p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      )}
-      <Comments user={user} productId={id} />
-    </>
-  )
+        )}
+        <Comments user={user} productId={id} />
+        </>
+    )
 }
 
 export default Product_Details;
