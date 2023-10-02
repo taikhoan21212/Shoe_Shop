@@ -25,8 +25,8 @@
     display: flex;
     justify-content: space-between;
     /* width: 100%; */
-    padding-right: 8vw;
-    padding-left: 8vw;
+    padding-right: 7%;
+    padding-left: 7%;
     height: 38px;
     text-align: center;
     color: var(--white-color);
@@ -232,3 +232,12 @@ li:hover .subnav {
     font-size: 18px;
     margin: 0 18px 0 -24px;
 } */
+
+@media (max-width: 768px) {
+    .header_top-left{
+        display: none;
+    }
+    .header_top-right{
+        margin-left: 135px;
+    }
+}

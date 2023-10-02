@@ -14,19 +14,6 @@
   margin: auto;
 }
 
-.header_top {
-  position: relative;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  /* width: 100%; */
-  padding-right: 8vw;
-  padding-left: 8vw;
-  height: 38px;
-  text-align: center;
-  color: var(--white-color);
-}
-
 .header_top-left {
   display: flex;
   float: left;
