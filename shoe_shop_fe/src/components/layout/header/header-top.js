@@ -31,9 +31,9 @@ function Header_top(){
                         VietNam
                         <FontAwesomeIcon icon={faChevronDown} />
                     </div>
-                    {/* <div className="header_top-unit">VND
+                    <div className="header_top-unit">VND
                         <FontAwesomeIcon icon={faChevronDown} />
-                    </div> */}
+                    </div>
                     <div className="header_top-hostline">
                         <FontAwesomeIcon icon={faMobile} />
                         123-456-789

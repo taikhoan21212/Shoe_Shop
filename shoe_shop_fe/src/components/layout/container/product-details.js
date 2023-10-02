@@ -141,7 +141,7 @@ function Product_Details() {
   return (
     <>
       {productDetail && (
-        <div className='main'>
+        <div className="main">
           <div className="content">
             <div className="content_main">
               <div className="content_container row">
