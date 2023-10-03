@@ -18,10 +18,10 @@ router.post("/add", async (req, res) => {
 
   router.get('/', async (req, res) => {
     try {
-      const products = await Product.find(); // Thay "YourModel" bằng tên model của bạn
-      res.status(200).json(products); // Trả về dữ liệu đã lấy được với mã trạng thái 200
+      const products = await Product.find(); //
+      res.status(200).json(products); // 
     } catch (err) {
-      res.status(500).json(err); // Trả về lỗi với mã trạng thái 500 nếu có lỗi xảy ra
+      res.status(500).json(err); // 
     }});
 
 //GET ALL PRODUCTS
@@ -48,42 +48,6 @@ router.post("/add", async (req, res) => {
       res.status(500).json(err);
     }
   });
-
-//GET ALL PRODUCTS BY GENDER
-
-// router.get("/gender/:gender", async (req, res) => {
-//   const qNew = req.query.new;
-//   const qCategory = req.query.category;
-//   const gender = req.params.gender; // Lấy giới tính từ tham số đường dẫn
-
-//   let genderValues = []; // Danh sách các giá trị liên quan đến giới tính
-//   if (gender === "Man") {
-//     genderValues = ["M", "Male", "Unsex", "Man", "Men", "Nam"];
-//   } else if (gender === "Woman"){
-//     genderValues = ["F", "Female", "Unsex", "Women", "Woman", "Nữ"];
-//   }
-
-//   try {
-//     let products;
-
-//     if (qNew) {
-//       products = await Product.find().sort({ createdAt: -1 }).limit(1);
-//     } else if (qCategory) {
-//       products = await Product.find({
-//         categories: {
-//           $in: [qCategory],
-//         },
-//         gender: { $in: genderValues }, // Sử dụng $in để tìm kiếm các giá trị trong danh sách
-//       });
-//     } else {
-//       products = await Product.find({ gender: { $in: genderValues } }).sort({ createdAt: -1 }); // Tìm kiếm dựa trên giới tính
-//     }
-
-//     res.status(200).json(products);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 
 
