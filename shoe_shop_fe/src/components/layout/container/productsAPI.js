@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getProducts = async () => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}products/`);;
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}products/`);
         return response.data;
     } catch (error) {
         throw new Error('Failed to fetch products');

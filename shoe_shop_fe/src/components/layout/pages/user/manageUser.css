@@ -1,11 +1,12 @@
-.manage-order{
+.manage-user{
     padding-top: 80px;
     justify-content: center;
     position: relative;
     margin: auto;
     text-align: center;
+
 }
-.manage-order-section{
+.manage-user-section{
     align-items: center;
     padding-bottom: 20px;
     display: flex;
@@ -17,20 +18,19 @@
     padding: 1%;
 }
 
-.manage-order-table{
+.manage-user-table{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-table.order-table{
+table.user-table{
     width: 90%;
     position: relative;
-    z-index: 9999;
+    z-index: 1;
 }
 
 tr.selTr{
   font-weight: bold;
-  
 }
 .icon-container {
     transform: rotate(90deg);
@@ -134,110 +134,20 @@ tr.selTr{
     font-weight: bold;
   }
 
-  /* Table header */
-
-  .logo {
-      width: 70px;
-  }
-  .fullTable {
-    font-size: 14px;
-    color: #252525;
-    line-height: 18px;
-    vertical-align: top;
-    table-layout: fixed;
-  }
-  
-  .fullPadding {
-    font-size: 14px;
-    color: #5b5b5b;
-    line-height: 18px;
-    vertical-align: top;
-    text-align: left;
-  }
-  
-  .hiddenMobile {
-    display: none;
-  }
-  
-  .visibleMobile {
-    display: table-row;
-  }
-  
-  .header-text-left {
-    font-size: 14px;
-    color: #5b5b5b;
-    line-height: 18px;
-    vertical-align: top;
-    text-align: left;
-  }
-  
-  .header-text-right {
-    font-size: 18px;
-    color: #000000;
-    letter-spacing: -1px;
-    line-height: 1;
-    vertical-align: top;
-    text-align: right;
-  }
+ 
 
 
+  .circle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+  }
 
-
-
-  /* Table Total */
-  
-  .total-table {
-    font-size: 14px;
-    color: #646a6e;
-    line-height: 18px;
-    vertical-align: top;
-  }
-  
-  .subtotal {
-    text-align: right;
-  }
-  
-  .subtotal-value {
-    text-align: right;
-    white-space: nowrap;
-  }
-  
-  .shipping {
-    text-align: right;
-  }
-  
-  .shipping-value {
-    text-align: right;
-  }
-  
-  .grand-total {
-    font-size: 14px;
-    color: #000;
-    line-height: 18px;
-    vertical-align: top;
-    text-align: right;
-  }
-  
-  .grand-total-value {
-    font-size: 14px;
-    color: #000;
-    line-height: 18px;
-    vertical-align: top;
-    text-align: right;
-  }
-  
-  .tax {
-    font-size: 12px;
-    color: #b0b0b0;
-    line-height: 16px;
-    vertical-align: top;
-    text-align: right;
-  }
-  
-  .tax-value {
-    font-size: 12px;
-    color: #b0b0b0;
-    line-height: 18px;
-    vertical-align: top;
-    text-align: right;
+  .circle-icon:hover {
+    background-color: #999999;
   }

@@ -5,9 +5,15 @@ import TextIcon from "./extension/TextIcon";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import { actionCreators } from "../layout/store/SideMenu";
+import PropTypes from 'prop-types';
 
 class SideMenu extends Component {
-    state = {
+    static propTypes = {
+        smallMenu: PropTypes.bool.isRequired,
+        children: PropTypes.node.isRequired,
+      };
+    
+      static state = {
         activeItem: 'dashboard',
     };
 
@@ -15,18 +21,10 @@ class SideMenu extends Component {
     changeSize = () => this.setState({smallSidebar: !this.props.smallMenu});
 
     getMenu() {
-        const {activeItem} = this.state;
+        //const {activeItem} = this.state;
         return (
             <Menu fixed='left' borderless className={(this.props.smallMenu ? 'small-side' : '') + ' side'} vertical>
                 
-
-                {/* <Menu.Item as={Link} to={'/appointments'} name='appointments'
-                           active={activeItem === 'appointments'}
-                           onClick={this.handleItemClick}>
-                    <TextIcon hideText={this.props.smallMenu} name='calendar'>
-                        Appointments
-                    </TextIcon>
-                </Menu.Item> */}
 
                 <Menu.Item
                     as={Link} to={'/PageAdmin/AddProduct'}
@@ -42,7 +40,7 @@ class SideMenu extends Component {
                     onClick={this.handleItemClick}
                     >
                     <TextIcon hideText={this.props.smallMenu} name='users'>
-                        EDIT PRODUCT
+                        Quản lý sản phẩm
                     </TextIcon>
                 </Menu.Item>
 
@@ -55,36 +53,31 @@ class SideMenu extends Component {
                     </TextIcon>
                 </Menu.Item>
 
-                {/* <Menu.Item as={Link} to={'/card'} name='card' active={activeItem === 'card'}
-                           onClick={this.handleItemClick}>
-
-                    <TextIcon hideText={this.props.smallMenu} name='time'>
-                        Card
+                <Menu.Item
+                    as={Link} to={'/PageAdmin/ManageUser'}
+                    onClick={this.handleItemClick}
+                    >
+                    <TextIcon hideText={this.props.smallMenu} name='users'>
+                        Quản lý người dùng
                     </TextIcon>
-                </Menu.Item> */}
+                </Menu.Item>
 
-                {/* <Menu.Item as={Link} to={'/layout'} name='layout' active={activeItem === 'layout'}
-                           onClick={this.handleItemClick}>
-                    <TextIcon hideText={this.props.smallMenu} name='calendar'>
-                        Layout
-                    </TextIcon>
-
-                </Menu.Item> */}
             </Menu>
         )
     }
 
     render() {
+        
         return (
-            <div className='parent' >
+              <div className='parent'>
                 <div className={(this.props.smallMenu ? 'small-side ' : '') + 'side'}>
-                    {this.getMenu()}
+                  {this.getMenu()}
                 </div>
                 <div className={(this.props.smallMenu ? 'small-content ' : '') + 'content'}>
-                    {this.props.children}
+                  {this.props.children}
                 </div>
-            </div>
-        )
+              </div>
+            );
     }
 }
 

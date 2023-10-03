@@ -3,9 +3,9 @@
     border-radius: 6px;
     padding: 10px;
     font-weight: 200;
-    width: 180px;
+    width: 140px;
     height: 30px;
-    border: navajowhite;
+    /* border: navajowhite; */
     background-color: #ffffff;
 }
 
@@ -18,3 +18,10 @@
     font-size: 18px;
     margin: 0 18px 0 -24px;
 }
+
+
+@media (max-width:940px) {
+    .item{
+        display: none;
+    }
+}   

@@ -98,6 +98,13 @@
     color: rgb(137, 201, 107);
     margin-top: 10px;
   }
+  .comment-author .iconblue{
+    margin-left: 8px;
+    margin-right: 2px;
+    font-size: 14px;
+    color: rgb(59, 130, 246);
+    margin-top: 10px;
+  }
 
   .comment-time{
         margin-right: 8px;

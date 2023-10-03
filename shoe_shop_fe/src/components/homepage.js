@@ -1,5 +1,5 @@
 import './responsive.css';
-import react from 'react'
+import React from 'react'
 import Slider from './layout/sidebar/slider.js';
 import ProductHot from './layout/container/product-hot.js'
 

@@ -69,25 +69,25 @@ function Categori() {
                                 {
                                     cartItems.map((product,index)=>(
                                         <tr key={product.productId}>
-                                            <td>
+                                            <td className='td-img'>
                                                 <Link to={"/products/" + product.productId}>
                                                   <img src={product.img} alt={product.title} value={product.productId}/>
                                                 </Link>
                                             </td>
-                                            <td>
-                                                <p>Sản Phẩm : {product.title}</p>
-                                                <p>Giá : {product.price.toLocaleString()} đ</p>
-                                                <p>Màu : {product.color}</p>
-                                                <p>Kích cỡ : {product.size}</p>
+                                            <td className='td-product'>
+                                                <p>Sản Phẩm : <span className='text-bold'>{product.title} </span></p>
+                                                <p>Giá : <span className='text-bold'>{product.price.toLocaleString()}</span> đ</p>
+                                                <p>Màu : <span className='text-bold'>{product.color}</span></p>
+                                                <p>Kích cỡ : <span className='text-bold'>{product.size}</span></p>
                                             </td>
-                                            <td>
+                                            <td className='td-cart'>
                                             <div className='addToCart'>
                                                 <span className="subtractBtn" onClick={()=>handleSubtract(index)}>-</span>
-                                                {product.quantity} Kiện
+                                                <span className='text-red'>{product.quantity}</span>
                                                 <span className="addBtn" onClick={()=>handleAdd(index)}>+</span>
                                             </div>
                                             </td>
-                                            <td>
+                                            <td className='td-SubTotal'>
                                                 <div className="productSubTotal">
                                                 {(product.price * product.quantity).toLocaleString()}đ
                                                 </div>
@@ -101,7 +101,7 @@ function Categori() {
                     </div>
                     <div className="checkoutSection">
                         <div>Tổng tiền</div>
-                        <div className="grandTotal">{grandTotal.toLocaleString()} đ</div>
+                        <div className="grandTotal text-red">{grandTotal.toLocaleString()} đ</div>
                         {/* {
                             grandTotal >= freeShippingPrice ? 
                             <div className="freeShipping">✔️Giao hàng miễn phí</div> :

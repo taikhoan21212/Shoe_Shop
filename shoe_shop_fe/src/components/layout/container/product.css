@@ -1,8 +1,8 @@
 /* CONTENT */
 .content {
     margin: auto;
-    padding-right: 9vw;
-    padding-left: 9vw;
+    padding-right: 9%;
+    padding-left: 9%;
 }
 
 .content_product {
@@ -126,28 +126,24 @@
 .content_container-img {
     height: 100%;
     /* width: 50%; */
-    margin-left: 10%;
-    padding-right: 10%;
+    justify-content: center;
+  }
 
-  }
-  
-  @media (max-width: 50%) {
+
+@media (max-width: 50%) {
     .content_container-img {
-      width: 50%;
+        width: 50%;
     }
-  }
+}
 
 .content-product-img{
     width: 80%;
     border: 1px solid #c9c9c9;
-
-    
-
-
-
 }
 
 .content_container-information{
+    width: 50%;
+    padding-left: 2%;
 
 }
 
@@ -218,9 +214,8 @@
 /* .select-swatch-color label:hover {
     background-color: #b8b8b8;
   } */
-  
-  
-  .disabled-label {
+
+.disabled-label {
     opacity: 0.5;
     cursor: not-allowed;
     background: url(//theme.hstatic.net/1000197303/1000796534/14/sold_out.png?v=6087) no-repeat;
@@ -233,4 +228,19 @@
 .out-of-stock-label {
     color: red; /* Đổi màu sắc thành màu đỏ */
     font-weight: bold; /* In đậm văn bản */
-  }
+}
+
+.highlight {
+    font-weight: bold; /* Kiểu chữ nổi bật */
+    /* Các thuộc tính CSS khác tùy ý */
+}
+
+.row>*{
+    margin-right: calc(var(--mdb-gutter-x) * 0.5);
+    margin-left: calc(var(--mdb-gutter-x) * 0.5);
+}
+
+.col-12{
+    padding: 0 10px;
+    margin-bottom: 10%;
+}

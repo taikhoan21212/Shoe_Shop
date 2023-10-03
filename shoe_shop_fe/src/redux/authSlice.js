@@ -27,10 +27,12 @@ const authSlice = createSlice({
             state.login.currentUser = action.payload;
             state.login.error = false;
         },
+        // eslint-disable-next-line
         loginFailed:(state, action) =>{
             state.login.isFetching = false;
             state.login.error = true;
         },
+        // eslint-disable-next-line
         logOutSuccess:(state, action) =>{
             state.logout.isFetching = false;
             state.logout.currentUser = null;
