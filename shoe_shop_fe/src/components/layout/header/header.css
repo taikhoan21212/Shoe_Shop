@@ -234,11 +234,44 @@ li:hover .subnav {
     margin: 0 18px 0 -24px;
 } */
 
+@media (max-width: 1142px) {
+    .header_down-scroll{
+        padding-right: 4vw;
+        padding-left: 4vw;
+    }
+}
+
+@media (max-width: 1110px) {
+    .header_down-scroll{
+        padding-right: 1vw;
+        padding-left: 1vw;
+    }
+}
+
+.header_down-right-search-mobile .search-bar{
+    width: 100%;
+    height: 100%;
+    margin: 0px -20px 12px 1px;
+}
+
+.search-input-icon{
+    margin: -8px 10px;
+}
+
+.search-mobile{
+    display: none;
+}
+
+@media (max-width: 940px) {
+    .search-mobile{
+        display: block;
+        margin-top: 80px;
+    }
+}
+
 @media (max-width: 768px) {
     .header_top-left{
         display: none;
     }
-    .header_top-right{
-        margin-left: 135px;
-    }
+    
 }

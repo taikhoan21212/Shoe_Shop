@@ -15,7 +15,7 @@ function Search() {
 
 
   return (<>
-    <div className="ui icon input icon">
+    <div className="ui icon input icon search-input-icon">
         <input placeholder="Tìm kiếm" type="text" className="search-bar" value={searchInput} onChange={(e) => setSearchInput(e.target.value)}/>
         <Link to={`/Search/${searchInput}`} id="search-button" onClick={toggleSearchBar}><FontAwesomeIcon icon={faSearch} /></Link>
     </div>

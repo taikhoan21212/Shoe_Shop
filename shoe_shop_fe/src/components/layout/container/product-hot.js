@@ -45,7 +45,7 @@ function Product_hot() {
                     <div className="content_product-hot-title">
                         <h3>Sản phẩm nổi bật</h3>
                     </div>
-                    <div className="content-product-hot-list row">
+                    <div className="content-product-hot-list">
                         {productList && productList.map(product => {
                             let isOutOfStock = false;
                             const sizeColorRemaining = product.packing;
@@ -58,7 +58,7 @@ function Product_hot() {
                             }
 
                             return (<>
-                                <div key={product._id} className="col-12 col-md-4 col-sm-6 col-lg-3">
+                                <div key={product._id} className="col-12 col-md-4 col-sm-6 col-lg-3 pd-1o">
                                     <Link to={`/Product/${product._id}`} className="product-link">
                                         <img src={product.img[0]} alt="" className="product-img" />
                                         <div className="place-body">

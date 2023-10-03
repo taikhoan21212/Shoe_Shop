@@ -126,18 +126,15 @@
 .content_container-img {
     height: 100%;
     /* width: 50%; */
-    margin-left: 10%;
-    padding-right: 10%;
-    background-color: #5f5f5f75;
     justify-content: center;
   }
 
-  
-  @media (max-width: 50%) {
+
+@media (max-width: 50%) {
     .content_container-img {
-      width: 50%;
+        width: 50%;
     }
-  }
+}
 
 .content-product-img{
     width: 80%;
@@ -218,7 +215,6 @@
     background-color: #b8b8b8;
   } */
 
-
 .disabled-label {
     opacity: 0.5;
     cursor: not-allowed;
@@ -234,7 +230,17 @@
     font-weight: bold; /* In đậm văn bản */
 }
 
-  .highlight {
+.highlight {
     font-weight: bold; /* Kiểu chữ nổi bật */
     /* Các thuộc tính CSS khác tùy ý */
-  }
+}
+
+.row>*{
+    margin-right: calc(var(--mdb-gutter-x) * 0.5);
+    margin-left: calc(var(--mdb-gutter-x) * 0.5);
+}
+
+.col-12{
+    padding: 0 10px;
+    margin-bottom: 10%;
+}
