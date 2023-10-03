@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import axios from "axios";
 import assets from "../../../../assets/assets.gif";
 import {BiPencil    } from 'react-icons/bi';
-import {AiFillCloseSquare    } from 'react-icons/ai';
+import {AiFillCloseSquare ,AiOutlineSortAscending   ,AiOutlineSortDescending  } from 'react-icons/ai';
 import "./edit_products.css"
 
 import {
@@ -24,6 +24,8 @@ export const Edit_Products = () => {
     const [editedPrice, seteditedPrice] = useState([]);
     const [editedBrand, seteditedBrand] = useState([]);
     const [editedgender, seteditedGender] = useState([]);
+    const [sortOrder, setSortOrder] = useState("asc");
+    const [brandSortOrder, setBrandSortOrder] = useState("asc");
 
     const [editedCategory, seteditedCategory] = useState("");
   const [editedDescription, seteditedDescription] = useState("");
@@ -323,7 +325,28 @@ const handleDeleteProduct = (productId) => {
       });
   }
 };
-
+const handleSortTitle = () => {
+  const sortedProducts = [...products].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.title.localeCompare(b.title);
+    } else {
+      return b.title.localeCompare(a.title);
+    }
+  });
+  setProducts(sortedProducts);
+  setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+};
+const handleSortBrand = () => {
+  const sortedProducts = [...products].sort((a, b) => {
+    if (brandSortOrder === "asc") {
+      return a.brand.localeCompare(b.brand);
+    } else {
+      return b.brand.localeCompare(a.brand);
+    }
+  });
+  setProducts(sortedProducts);
+  setBrandSortOrder(brandSortOrder === "asc" ? "desc" : "asc");
+};
         // }).map(user => <Table.Row>
         //     <Table.Cell>
         //       {user.name +
@@ -352,8 +375,12 @@ const handleDeleteProduct = (productId) => {
         <Table compact celled id="productsTable">
           <Table.Header fullWidth>
             <Table.Row>
-              <Table.HeaderCell>Title</Table.HeaderCell>
-              <Table.HeaderCell>Brand</Table.HeaderCell>
+              <Table.HeaderCell><Button onClick={handleSortTitle} icon>
+    {sortOrder === "asc" ? <AiOutlineSortAscending /> : <AiOutlineSortDescending />}
+  </Button>Title</Table.HeaderCell>
+              <Table.HeaderCell>
+              <Button onClick={handleSortBrand} icon><AiOutlineSortAscending /></Button>
+              Brand</Table.HeaderCell>
               <Table.HeaderCell>Price</Table.HeaderCell>
               <Table.HeaderCell width={2}>Actions</Table.HeaderCell>
             </Table.Row>
@@ -369,7 +396,7 @@ const handleDeleteProduct = (productId) => {
                     onChange={(e) => seteditedTitle(e.target.value)}
                   />
                 ) : (
-                  product.title
+                  product.title 
                 )}
                  */}
                                   {product.title} 
