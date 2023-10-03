@@ -158,6 +158,6 @@ body{
   font-weight: bold;
 }
 
-.text-red{
-  color: red;
+.text-green{
+  color: rgb(25, 102, 25);
 }
