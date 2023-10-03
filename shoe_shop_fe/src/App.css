@@ -305,3 +305,22 @@ li:hover .subnav {
 .parent{
   padding-top: 5%;
 }
+
+.ab1{
+  font-weight: bold;
+  font-size: 20;
+  margin-top: 60px;
+  color: black;
+}
+
+.pab2{
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #000;
+}
+
+.ab2{
+ color: #000;
+ margin-left: 200px;
+}

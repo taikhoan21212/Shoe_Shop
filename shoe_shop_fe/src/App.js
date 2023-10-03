@@ -21,7 +21,7 @@ import { CartContext } from './components/layout/pages/cart/CartContext';
 import CreateOrder from './components/layout/pages/create-order/CreateOrder';
 import { useSelector } from 'react-redux';
 import Layout from './components/layout/Layout';
-
+import AboutUs from './components/layout/pages/Aboutus'
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cartItems") || "[]");
 
@@ -60,6 +60,7 @@ function App() {
                     <Route path="/Product/:id" element={<Product_detail />} />
                     <Route path="/ProductsMale" element={<ProductMale />} />
                     <Route path="/ProductsFemale" element={<ProductFemale />} />
+                    <Route path="/AboutUs" element={<AboutUs />} />
                     <Route path="/ProductList" element={<ProductList />} />
                     <Route path="/MyOrder" element={<CustomerOrder />} />
                     <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />

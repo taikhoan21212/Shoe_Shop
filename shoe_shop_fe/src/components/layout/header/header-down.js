@@ -176,7 +176,7 @@ function Header_down() {
                                 </li>
                                 <li className="header_down-menu-products-mobile"><Link to="/ProductList">SẢN PHẨM</Link>
                                 </li>
-                                <li className="header_down-menu-blog-mobile"><a href="#">BLOG</a></li>
+                                <li className="header_down-menu-blog-mobile"><a href="/AboutUs">AboutUs</a></li>
                             </ul>
                         </div>
                     </div>
@@ -210,7 +210,7 @@ function Header_down() {
                             </li>
                             <li className="header_down-menu-products"><Link to="/ProductList">SẢN PHẨM</Link>
                             </li>
-                            <li className="header_down-menu-blog"><a href="#">BLOG</a></li>
+                            <li className="header_down-menu-blog"><a href="/AboutUs">AboutUs</a></li>
                         </ul>
                     </div>
                 </div>
