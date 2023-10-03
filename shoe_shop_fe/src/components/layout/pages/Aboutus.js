@@ -23,6 +23,9 @@ function AboutUs() {
             Hầu hết các mẫu giày của shop chúng tôi đến từ nhiều brand khác nhau nhưng Biti's vẫn là doanh nghiệp đối tác tốt nhất của chúng tôi, chúng tôi cũng như Biti's điều có giấc mơ "nâng niu bàn chân Việt". <br />
             Vì thế chúng tôi thường sẽ có những chương trình khuyến mãi với sản phẩm của Biti's.
         </li>
+        <li>
+          Mọi vấn đề đổi trả xin liên hệ mail:
+        </li>
       </ul>
     </div>
   );

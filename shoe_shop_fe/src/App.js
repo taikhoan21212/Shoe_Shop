@@ -60,10 +60,10 @@ function App() {
                     <Route path="/Product/:id" element={<Product_detail />} />
                     <Route path="/ProductsMale" element={<ProductMale />} />
                     <Route path="/ProductsFemale" element={<ProductFemale />} />
-                    <Route path="/AboutUs" element={<AboutUs />} />
                     <Route path="/ProductList" element={<ProductList />} />
                     <Route path="/MyOrder" element={<CustomerOrder />} />
-                    <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />
+                    <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />                    
+                    <Route path="/AboutUs" element={<AboutUs />} />
                 </Routes>
             </div>
                 <Footer />
