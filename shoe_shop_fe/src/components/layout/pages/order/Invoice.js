@@ -7,7 +7,9 @@ import {  faPenToSquare, faPrint } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import {useReactToPrint} from 'react-to-print';
 import PropTypes from 'prop-types';
+import { useNavigate} from "react-router-dom";
 function Invoice({order, cart}) {
+  const navigate = useNavigate();
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -38,6 +40,7 @@ function Invoice({order, cart}) {
         // eslint-disable-next-line
         .then((res) => {
           setShowForm(false);
+          navigate("/PageAdmin/ManageOrder")
           // eslint-disable-next-line
         }).catch((err) => {
           alert("Error");
@@ -215,7 +218,7 @@ function Invoice({order, cart}) {
       {showForm && (
         <div className="order-upload">
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                <option value="pending">Đang cho xác nhận</option>
+                <option value="pending">Đang xử lý</option>
                 <option value="delivery">Gửi hàng</option>
                 <option value="completed">Đã hoàn thành</option>
                 <option value="cancel">Hủy đơn hàng</option>

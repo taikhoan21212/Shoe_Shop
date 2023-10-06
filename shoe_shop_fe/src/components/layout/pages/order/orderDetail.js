@@ -6,7 +6,9 @@ import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {  faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { useNavigate} from "react-router-dom";
 function OrderDetail({order, cart}) {
+    const navigate = useNavigate();
     const totalQuantity = cart ? cart.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
     const formattedDate = (date) => {
         return format(new Date(date), 'do MMMM yyyy', { locale: viLocale });
@@ -29,6 +31,7 @@ function OrderDetail({order, cart}) {
           // eslint-disable-next-line
           .then((res) => {
             setShowForm(false);
+            navigate("/PageAdmin/ManageOrder")
           })
           // eslint-disable-next-line
           .catch((err) => {
@@ -87,7 +90,7 @@ function OrderDetail({order, cart}) {
       {showForm && (
         <div className="order-upload">
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                <option value="pending">Đang cho xác nhận</option>
+                <option value="pending">Đang xử lý</option>
                 <option value="delivery">Gửi hàng</option>
                 <option value="completed">Đã hoàn thành</option>
                 <option value="cancel">Hủy đơn hàng</option>
