@@ -32,7 +32,7 @@ class SideMenu extends Component {
                     onClick={this.handleItemClick}
                     >
                     <TextIcon hideText={this.props.smallMenu} name='users'>
-                        ADD PRODUCT
+                        Thêm Sản Phẩm
                     </TextIcon>
                 </Menu.Item>
                 <Menu.Item
