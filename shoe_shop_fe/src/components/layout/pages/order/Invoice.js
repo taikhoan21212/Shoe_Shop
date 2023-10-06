@@ -7,9 +7,7 @@ import {  faPenToSquare, faPrint } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import {useReactToPrint} from 'react-to-print';
 import PropTypes from 'prop-types';
-import { useNavigate} from "react-router-dom";
 function Invoice({order, cart}) {
-  const navigate = useNavigate();
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -39,12 +37,13 @@ function Invoice({order, cart}) {
         })
         // eslint-disable-next-line
         .then((res) => {
-          setShowForm(false);
-          navigate("/PageAdmin/ManageOrder")
+          setShowForm(false); 
+          window.location.reload();
           // eslint-disable-next-line
         }).catch((err) => {
           alert("Error");
         })
+        
       };
     
       const handleCancel = () => {

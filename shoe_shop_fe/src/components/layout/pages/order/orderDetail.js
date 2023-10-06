@@ -6,9 +6,7 @@ import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {  faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { useNavigate} from "react-router-dom";
 function OrderDetail({order, cart}) {
-    const navigate = useNavigate();
     const totalQuantity = cart ? cart.products.reduce((accumulator, product) => accumulator + product.quantity, 0) : 0;
     const formattedDate = (date) => {
         return format(new Date(date), 'do MMMM yyyy', { locale: viLocale });
@@ -31,12 +29,13 @@ function OrderDetail({order, cart}) {
           // eslint-disable-next-line
           .then((res) => {
             setShowForm(false);
-            navigate("/PageAdmin/ManageOrder")
+            window.location.reload();
           })
           // eslint-disable-next-line
           .catch((err) => {
             alert("Error");
           })
+          
         };
       
         const handleCancel = () => {
