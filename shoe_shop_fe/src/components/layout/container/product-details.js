@@ -145,11 +145,13 @@ function Product_Details() {
           <div className="content">
             <div className="content_main">
               <div className="content_container row">
-                <div className="content_container-img col-lg-7 col-md-12 col-12">
+                <div className="content_container-img col-lg-6 col-md-12 col-12 ">
+                  <div className='custom-class'>
                   {sliderImages && sliderImages.length > 0 && (
                     <SimpleImageSlider width={500} height={500} images={sliderImages} showNavs={true} />)}
+                  </div>
                 </div>
-                <div className="content_container-information col-lg-4 col-md-12 col-12">
+                <div className="content_container-information col-lg-5 col-md-12 col-12">
                   <div className="content_container-body">
                     <h3 className="place-time">{productDetail.title}</h3>
                     <h4 className="place-desc" >{productDetail.price.toLocaleString()} đ</h4>
@@ -220,6 +222,19 @@ function Product_Details() {
             <div className="content_container-details">
               <h3>Mô tả sản phẩm</h3>
               <p>{productDetail.description}</p>
+              <h3>Bảng kích cỡ của giày</h3>
+                        {productDetail.brand === "Nike" && (
+                        <img src={require('../img/size/nike.jpg')} className="img-size" alt="size"/>
+                        )}
+                        {productDetail.brand === "Adidas" && (
+                        <img src={require('../img/size/adidas.jpg')} className="img-size" alt="size" />
+                        )}
+                        {productDetail.brand === "New Balance" && (
+                        <img src={require('../img/size/newbalance.jpg')} className="img-size" alt="size" />
+                        )}
+                        {productDetail.brand !== "Nike" && productDetail.brand !== "Adidas" && productDetail.brand !== "New Balance" && (
+                          <img src={require('../img/size/all.jpg')} className="img-size" alt="size" />
+                        )}
             </div>
           </div>
         </div>

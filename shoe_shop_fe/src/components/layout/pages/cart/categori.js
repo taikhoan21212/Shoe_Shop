@@ -83,7 +83,7 @@ function Categori() {
                                             <td className='td-cart'>
                                             <div className='addToCart'>
                                                 <span className="subtractBtn" onClick={()=>handleSubtract(index)}>-</span>
-                                                <span className='text-red'>{product.quantity}</span>
+                                                <span className='text-green'>{product.quantity}</span>
                                                 <span className="addBtn" onClick={()=>handleAdd(index)}>+</span>
                                             </div>
                                             </td>

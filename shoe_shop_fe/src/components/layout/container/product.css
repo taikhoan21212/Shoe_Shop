@@ -121,12 +121,23 @@
 
 .content_container{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .content_container-img {
-    height: 100%;
-    /* width: 50%; */
-    justify-content: center;
+    /* height: 100%; */
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .custom-class {
+    position: relative; /* Đảm bảo phần tử có vị trí tương đối để có thể sử dụng thuộc tính left */
+    left: 16%; /* Di chuyển phần tử sang trái 20% */
+  }
+
+  .rsis-container{
+
   }
 
 
@@ -244,3 +255,9 @@
     padding: 0 10px;
     margin-bottom: 10%;
 }
+
+.img-size{
+    width: 50%;
+    margin-top: 1%;
+    margin-left: 20%;
+  }

@@ -2,13 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 // import { render } from "react-dom";
 import axios from "axios";
 import assets from "../../../../assets/assets.gif";
-<<<<<<< HEAD
 import {BiPencil    } from 'react-icons/bi';
 import {AiFillCloseSquare ,AiOutlineSortAscending   ,AiOutlineSortDescending  } from 'react-icons/ai';
-=======
-import {BiPencil } from 'react-icons/bi';
-import {AiFillCloseSquare} from 'react-icons/ai';
->>>>>>> 2d5e10534ac27a8f54e5d5f7bfdbac1ae732cfe9
 import "./edit_products.css"
 
 import {
@@ -386,7 +381,7 @@ const handleSortBrand = () => {
     {sortOrder === "asc" ? <AiOutlineSortAscending /> : <AiOutlineSortDescending />}
   </Button>Title</Table.HeaderCell>
               <Table.HeaderCell>
-              <Button onClick={handleSortBrand} icon><AiOutlineSortAscending /></Button>
+              <Button onClick={handleSortBrand} icon>{brandSortOrder === "asc" ? <AiOutlineSortAscending /> : <AiOutlineSortDescending />}</Button>
               Brand</Table.HeaderCell>
               <Table.HeaderCell>Price</Table.HeaderCell>
               <Table.HeaderCell width={2}>Actions</Table.HeaderCell>
