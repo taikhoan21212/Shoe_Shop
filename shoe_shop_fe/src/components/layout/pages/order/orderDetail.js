@@ -87,7 +87,7 @@ function OrderDetail({order, cart}) {
       {showForm && (
         <div className="order-upload">
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                <option value="pending">Đang cho xác nhận</option>
+                <option value="pending">Đang chờ xác nhận</option>
                 <option value="delivery">Gửi hàng</option>
                 <option value="completed">Đã hoàn thành</option>
                 <option value="cancel">Hủy đơn hàng</option>
