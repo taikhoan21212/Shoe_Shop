@@ -309,10 +309,10 @@ sortedColorRows.forEach((item)=>
   })
 })
 const handleDeleteProduct = (productId) => {
-  if (window.confirm("Are you sure you want to delete this product?")) { 
+  if (window.confirm("bạn có muốn xóa sản phẩm này?")) { 
     axios.delete(`${process.env.REACT_APP_API_URL}products/del/${productId}`)
       .then(() => {
-        alert("Product deleted successfully");
+        alert("sản phẩm đã được xóa thành công");
         // Tải lại danh sách sản phẩm sau khi xóa
         axios.get(`${process.env.REACT_APP_API_URL}products/`)
           .then((response) => {

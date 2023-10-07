@@ -24,7 +24,8 @@ function AboutUs() {
             Vì thế chúng tôi thường sẽ có những chương trình khuyến mãi với sản phẩm của Biti's.
         </li>
         <li>
-          Mọi vấn đề đổi trả xin liên hệ mail:
+          <br />
+          Mọi vấn đề đổi trả xin liên hệ mail: <a href="mailto:support@tqn.com">support@tqn.com</a>
         </li>
       </ul>
     </div>
