@@ -1,7 +1,7 @@
 import './header.css';
 import React, { useState, useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faChevronDown, faShoppingCart, faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronDown, faShoppingCart, faBox } from '@fortawesome/free-solid-svg-icons';
 // import { faFile } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import { Badge } from 'rsuite';
@@ -266,7 +266,7 @@ function Header_down() {
                         {user && hasOrder ? (
                             <div className="header_down-right-order">
                                 <Link to="/MyOrder">
-                                    {hasIncompleteOrder ? (<Badge content={hasIncompleteOrder}><FontAwesomeIcon icon={faBell} /></Badge>) :
+                                    {hasIncompleteOrder ? (<Badge content={hasIncompleteOrder}><FontAwesomeIcon icon={faBox} /></Badge>) :
                                         (<FontAwesomeIcon icon={faBell} />)}</Link>
                             </div>) : (<></>)}
 

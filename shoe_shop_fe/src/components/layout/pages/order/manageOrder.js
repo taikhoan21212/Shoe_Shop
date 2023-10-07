@@ -104,7 +104,7 @@ return (
     
                     return(<>
                         <tr key={index} className={openDetail === order._id ? 'selTr' : ''}>
-                          <th scope="row">{index}</th>
+                          <th scope="row">{index + 1}</th>
                           <td>{new Date(order.createdAt).toLocaleDateString()} {new Date(order.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
                           <td>{order._id}</td>
                           <td>{totalQuantity}</td>

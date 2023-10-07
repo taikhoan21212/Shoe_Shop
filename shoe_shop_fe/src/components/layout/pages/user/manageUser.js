@@ -106,7 +106,7 @@ return (
                       }
                     return(<>
                         <tr key={index} className={openEdit === user._id ? 'selTr' : ''}>
-                          <th scope="row">{index}</th>
+                          <th scope="row">{index + 1}</th>
                           <td>{user.fullname}</td>
                           <td>{user.username}</td>
                           <td>{user.email}</td>
