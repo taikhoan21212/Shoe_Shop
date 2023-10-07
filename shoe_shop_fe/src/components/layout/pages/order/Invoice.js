@@ -37,11 +37,13 @@ function Invoice({order, cart}) {
         })
         // eslint-disable-next-line
         .then((res) => {
-          setShowForm(false);
+          setShowForm(false); 
+          window.location.reload();
           // eslint-disable-next-line
         }).catch((err) => {
           alert("Error");
         })
+        
       };
     
       const handleCancel = () => {

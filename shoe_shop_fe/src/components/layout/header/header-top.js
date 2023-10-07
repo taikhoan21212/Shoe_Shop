@@ -1,7 +1,7 @@
 //import './header.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEarthAmericas, faChevronDown, faMobile, faUser} from '@fortawesome/free-solid-svg-icons';
+import { faEarthAmericas, faMobile, faUser} from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../../redux/apiRequest";
 import { useNavigate } from "react-router-dom";
@@ -29,10 +29,8 @@ function Header_top(){
                     <div className="header_top-language">
                         <FontAwesomeIcon icon={faEarthAmericas} />
                         VietNam
-                        <FontAwesomeIcon icon={faChevronDown} />
                     </div>
                     <div className="header_top-unit">VND
-                        <FontAwesomeIcon icon={faChevronDown} />
                     </div>
                     <div className="header_top-hostline">
                         <FontAwesomeIcon icon={faMobile} />
