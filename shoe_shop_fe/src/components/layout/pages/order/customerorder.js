@@ -144,7 +144,7 @@ useEffect(() => {
                                 {item.gender === "F" || item.gender === "Female" || item.gender === "women" || item.gender === "Woman" ? (
                                   "Giày: Nữ"
                                 ) : item.gender === "M" || item.gender === "Male" || item.gender === "man" || item.gender === "men" ? (
-                                  "Giày: Nam"
+                                  "Giày: Nam "
                                 ) : (
                                   "Giày: Unsex"
                                 )}
@@ -161,7 +161,7 @@ useEffect(() => {
                         </MDBCardBody>
                       ))}
                       <MDBRow className="align-items-center">
-                          <MDBCol md="2">
+                          <MDBCol>
                             <p className="text-muted mb-4 small">Tình trạng:</p>
                           </MDBCol>
                           {Orderstatus === "cancel" && (<>

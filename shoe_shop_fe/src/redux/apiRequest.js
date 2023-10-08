@@ -11,10 +11,10 @@ export const loginUser = async(user, dispatch) =>{
     try {
         const res = await axios.post(`${process.env.REACT_APP_API_URL}auth/login`, user);
         dispatch(loginSuccess(res.data));
-        return true;
+        return { success: true, data: res.data };
     } catch (error) {
         dispatch(loginFailed());
-        return false;
+        return { success: false, data: null };
     }
 };
 

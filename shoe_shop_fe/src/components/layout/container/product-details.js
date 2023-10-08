@@ -88,42 +88,47 @@ function Product_Details() {
 
     const handleAdd = () => {
       if (user) {
-        const newItem = {
-          productId: productDetail._id,
-          title: productDetail.title,
-          price: productDetail.price,
-          img: productDetail.img[0],
-          color: selectedColor,
-          size: selectedSize,
-          gender: productDetail.gender,
-          quantity: 1,
-        };
+        const isAdmin = user.isAdmin;
+        if(isAdmin){
+          alert("Không thể thêm sản phẩm vào giỏ hàng")
+        }else{
+          const newItem = {
+            productId: productDetail._id,
+            title: productDetail.title,
+            price: productDetail.price,
+            img: productDetail.img[0],
+            color: selectedColor,
+            size: selectedSize,
+            gender: productDetail.gender,
+            quantity: 1,
+          };
 
-        const existingItemIndex = cartItems.findIndex(
-          (item) =>
-            item.productId === productDetail._id &&
-            item.color === selectedColor &&
-            item.size === selectedSize
-        );
+          const existingItemIndex = cartItems.findIndex(
+            (item) =>
+              item.productId === productDetail._id &&
+              item.color === selectedColor &&
+              item.size === selectedSize
+          );
 
-        if (existingItemIndex !== -1) {
-          const updatedCartItems = cartItems.map((item, index) => {
-            if (index === existingItemIndex) {
-              return {
-                ...item,
-                quantity: item.quantity + 1,
-              };
-            }
-            return item;
-          });
-          setCartItems(updatedCartItems);
-        } else {
-          setCartItems([newItem, ...cartItems]);
-        }
-      } else {
-        alert("Vui lòng đăng nhập")
-        navigate("/login")
+          if (existingItemIndex !== -1) {
+            const updatedCartItems = cartItems.map((item, index) => {
+              if (index === existingItemIndex) {
+                return {
+                  ...item,
+                  quantity: item.quantity + 1,
+                };
+              }
+              return item;
+            });
+           setCartItems(updatedCartItems);
+          } else {
+            setCartItems([newItem, ...cartItems]);
+         }
+      }} else {
+          alert("Vui lòng đăng nhập")
+          navigate("/login")
       }
+    
     };
 
 

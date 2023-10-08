@@ -9,7 +9,8 @@ const cartSchema = new mongoose.Schema({
             size: {type: Number},
             img: {type: String},
             price: {type: Number},
-            title: {type: String}
+            title: {type: String},
+            gender: { type: String},
           }],
         status: { type: String, default: "pending" },
       },

@@ -44,6 +44,7 @@ function App() {
   }
 
   const isAdmin = user && user.isAdmin;
+  
   const adminRoutes = (
     <>
       <Route path="/PageAdmin/" element={<Layout />} />
@@ -53,6 +54,13 @@ function App() {
       <Route path="/PageAdmin/ManageUser" element={<ManageUser />} />
     </>
   );
+  const isUser = user && !user.isAdmin;
+  const userRoutes = (
+  <>
+      <Route path="/MyOrder" element={<CustomerOrder />} />
+      <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />   
+  </>
+  )
 
     return (
         <BrowserRouter>
@@ -76,12 +84,12 @@ function App() {
                     <Route path="/ProductsMale/:brand" element={<ProductMale />} />
                     <Route path="/ProductsFemale/:brand" element={<ProductFemale />} />
                     <Route path="/ProductList" element={<ProductList />} />
-                    <Route path="/MyOrder" element={<CustomerOrder />} />
-                    <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />                    
+                    {/* <Route path="/MyOrder" element={<CustomerOrder />} />
+                    <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />                     */}
                     <Route path="/AboutUs" element={<AboutUs />} />
-                    <Route path="/CreateOrder/:cartId" element={<CreateOrder />} />
                     <Route path="/*" element={<NotFound />} />
-                    {isAdmin && adminRoutes}                    
+                    {isAdmin && adminRoutes}
+                    {isUser && userRoutes}                    
                 </Routes>
             </div>
                 <Footer />

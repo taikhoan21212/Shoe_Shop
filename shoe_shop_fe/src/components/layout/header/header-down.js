@@ -65,6 +65,7 @@ function Header_down() {
 
 
     const user = useSelector((state) => state.auth.login.currentUser);
+    const isAdmin = user && user.isAdmin;
 
 
     useEffect(() => {
@@ -263,7 +264,7 @@ function Header_down() {
                             <Link to="/Cart" onClick={handleRedirect}>
                                 {isOpen ? (<Badge content={cartN}><FontAwesomeIcon icon={faShoppingCart} /></Badge>) : (<FontAwesomeIcon icon={faShoppingCart} />)}</Link>
                         </div>
-                        {user && hasOrder ? (
+                        {user && hasOrder && !isAdmin ? (
                             <div className="header_down-right-order">
                                 <Link to="/MyOrder">
                                     {hasIncompleteOrder ? (<Badge content={hasIncompleteOrder}><FontAwesomeIcon icon={faBox} /></Badge>) :

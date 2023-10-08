@@ -15,7 +15,7 @@ function Header_top(){
     e.preventDefault();
     try {
         sessionStorage.clear();
-      localStorage.clear();
+        localStorage.clear();
       logOut(dispatch,navigate);
     } catch (error) {
       console.log(error);
