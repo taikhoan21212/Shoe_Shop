@@ -167,7 +167,7 @@ function Product_Details() {
                     <p>Tặng hộp giày thay thế.</p>
                     <div className="select-swatch">
                       {isOutOfStock ? (
-                        <p >Tình trạng : <span className="out-of-stock-label">Hết hàng </span></p>) : (<p>Tình trạng : {rem}</p>)}
+                        <p >Tình trạng : <span className="out-of-stock-label">Hết hàng </span></p>) : (<p>Tình trạng : Còn hàng {rem}</p>)}
                       <div className="select-swatch-color">
                         <div className="select-swatch-color-item">
                           {selectSwatch && selectSwatch.length > 0 && selectSwatch.map((item, index) => {
