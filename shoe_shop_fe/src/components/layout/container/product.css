@@ -247,8 +247,10 @@
 }
 
 .row>*{
-    margin-right: calc(var(--mdb-gutter-x) * 0.5);
-    margin-left: calc(var(--mdb-gutter-x) * 0.5);
+    /* margin-right: calc(var(--mdb-gutter-x) * 0.5);
+    margin-left: calc(var(--mdb-gutter-x) * 0.5); */
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .col-12{
